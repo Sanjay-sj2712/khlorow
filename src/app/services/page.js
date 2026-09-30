@@ -1,386 +1,1070 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React from "react";
 import {
   Box,
-  Container,
-  Grid,
-  Typography,
-  Card,
-  Divider,
   Button,
+  Grid,
   Stack,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
+  Typography,
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ArchitectureIcon from "@mui/icons-material/Architecture";
-import ChairAltIcon from "@mui/icons-material/ChairAlt";
-import HandymanIcon from "@mui/icons-material/Handyman";
-import EmojiObjectsIcon from "@mui/icons-material/EmojiObjects";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import CheckIcon from "@mui/icons-material/Check";
-import Link from "next/link";
+
+
+/* ==========================================================
+   DUMMY IMAGES
+   Replace these with your actual images
+========================================================== */
+
+const images = {
+  hero: "/images/services-hero.jpg",
+
+  service01: "/images/service-01.jpg",
+  service02: "/images/service-02.jpg",
+  service03: "/images/service-03.jpg",
+  service04: "/images/service-04.jpg",
+  service05: "/images/service-05.jpg",
+};
+
+
+/* ==========================================================
+   SERVICE DATA
+========================================================== */
 
 const services = [
   {
-    id: "interior",
-    icon: <ChairAltIcon sx={{ fontSize: 48 }} />,
-    title: "Interior Design",
-    tagline: "Spaces that speak to the soul",
-    desc: "Our interior design practice is rooted in the belief that every detail matters. From initial concept boards to final styling, we craft environments that are both deeply personal and visually extraordinary. We work with the finest artisans and suppliers to source materials that define spaces for decades.",
-    features: [
-      "Full space planning and layout optimization",
-      "Bespoke material and finish selection",
-      "Custom furniture and lighting design",
-      "Art curation and styling",
-      "FF&E procurement",
-      "Final staging and photography",
+    number: "01",
+    category: "FOUNDATION",
+    title: "Architectural &\nInterior Design",
+
+    description:
+      "Holistic structural concepts, spatial choreography, volumes, facade coordination, and refined architectural execution. We shape the bones of the space, optimizing natural light paths and sightlines before surface application.",
+
+    image: images.service01,
+
+    caption: "RESIDENTIAL VILLA / ENGADINE",
+    code: "PL. 01 — ARCHITECTURAL CORE",
+
+    layout: "text-image",
+
+    scope: [
+      "Concept development",
+      "Spatial planning & volumes",
+      "Material selection & curation",
+      "Architectural lighting design",
+      "Comprehensive millwork integration",
     ],
-    img: "/images/project-residential.jpg",
   },
+
   {
-    id: "architecture",
-    icon: <ArchitectureIcon sx={{ fontSize: 48 }} />,
-    title: "Architecture",
-    tagline: "Structures that endure and inspire",
-    desc: "Khlorow's architectural practice spans residential, commercial, and hospitality typologies. We believe the most powerful architecture emerges from a deep understanding of site, client, and context — structures that feel inevitable and timeless the moment they're complete.",
-    features: [
-      "Site analysis and feasibility studies",
-      "Conceptual and schematic design",
-      "Design development and documentation",
-      "Planning and building permit coordination",
-      "Construction administration",
-      "Post-occupancy evaluation",
+    number: "02",
+    category: "RHYTHM",
+    title: "Space Planning &\nLayout Choreography",
+
+    description:
+      "Thoughtful planning creates spaces that feel effortless to live in. We analyze human passage ways, sightlines towards external landscapes, and acoustic privacy to establish seamless programmatic flow.",
+
+    image: images.service02,
+
+    caption: "CIRCULATION MATRIX & SIGHTLINE STUDY",
+    code: "PL. 02 — PROGRAMMATIC FLOW",
+
+    layout: "image-text",
+
+    scope: [
+      "Flow & circulation analysis",
+      "Intuitive programmatic zoning",
+      "Furniture positioning",
+      "Functional area optimization",
     ],
-    img: "/images/project-commercial.jpg",
   },
+
   {
-    id: "consultation",
-    icon: <EmojiObjectsIcon sx={{ fontSize: 48 }} />,
-    title: "Design Consultation",
-    tagline: "Expert guidance, no agenda",
-    desc: "Sometimes you need clarity, not a full design engagement. Our consultation sessions offer direct access to our senior designers and architects — whether you're navigating a renovation, evaluating a property, or developing a creative brief. We help you see clearly and act decisively.",
-    features: [
-      "One-on-one with senior designers",
-      "Space and layout review",
-      "Material and color direction",
-      "Supplier and contractor referrals",
-      "Budget and timeline guidance",
-      "Follow-up documentation",
+    number: "03",
+    category: "ATELIER",
+    title: "Bespoke Millwork\n& Custom Furniture",
+
+    description:
+      "Furniture designed specifically for the space, rather than selected simply to fill it. We engineer monolithic hearth surrounds, cantilevered tables, fluted stone partitions, and integrated cabinetry tailored down to the millimeter.",
+
+    image: images.service03,
+
+    caption: "TRAVERTINE & SMOKED OAK MILLWORK",
+    code: "PL. 03 — ATELIER FABRICATION",
+
+    layout: "text-image",
+
+    scope: [
+      "Architectural joinery & cabinetry",
+      "Quarry-direct rare stone sourcing",
+      "Artisan timber fabrication",
+      "Custom patinated brass hardware",
     ],
-    img: "/images/project-hospitality.jpg",
   },
+
   {
-    id: "renovation",
-    icon: <HandymanIcon sx={{ fontSize: 48 }} />,
-    title: "Renovation & Refurbishment",
-    tagline: "Transforming the existing into the exceptional",
-    desc: "Renovations are where we love to solve problems. We approach every existing space as a puzzle — uncovering its potential, resolving its constraints, and transforming it into something extraordinary. From single rooms to full building transformations, our renovation practice brings the same design rigor as new construction.",
-    features: [
-      "Existing conditions assessment",
-      "Design-led renovation strategy",
-      "Structural and MEP coordination",
-      "Contractor procurement and oversight",
-      "Phased delivery planning",
-      "Minimal-disruption scheduling",
+    number: "04",
+    category: "HERITAGE",
+    title: "Restoration &\nArchitectural Renovation",
+
+    description:
+      "We carefully transform existing spaces while respecting what already makes them special. Historical structure provides the most profound dialogue with modern minimalism, stripping away decay while honoring authentic masonry.",
+
+    image: images.service04,
+
+    caption: "HERITAGE COURTYARD RESTORATION",
+    code: "PL. 04 — ADAPTIVE DIALOGUE",
+
+    layout: "image-text",
+
+    scope: [
+      "Historical preservation compliance",
+      "Surgical structural interventions",
+      "Traditional lime masonry repair",
+      "Thermal envelope & glazing upgrade",
     ],
-    img: "/images/project-residential.jpg",
+  },
+
+  {
+    number: "05",
+    category: "REALIZATION",
+    title: "Turnkey\nExecution & Site\nManagement",
+
+    description:
+      "From design drawings to the finished space, we coordinate every detail to bring the vision together with unwavering fidelity. Rigorous procurement oversight, artisan management, and turnkey installation.",
+
+    image: images.service05,
+
+    caption: "FINAL APPOINTMENT & RESIDENTIAL TURNOVER",
+    code: "PL. 05 — PRECISION DELIVERY",
+
+    layout: "text-image",
+
+    scope: [
+      "General contractor stewardship",
+      "Global procurement & logistics",
+      "Daily on-site architectural supervision",
+      "White-glove styling & handover",
+    ],
   },
 ];
 
-const faqs = [
-  {
-    q: "How long does a typical interior design project take?",
-    a: "Project timelines vary based on scope. A single room typically takes 8–12 weeks from concept to completion. Full-home projects range from 6 to 18 months. We provide detailed schedules at the outset of every engagement.",
-  },
-  {
-    q: "What is your design process?",
-    a: "We begin with a discovery session to understand your vision, lifestyle, and goals. From there we develop concept presentations, refine through collaborative feedback, and move into design development, procurement, and finally installation.",
-  },
-  {
-    q: "Do you work with clients outside the USA?",
-    a: "Yes. Khlorow has completed projects in Europe and the Americas. We are experienced in managing international procurement, logistics, and contractor coordination across borders.",
-  },
-  {
-    q: "What is your minimum project budget?",
-    a: "Our interior design engagements typically begin at $150,000 in construction and furnishing budget. Architectural projects are evaluated case by case. We're happy to discuss your project in a no-obligation consultation.",
-  },
-  {
-    q: "Can I hire Khlorow just for a consultation?",
-    a: "Absolutely. Our consultation service is available as a standalone offering. Many clients begin with a consultation and expand into a full design engagement — but there's no obligation to do so.",
-  },
-];
+
+/* ==========================================================
+   MAIN PAGE
+========================================================== */
 
 export default function ServicesPage() {
-  const [visible, setVisible] = useState({});
-  const refs = useRef({});
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting)
-            setVisible((prev) => ({ ...prev, [e.target.dataset.key]: true }));
-        });
-      },
-      { threshold: 0.08 }
-    );
-    Object.values(refs.current).forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
-  const setRef = (key) => (el) => {
-    refs.current[key] = el;
-    if (el) el.dataset.key = key;
-  };
-
-  const fadeIn = (key, delay = 0) => ({
-    opacity: visible[key] ? 1 : 0,
-    transform: visible[key] ? "translateY(0)" : "translateY(30px)",
-    transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s`,
-  });
-
   return (
-    <Box>
-      {/* ── HERO ── */}
+    <Box
+      sx={{
+        backgroundColor: "#f8f5ef",
+        color: "#171713",
+        minHeight: "100vh",
+        overflow: "hidden",
+      }}
+    >
+
+      {/* ====================================================
+          01. HERO
+      ==================================================== */}
+
       <Box
         sx={{
-          minHeight: { xs: "40vh", md: "50vh" },
-          background: "linear-gradient(135deg, #0d0a05 0%, #0a0a0a 50%, #050510 100%)",
-          display: "flex",
-          alignItems: "center",
-          borderBottom: "1px solid rgba(201,169,110,0.08)",
           position: "relative",
+          height: {
+            xs: "75vh",
+            md: "100vh",
+          },
+          minHeight: {
+            xs: "560px",
+            md: "650px",
+          },
           overflow: "hidden",
         }}
       >
+
+        {/* DUMMY HERO IMAGE */}
+
+        <Box
+          component="img"
+          src={images.hero}
+          alt="Interior architecture"
+          sx={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
+        />
+
+        {/* IMAGE OVERLAY */}
+
         <Box
           sx={{
             position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "2px",
-            background: "linear-gradient(90deg, transparent, #c9a96e40, transparent)",
+            inset: 0,
+            background:
+              "linear-gradient(90deg, rgba(10,12,8,.65) 0%, rgba(10,12,8,.30) 55%, rgba(10,12,8,.08) 100%)",
           }}
         />
-        <Container maxWidth="xl" sx={{ py: { xs: 8, md: 12 } }}>
-          <Typography variant="overline" color="primary" sx={{ display: "block", mb: 2 }}>
-            What We Offer
-          </Typography>
-          <Typography
-            variant="h1"
-            sx={{ fontSize: { xs: "2.8rem", md: "5rem" }, fontWeight: 200, mb: 3 }}
-          >
-            Our{" "}
-            <Box component="span" sx={{ color: "primary.main" }}>
-              Services
-            </Box>
-          </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 540, lineHeight: 1.9 }}>
-            From architectural vision to interior finishing, we offer a comprehensive
-            suite of design services delivered with uncompromising quality.
-          </Typography>
-        </Container>
-      </Box>
 
-      {/* ── SERVICE SECTIONS ── */}
-      {services.map((s, i) => (
+        {/* HERO CONTENT */}
+
         <Box
-          key={s.id}
-          id={s.id}
           sx={{
-            py: { xs: 8, md: 14 },
-            backgroundColor: i % 2 === 1 ? "#080808" : "#0a0a0a",
-            borderBottom: "1px solid rgba(201,169,110,0.05)",
+            position: "absolute",
+            zIndex: 2,
+            left: {
+              xs: "6%",
+              md: "5%",
+            },
+            bottom: {
+              xs: "8%",
+              md: "12%",
+            },
+            width: {
+              xs: "88%",
+              md: "700px",
+            },
           }}
         >
-          <Container maxWidth="xl">
-            <Grid
-              container
-              spacing={8}
-              alignItems="center"
-              direction={i % 2 === 1 ? "row-reverse" : "row"}
-            >
-              {/* Image */}
-              <Grid item xs={12} md={5}>
-                <Box
-                  ref={setRef(`service-img-${i}`)}
-                  sx={{ ...fadeIn(`service-img-${i}`) }}
-                >
-                  <Box
-                    sx={{
-                      backgroundImage: `url('${s.img}')`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      height: { xs: 260, md: 480 },
-                      borderRadius: 1,
-                      position: "relative",
-                      overflow: "hidden",
-                      "&::after": {
-                        content: '""',
-                        position: "absolute",
-                        inset: 0,
-                        background: "linear-gradient(135deg, rgba(201,169,110,0.06), transparent)",
-                      },
-                    }}
-                  />
-                </Box>
-              </Grid>
 
-              {/* Content */}
-              <Grid item xs={12} md={7}>
-                <Box
-                  ref={setRef(`service-content-${i}`)}
-                  sx={{ ...fadeIn(`service-content-${i}`, 0.2) }}
-                >
-                  <Box sx={{ color: "primary.main", mb: 2.5 }}>{s.icon}</Box>
-                  <Typography
-                    variant="overline"
-                    color="primary"
-                    sx={{ display: "block", mb: 1, fontSize: "0.7rem" }}
-                  >
-                    {s.tagline}
-                  </Typography>
-                  <Typography
-                    variant="h2"
-                    sx={{ fontSize: { xs: "2rem", md: "3rem" }, fontWeight: 200, mb: 3 }}
-                  >
-                    {s.title}
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.9, mb: 4 }}>
-                    {s.desc}
-                  </Typography>
-
-                  <Grid container spacing={1.5} sx={{ mb: 4 }}>
-                    {s.features.map((f) => (
-                      <Grid item xs={12} sm={6} key={f}>
-                        <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1.5 }}>
-                          <CheckIcon
-                            sx={{ fontSize: 16, color: "primary.main", mt: 0.3, flexShrink: 0 }}
-                          />
-                          <Typography variant="body2" color="text.secondary">
-                            {f}
-                          </Typography>
-                        </Box>
-                      </Grid>
-                    ))}
-                  </Grid>
-
-                  <Button
-                    component={Link}
-                    href="/contact"
-                    variant="outlined"
-                    color="primary"
-                    endIcon={<ArrowForwardIcon />}
-                    id={`service-${s.id}-cta`}
-                  >
-                    Enquire About This Service
-                  </Button>
-                </Box>
-              </Grid>
-            </Grid>
-          </Container>
-        </Box>
-      ))}
-
-      {/* ── FAQ ── */}
-      <Box sx={{ py: { xs: 8, md: 14 } }}>
-        <Container maxWidth="lg">
-          <Box ref={setRef("faq-heading")} sx={{ mb: 8, textAlign: "center", ...fadeIn("faq-heading") }}>
-            <Typography variant="overline" color="primary" sx={{ display: "block", mb: 1.5 }}>
-              FAQ
-            </Typography>
-            <Typography variant="h2" sx={{ fontSize: { xs: "2.2rem", md: "3.5rem" }, fontWeight: 200 }}>
-              Common{" "}
-              <Box component="span" sx={{ color: "primary.main" }}>
-                Questions
-              </Box>
-            </Typography>
-          </Box>
-
-          <Box
-            ref={setRef("faq-list")}
-            sx={{ ...fadeIn("faq-list", 0.2) }}
+          <Typography
+            component="h1"
+            sx={{
+              color: "#fff",
+              fontFamily:
+                "Georgia, 'Times New Roman', serif",
+              fontWeight: 400,
+              fontSize: {
+                xs: "47px",
+                sm: "58px",
+                md: "72px",
+              },
+              lineHeight: 0.92,
+              letterSpacing: "-2px",
+              maxWidth: "750px",
+            }}
           >
-            {faqs.map((faq, i) => (
-              <Accordion
-                key={i}
-                disableGutters
-                elevation={0}
-                sx={{
-                  backgroundColor: "transparent",
-                  borderBottom: "1px solid rgba(201,169,110,0.1)",
-                  "&:before": { display: "none" },
-                  "&.Mui-expanded": { margin: 0 },
-                }}
-              >
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon sx={{ color: "primary.main" }} />}
-                  sx={{
-                    py: 2,
-                    "& .MuiAccordionSummary-content": { my: 1 },
-                  }}
-                >
-                  <Typography variant="body1" sx={{ fontWeight: 500 }}>
-                    {faq.q}
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails sx={{ pb: 3 }}>
-                  <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.9 }}>
-                    {faq.a}
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-            ))}
-          </Box>
-        </Container>
+            From first idea to enduring
+            <br />
+            detail.
+          </Typography>
+
+
+          <Typography
+            sx={{
+              color: "rgba(255,255,255,.72)",
+              fontSize: {
+                xs: "10px",
+                md: "12px",
+              },
+              lineHeight: 1.6,
+              maxWidth: "570px",
+              mt: 3,
+            }}
+          >
+            We bring together architectural vision, material craftsmanship,
+            and turnkey realization to create resonant interior environments
+            tailored for living.
+          </Typography>
+
+        </Box>
+
       </Box>
 
-      {/* ── CTA ── */}
+
+      {/* ====================================================
+          02. INTRO / CTA
+      ==================================================== */}
+
       <Box
         sx={{
-          py: { xs: 8, md: 10 },
-          textAlign: "center",
-          borderTop: "1px solid rgba(201,169,110,0.08)",
-          background: "linear-gradient(135deg, #1a1205 0%, #0a0a0a 50%, #0d0d10 100%)",
+          backgroundColor: "#f1eee8",
+          px: {
+            xs: 3,
+            sm: 6,
+            md: 8,
+          },
+          py: {
+            xs: 7,
+            md: 8,
+          },
         }}
       >
-        <Container maxWidth="md">
-          <Typography variant="h3" sx={{ fontWeight: 200, mb: 3, fontSize: { xs: "2rem", md: "3rem" } }}>
-            Ready to Begin Your Project?
-          </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ mb: 5, lineHeight: 1.9 }}>
-            Whether you need full design services or a focused consultation, we're here
-            to help bring your vision to life.
-          </Typography>
-          <Stack direction={{ xs: "column", sm: "row" }} justifyContent="center" spacing={2}>
-            <Button
-              component={Link}
-              href="/contact"
-              variant="contained"
-              color="primary"
-              size="large"
-              id="services-cta-contact"
-              endIcon={<ArrowForwardIcon />}
+
+        <Box
+          sx={{
+            minHeight: {
+              xs: "350px",
+              md: "340px",
+            },
+            borderRight: {
+              xs: "none",
+              md: "1px solid #ddd8d0",
+            },
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+
+          <Box
+            sx={{
+              maxWidth: "550px",
+            }}
+          >
+
+            {/* LABEL */}
+
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                mb: 2.5,
+              }}
             >
-              Contact Us
-            </Button>
-            <Button
-              component={Link}
-              href="/projects"
-              variant="outlined"
-              color="primary"
-              size="large"
-              id="services-cta-portfolio"
+
+              <Box
+                sx={{
+                  width: 6,
+                  height: 6,
+                  borderRadius: "50%",
+                  backgroundColor: "#e4002b",
+                  mr: 1.2,
+                }}
+              />
+
+              <Typography
+                sx={{
+                  fontSize: "8px",
+                  letterSpacing: "1.8px",
+                  color: "#35322d",
+                }}
+              >
+                PRIVATE SPATIAL COMMISSION
+              </Typography>
+
+            </Box>
+
+
+            {/* TITLE */}
+
+            <Typography
+              sx={{
+                fontFamily:
+                  "Georgia, 'Times New Roman', serif",
+                fontWeight: 400,
+                fontSize: {
+                  xs: "38px",
+                  md: "46px",
+                },
+                lineHeight: 1,
+                mb: 2.5,
+              }}
             >
-              View Portfolio
-            </Button>
-          </Stack>
-        </Container>
+              Have a space in mind?
+            </Typography>
+
+
+            {/* DESCRIPTION */}
+
+            <Typography
+              sx={{
+                color: "#77736b",
+                fontSize: "11px",
+                lineHeight: 1.65,
+                maxWidth: "500px",
+                mb: 3,
+              }}
+            >
+              Every commission begins with an intimate dialogue between site,
+              light, and personal ritual. Let us discuss your architectural
+              aspirations and archival requirements.
+            </Typography>
+
+
+            {/* BUTTONS */}
+
+            <Stack
+              direction="row"
+              spacing={2.5}
+              alignItems="center"
+              flexWrap="wrap"
+              useFlexGap
+            >
+
+              <Button
+                href="/#contact"
+                variant="contained"
+                sx={{
+                  backgroundColor: "#e4002b",
+                  color: "#fff",
+                  borderRadius: 0,
+                  fontSize: "8px",
+                  letterSpacing: "1.7px",
+                  px: 3,
+                  py: 1.5,
+                  boxShadow: "none",
+
+                  "&:hover": {
+                    backgroundColor: "#c90026",
+                    boxShadow: "none",
+                  },
+                }}
+              >
+                START YOUR PROJECT →
+              </Button>
+
+
+              <Button
+                href="/#portfolio"
+                sx={{
+                  color: "#292722",
+                  fontSize: "8px",
+                  letterSpacing: "1.5px",
+                  px: 0,
+                  minWidth: 0,
+
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                    color: "#e4002b",
+                  },
+                }}
+              >
+                VIEW PORTFOLIO ↗
+              </Button>
+
+            </Stack>
+
+          </Box>
+
+        </Box>
+
       </Box>
+
+
+      {/* ====================================================
+          03 - 07. SERVICE SECTIONS
+      ==================================================== */}
+
+      {services
+        .slice()
+        .reverse()
+        .map((service) => (
+          <ServiceSection
+            key={service.number}
+            service={service}
+          />
+        ))}
+
+
+      {/* ====================================================
+          08. METHODOLOGICAL INQUIRY
+      ==================================================== */}
+
+      <Box
+        sx={{
+          backgroundColor: "#f1eee8",
+          borderTop: "1px solid #e4dfd6",
+          px: {
+            xs: 3,
+            sm: 5,
+            md: 6,
+          },
+          py: {
+            xs: 7,
+            md: 8,
+          },
+        }}
+      >
+
+        <Grid
+          container
+          spacing={{
+            xs: 4,
+            md: 7,
+          }}
+        >
+
+          {/* LABEL */}
+
+          <Grid
+            size={{
+              xs: 12,
+              md: 3,
+            }}
+          >
+
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+
+              <Box
+                sx={{
+                  width: 6,
+                  height: 6,
+                  backgroundColor: "#e4002b",
+                  mr: 1,
+                }}
+              />
+
+              <Typography
+                sx={{
+                  color: "#77736b",
+                  fontSize: "8px",
+                  letterSpacing: "1.8px",
+                }}
+              >
+                METHODOLOGICAL INQUIRY
+              </Typography>
+
+            </Box>
+
+            <Box
+              sx={{
+                width: 50,
+                height: "1px",
+                backgroundColor: "#d8d2c9",
+                mt: 8,
+              }}
+            />
+
+          </Grid>
+
+
+          {/* CONTENT */}
+
+          <Grid
+            size={{
+              xs: 12,
+              md: 9,
+            }}
+          >
+
+            <Typography
+              sx={{
+                color: "#77736b",
+                fontSize: {
+                  xs: "11px",
+                  md: "13px",
+                },
+                lineHeight: 1.6,
+                maxWidth: "850px",
+                mb: 3,
+              }}
+            >
+              Every commission undertaken by KHLOROW begins with spatial
+              listening. We do not impose pre-formed aesthetics onto an
+              enclosure; rather, we interrogate the structural skeleton,
+              natural daylight vectors, and the quiet rituals of the
+              inhabitants who will move within its boundaries.
+            </Typography>
+
+
+            {/* Divider */}
+
+            <Box
+              sx={{
+                height: "1px",
+                backgroundColor: "#ddd8cf",
+                mb: 2.5,
+              }}
+            />
+
+
+            {/* PRINCIPLES */}
+
+            <Grid container spacing={4}>
+
+              <Grid
+                size={{
+                  xs: 12,
+                  md: 4,
+                }}
+              >
+                <MethodPrinciple
+                  number="I"
+                  title="Spatial Intention"
+                  description="Eliminating extraneous partitions to prioritize contiguous light lines, natural acoustic resonance, and graceful human passage."
+                />
+              </Grid>
+
+              <Grid
+                size={{
+                  xs: 12,
+                  md: 4,
+                }}
+              >
+                <MethodPrinciple
+                  number="II"
+                  title="Material Honesty"
+                  description="Selecting untreated travertine, slaked lime plasters, open-grain oak, and patinated bronze that gain dignity through time."
+                />
+              </Grid>
+
+              <Grid
+                size={{
+                  xs: 12,
+                  md: 4,
+                }}
+              >
+                <MethodPrinciple
+                  number="III"
+                  title="Bespoke Execution"
+                  description="Uncompromising millimeter tolerances stewarded directly alongside master joiners, stone carvers, and foundry artisans."
+                />
+              </Grid>
+
+            </Grid>
+
+          </Grid>
+
+        </Grid>
+
+      </Box>
+
+
+      {/* ====================================================
+          FOOTER
+      ==================================================== */}
+
+      <Box
+        sx={{
+          backgroundColor: "#171713",
+          color: "rgba(255,255,255,.55)",
+          px: {
+            xs: 3,
+            md: 5,
+          },
+          py: 3.5,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexDirection: {
+            xs: "column",
+            md: "row",
+          },
+          gap: 2,
+        }}
+      >
+
+        <Typography
+          sx={{
+            color: "#fff",
+            fontFamily:
+              "Georgia, 'Times New Roman', serif",
+            fontSize: "20px",
+            letterSpacing: "2px",
+          }}
+        >
+          KHLOROW
+        </Typography>
+
+        <Typography
+          sx={{
+            fontSize: "8px",
+            letterSpacing: "1px",
+          }}
+        >
+          © {new Date().getFullYear()} Khlorow. All rights reserved.
+        </Typography>
+
+        <Typography
+          sx={{
+            fontSize: "8px",
+            letterSpacing: "1px",
+          }}
+        >
+          INTERIOR DESIGN / ARCHITECTURE
+        </Typography>
+
+      </Box>
+
+    </Box>
+  );
+}
+
+
+/* ==========================================================
+   SERVICE SECTION
+========================================================== */
+
+function ServiceSection({ service }) {
+  const imageFirst = service.layout === "image-text";
+
+  return (
+    <Box
+      sx={{
+        backgroundColor: "#faf8f3",
+        borderTop: "1px solid #e7e2d9",
+
+        px: {
+          xs: 3,
+          sm: 5,
+          md: 6,
+        },
+
+        py: {
+          xs: 8,
+          md: 10,
+        },
+      }}
+    >
+
+      <Grid
+        container
+        spacing={{
+          xs: 5,
+          md: 6,
+        }}
+        alignItems="center"
+      >
+
+        {/* =================================================
+            IMAGE
+        ================================================= */}
+
+        <Grid
+          size={{
+            xs: 12,
+            md: 6,
+          }}
+          sx={{
+            order: {
+              xs: 1,
+              md: imageFirst ? 1 : 2,
+            },
+          }}
+        >
+
+          <Box
+            sx={{
+              width: "100%",
+              position: "relative",
+              overflow: "hidden",
+              boxShadow:
+                "0 10px 25px rgba(0,0,0,.08)",
+            }}
+          >
+
+            {/* DUMMY SERVICE IMAGE */}
+
+            <Box
+              component="img"
+              src={service.image}
+              alt={service.title}
+              sx={{
+                display: "block",
+                width: "100%",
+                aspectRatio: "1.45 / 1",
+                objectFit: "cover",
+
+                transition:
+                  "transform .7s ease",
+
+                "&:hover": {
+                  transform: "scale(1.02)",
+                },
+              }}
+            />
+
+
+            {/* IMAGE CAPTION BAR */}
+
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: {
+                  xs: "36px",
+                  md: "42px",
+                },
+
+                backgroundColor:
+                  "rgba(11,22,15,.92)",
+
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+
+                px: {
+                  xs: 1.5,
+                  md: 2,
+                },
+
+                gap: 2,
+              }}
+            >
+
+              <Typography
+                sx={{
+                  color: "#fff",
+                  fontSize: "6px",
+                  letterSpacing: "1.2px",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {service.caption}
+              </Typography>
+
+              <Typography
+                sx={{
+                  color: "#e4002b",
+                  fontSize: "6px",
+                  letterSpacing: "1.2px",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {service.code}
+              </Typography>
+
+            </Box>
+
+          </Box>
+
+        </Grid>
+
+
+        {/* =================================================
+            TEXT
+        ================================================= */}
+
+        <Grid
+          size={{
+            xs: 12,
+            md: 6,
+          }}
+          sx={{
+            order: {
+              xs: 2,
+              md: imageFirst ? 2 : 1,
+            },
+          }}
+        >
+
+          <Box
+            sx={{
+              maxWidth: "510px",
+              mx: {
+                xs: 0,
+                md: imageFirst ? 0 : "auto",
+              },
+            }}
+          >
+
+            {/* NUMBER / CATEGORY */}
+
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                mb: 2,
+              }}
+            >
+
+              <Typography
+                sx={{
+                  color: "#e4002b",
+                  fontSize: "8px",
+                  letterSpacing: "2px",
+                  fontWeight: 500,
+                }}
+              >
+                {service.number} / {service.category}
+              </Typography>
+
+              <Box
+                sx={{
+                  width: 25,
+                  height: "1px",
+                  backgroundColor: "#d8d2c9",
+                  ml: 1.5,
+                }}
+              />
+
+            </Box>
+
+
+            {/* TITLE */}
+
+            <Typography
+              sx={{
+                fontFamily:
+                  "Georgia, 'Times New Roman', serif",
+
+                fontWeight: 400,
+
+                fontSize: {
+                  xs: "38px",
+                  sm: "45px",
+                  md: "49px",
+                },
+
+                lineHeight: 1.02,
+
+                whiteSpace: "pre-line",
+
+                letterSpacing: "-1px",
+
+                mb: 3,
+              }}
+            >
+              {service.title}
+            </Typography>
+
+
+            {/* DESCRIPTION */}
+
+            <Typography
+              sx={{
+                color: "#66635d",
+                fontSize: "11px",
+                lineHeight: 1.65,
+                maxWidth: "500px",
+                mb: 3.5,
+              }}
+            >
+              {service.description}
+            </Typography>
+
+
+            {/* SCOPE BOX */}
+
+            <Box
+              sx={{
+                backgroundColor: "#f1eee8",
+                px: 2.5,
+                py: 2.3,
+                maxWidth: "500px",
+              }}
+            >
+
+              <Typography
+                sx={{
+                  color: "#77736b",
+                  fontSize: "7px",
+                  letterSpacing: "1.7px",
+                  mb: 1.5,
+                }}
+              >
+                SCOPE OF ENGAGEMENT
+              </Typography>
+
+
+              <Grid container spacing={1.3}>
+
+                {service.scope.map(
+                  (item, index) => (
+                    <Grid
+                      key={index}
+                      size={{
+                        xs: 12,
+                        sm: 6,
+                      }}
+                    >
+
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "flex-start",
+                          gap: 1,
+                        }}
+                      >
+
+                        <Box
+                          sx={{
+                            width: 4,
+                            height: 4,
+                            minWidth: 4,
+                            backgroundColor: "#e4002b",
+                            mt: "5px",
+                          }}
+                        />
+
+                        <Typography
+                          sx={{
+                            color: "#46433d",
+                            fontSize: "9px",
+                            lineHeight: 1.5,
+                          }}
+                        >
+                          {item}
+                        </Typography>
+
+                      </Box>
+
+                    </Grid>
+                  )
+                )}
+
+              </Grid>
+
+            </Box>
+
+          </Box>
+
+        </Grid>
+
+      </Grid>
+
+    </Box>
+  );
+}
+
+
+/* ==========================================================
+   METHODOLOGICAL PRINCIPLE
+========================================================== */
+
+function MethodPrinciple({
+  number,
+  title,
+  description,
+}) {
+  return (
+    <Box>
+
+      <Typography
+        sx={{
+          color: "#e4002b",
+          fontSize: "8px",
+          letterSpacing: "1.7px",
+          mb: 1,
+        }}
+      >
+        PRINCIPLE {number}
+      </Typography>
+
+      <Typography
+        sx={{
+          fontFamily:
+            "Georgia, 'Times New Roman', serif",
+          fontSize: "15px",
+          mb: 1,
+        }}
+      >
+        {title}
+      </Typography>
+
+      <Typography
+        sx={{
+          color: "#77736b",
+          fontSize: "9px",
+          lineHeight: 1.55,
+        }}
+      >
+        {description}
+      </Typography>
+
     </Box>
   );
 }

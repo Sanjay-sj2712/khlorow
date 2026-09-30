@@ -1,469 +1,1068 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React from "react";
 import {
   Box,
+  Button,
   Container,
   Grid,
-  Typography,
-  Chip,
-  Divider,
-  Avatar,
-  Card,
-  CardContent,
   Stack,
-  Button,
+  Typography,
 } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import Link from "next/link";
 
-const values = [
-  {
-    title: "Timeless Design",
-    desc: "We avoid trends in favor of enduring aesthetics — spaces that feel relevant and refined decades after completion.",
-  },
-  {
-    title: "Meticulous Craft",
-    desc: "Every material, proportion, and detail is considered and reconsidered until it earns its place in the design.",
-  },
-  {
-    title: "Client-Centered",
-    desc: "Your lifestyle, values, and aspirations shape every decision. We listen deeply before we ever sketch a line.",
-  },
-  {
-    title: "Sustainable Vision",
-    desc: "We design responsibly — choosing materials and methods that respect the planet without compromising on luxury.",
-  },
-];
+/* ==========================================================
+   DUMMY IMAGES
+   Replace these paths with your actual downloaded images
+========================================================== */
 
-const team = [
-  {
-    name: "Elena Voss",
-    role: "Principal Architect & Founder",
-    initials: "EV",
-    bio: "With 18 years in high-end residential and commercial design, Elena founded Khlorow on the belief that architecture should move the soul.",
-  },
-  {
-    name: "Marcus Delli",
-    role: "Head of Interior Design",
-    initials: "MD",
-    bio: "A graduate of the École des Arts Décoratifs, Marcus brings a European sensibility and an obsessive attention to texture and palette.",
-  },
-  {
-    name: "Priya Anand",
-    role: "Senior Project Architect",
-    initials: "PA",
-    bio: "Priya specializes in complex structural challenges, turning constraints into design opportunities that define each project.",
-  },
-  {
-    name: "Leo Fontaine",
-    role: "Creative Director",
-    initials: "LF",
-    bio: "Leo directs the visual identity of every project, ensuring that Khlorow's signature aesthetic resonates from concept to final reveal.",
-  },
-];
+const images = {
+  hero: "/images/about-hero.jpg",
+  approach: "/images/about-approach.jpg",
+};
 
-const milestones = [
-  { year: "2010", event: "Khlorow Founded in New York" },
-  { year: "2013", event: "First International Project — Milan" },
-  { year: "2016", event: "Won AIA Interior Architecture Award" },
-  { year: "2019", event: "Expanded to Commercial & Hospitality" },
-  { year: "2022", event: "100th Project Milestone" },
-  { year: "2024", event: "Launched Sustainability Initiative" },
-];
+
+/* ==========================================================
+   ABOUT PAGE
+========================================================== */
 
 export default function AboutPage() {
-  const [visible, setVisible] = useState({});
-  const refs = useRef({});
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting)
-            setVisible((prev) => ({ ...prev, [e.target.dataset.key]: true }));
-        });
-      },
-      { threshold: 0.1 }
-    );
-    Object.values(refs.current).forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
-  const setRef = (key) => (el) => {
-    refs.current[key] = el;
-    if (el) el.dataset.key = key;
-  };
-
-  const fadeIn = (key, delay = 0) => ({
-    opacity: visible[key] ? 1 : 0,
-    transform: visible[key] ? "translateY(0)" : "translateY(30px)",
-    transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s`,
-  });
-
   return (
-    <Box>
-      {/* ── HERO ── */}
+    <Box
+      sx={{
+        backgroundColor: "#f8f5ef",
+        color: "#171713",
+        minHeight: "100vh",
+        overflow: "hidden",
+      }}
+    >
+
+      {/* =====================================================
+          01. ABOUT HERO
+      ====================================================== */}
+
       <Box
         sx={{
-          minHeight: { xs: "50vh", md: "60vh" },
-          background:
-            "linear-gradient(135deg, #0d0a05 0%, #0a0a0a 50%, #050510 100%)",
-          display: "flex",
-          alignItems: "center",
-          borderBottom: "1px solid rgba(201,169,110,0.08)",
           position: "relative",
+          width: "100%",
+          height: {
+            xs: "75vh",
+            sm: "80vh",
+            md: "100vh",
+          },
+          minHeight: {
+            xs: "550px",
+            md: "650px",
+          },
           overflow: "hidden",
         }}
       >
-        {/* Gold accent line */}
+
+        {/* DUMMY HERO IMAGE */}
+
+        <Box
+          component="img"
+          src={images.hero}
+          alt="Khlorow interior"
+          sx={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
+        />
+
+        {/* DARK OVERLAY */}
+
         <Box
           sx={{
             position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "2px",
-            background: "linear-gradient(90deg, transparent, #c9a96e40, transparent)",
+            inset: 0,
+            background:
+              "linear-gradient(90deg, rgba(15,15,10,.62) 0%, rgba(15,15,10,.28) 55%, rgba(15,15,10,.08) 100%)",
           }}
         />
-        <Container maxWidth="xl" sx={{ py: { xs: 8, md: 12 } }}>
-          <Typography
-            variant="overline"
-            color="primary"
-            sx={{ display: "block", mb: 2 }}
-          >
-            Our Story
-          </Typography>
-          <Typography
-            variant="h1"
+
+        {/* HERO CONTENT */}
+
+        <Box
+          sx={{
+            position: "absolute",
+            zIndex: 2,
+            left: {
+              xs: "7%",
+              md: "5.5%",
+            },
+            bottom: {
+              xs: "9%",
+              md: "11%",
+            },
+            width: {
+              xs: "86%",
+              sm: "75%",
+              md: "650px",
+            },
+          }}
+        >
+
+          {/* LABEL */}
+
+          <Box
             sx={{
-              fontSize: { xs: "2.8rem", md: "5rem" },
-              fontWeight: 200,
-              maxWidth: 700,
-              lineHeight: 1.1,
-              mb: 3,
+              display: "flex",
+              alignItems: "center",
+              mb: {
+                xs: 2,
+                md: 2.5,
+              },
             }}
           >
-            Design as a{" "}
-            <Box component="span" sx={{ color: "primary.main" }}>
-              Philosophy
-            </Box>
-          </Typography>
-          <Typography
-            variant="body1"
-            color="text.secondary"
-            sx={{ maxWidth: 560, lineHeight: 1.9 }}
-          >
-            Khlorow was born from a singular conviction — that the spaces we inhabit
-            shape who we become. Since 2010, we've pursued that belief through every
-            project we take on.
-          </Typography>
-        </Container>
-      </Box>
 
-      {/* ── STORY ── */}
-      <Box sx={{ py: { xs: 8, md: 14 } }}>
-        <Container maxWidth="xl">
-          <Grid container spacing={8} alignItems="center">
-            <Grid item xs={12} md={6}>
-              <Box
-                ref={setRef("story-img")}
-                sx={{
-                  position: "relative",
-                  ...fadeIn("story-img"),
-                }}
-              >
-                <Box
-                  sx={{
-                    backgroundImage: "url('/images/hero.jpg')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    height: { xs: 280, md: 520 },
-                    borderRadius: 1,
-                  }}
-                />
-                <Box
-                  sx={{
-                    position: "absolute",
-                    bottom: -24,
-                    right: -24,
-                    width: 180,
-                    height: 180,
-                    border: "1px solid rgba(201,169,110,0.3)",
-                    borderRadius: 1,
-                    zIndex: -1,
-                  }}
-                />
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Box ref={setRef("story-text")} sx={{ ...fadeIn("story-text", 0.2) }}>
-                <Typography
-                  variant="overline"
-                  color="primary"
-                  sx={{ display: "block", mb: 2 }}
-                >
-                  Founded 2010
-                </Typography>
-                <Typography
-                  variant="h2"
-                  sx={{ fontSize: { xs: "2rem", md: "3rem" }, fontWeight: 200, mb: 3 }}
-                >
-                  Where Architecture Meets Artistry
-                </Typography>
-                <Typography
-                  variant="body1"
-                  color="text.secondary"
-                  sx={{ lineHeight: 1.9, mb: 3 }}
-                >
-                  Elena Voss founded Khlorow after a decade working with some of the
-                  world's most prestigious firms, determined to build something different
-                  — a practice that refuses to separate beauty from function.
-                </Typography>
-                <Typography
-                  variant="body1"
-                  color="text.secondary"
-                  sx={{ lineHeight: 1.9, mb: 4 }}
-                >
-                  Today, our team of architects, interior designers, and project managers
-                  operates across the Americas and Europe, delivering environments that
-                  transcend expectation. We don't simply design spaces — we craft
-                  experiences that endure.
-                </Typography>
-                <Button
-                  component={Link}
-                  href="/projects"
-                  variant="outlined"
-                  color="primary"
-                  endIcon={<ArrowForwardIcon />}
-                  id="about-view-projects"
-                >
-                  See Our Work
-                </Button>
-              </Box>
-            </Grid>
-          </Grid>
-        </Container>
-      </Box>
-
-      {/* ── VALUES ── */}
-      <Box sx={{ py: { xs: 8, md: 14 }, backgroundColor: "#080808" }}>
-        <Container maxWidth="xl">
-          <Box ref={setRef("values-heading")} sx={{ mb: 8, ...fadeIn("values-heading") }}>
-            <Typography variant="overline" color="primary" sx={{ display: "block", mb: 1.5 }}>
-              What Drives Us
-            </Typography>
-            <Typography variant="h2" sx={{ fontSize: { xs: "2.2rem", md: "3.5rem" }, fontWeight: 200 }}>
-              Our Core{" "}
-              <Box component="span" sx={{ color: "primary.main" }}>
-                Values
-              </Box>
-            </Typography>
-          </Box>
-
-          <Grid container spacing={4}>
-            {values.map((v, i) => (
-              <Grid item xs={12} sm={6} key={v.title}>
-                <Box
-                  ref={setRef(`value-${i}`)}
-                  sx={{ ...fadeIn(`value-${i}`, i * 0.1) }}
-                >
-                  <Box
-                    sx={{
-                      p: 4,
-                      border: "1px solid rgba(201,169,110,0.08)",
-                      borderRadius: 1,
-                      height: "100%",
-                      transition: "border-color 0.3s ease",
-                      "&:hover": { borderColor: "rgba(201,169,110,0.3)" },
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        width: 32,
-                        height: 2,
-                        backgroundColor: "primary.main",
-                        mb: 3,
-                      }}
-                    />
-                    <Typography variant="h5" sx={{ fontWeight: 500, mb: 2 }}>
-                      {v.title}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.9 }}>
-                      {v.desc}
-                    </Typography>
-                  </Box>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
-
-      {/* ── TIMELINE ── */}
-      <Box sx={{ py: { xs: 8, md: 14 } }}>
-        <Container maxWidth="xl">
-          <Box ref={setRef("timeline-heading")} sx={{ mb: 8, ...fadeIn("timeline-heading") }}>
-            <Typography variant="overline" color="primary" sx={{ display: "block", mb: 1.5 }}>
-              Our Journey
-            </Typography>
-            <Typography variant="h2" sx={{ fontSize: { xs: "2.2rem", md: "3.5rem" }, fontWeight: 200 }}>
-              Milestones &{" "}
-              <Box component="span" sx={{ color: "primary.main" }}>
-                Achievements
-              </Box>
-            </Typography>
-          </Box>
-
-          <Box sx={{ position: "relative" }}>
             <Box
               sx={{
-                position: "absolute",
-                left: { xs: 20, md: "50%" },
-                top: 0,
-                bottom: 0,
-                width: "1px",
-                backgroundColor: "rgba(201,169,110,0.15)",
-                transform: { md: "translateX(-50%)" },
+                width: 18,
+                height: "1px",
+                backgroundColor: "#e4002b",
+                mr: 1.2,
               }}
             />
-            {milestones.map((m, i) => (
+
+            <Typography
+              sx={{
+                color: "#fff",
+                fontSize: "7px",
+                letterSpacing: "2px",
+              }}
+            >
+              ABOUT KHLOROW
+            </Typography>
+
+          </Box>
+
+
+          {/* SMALL SUBTITLE */}
+
+          <Typography
+            sx={{
+              color: "rgba(255,255,255,.65)",
+              fontSize: "7px",
+              letterSpacing: "1.2px",
+              mb: 1.5,
+            }}
+          >
+            MONOGRAPH / SPATIAL PHILOSOPHY
+          </Typography>
+
+
+          {/* HERO HEADING */}
+
+          <Typography
+            component="h1"
+            sx={{
+              color: "#fff",
+              fontFamily: "Georgia, 'Times New Roman', serif",
+              fontWeight: 400,
+              fontSize: {
+                xs: "43px",
+                sm: "55px",
+                md: "72px",
+              },
+              lineHeight: {
+                xs: 0.94,
+                md: 0.92,
+              },
+              letterSpacing: {
+                xs: "-1.5px",
+                md: "-2.5px",
+              },
+              maxWidth: "650px",
+            }}
+          >
+            We shape interiors that
+            <br />
+            feel deeply personal,
+            <br />
+            calm, and enduring.
+          </Typography>
+
+
+          {/* HERO DESCRIPTION */}
+
+          <Typography
+            sx={{
+              color: "rgba(255,255,255,.65)",
+              fontSize: {
+                xs: "8px",
+                md: "9px",
+              },
+              mt: 2,
+              maxWidth: "420px",
+              lineHeight: 1.5,
+            }}
+          >
+            Crafted with quiet clarity, material honesty, and human-centered
+            design.
+          </Typography>
+
+        </Box>
+      </Box>
+
+
+      {/* =====================================================
+          02. PHILOSOPHY / INTRODUCTION
+      ====================================================== */}
+
+      <Box
+        sx={{
+          backgroundColor: "#faf8f3",
+          py: {
+            xs: 8,
+            md: 11,
+          },
+          px: {
+            xs: 2.5,
+            sm: 4,
+            md: 4.5,
+          },
+        }}
+      >
+
+        <Grid
+          container
+          spacing={{
+            xs: 5,
+            md: 7,
+          }}
+        >
+
+          {/* LEFT LABEL */}
+
+          <Grid
+            size={{
+              xs: 12,
+              md: 3,
+            }}
+          >
+
+            <Box
+              sx={{
+                position: {
+                  md: "sticky",
+                },
+                top: 40,
+              }}
+            >
+
               <Box
-                key={m.year}
-                ref={setRef(`milestone-${i}`)}
                 sx={{
                   display: "flex",
-                  flexDirection: { xs: "row", md: i % 2 === 0 ? "row" : "row-reverse" },
-                  mb: 5,
-                  ...fadeIn(`milestone-${i}`, i * 0.1),
+                  alignItems: "center",
+                  mb: 1.3,
                 }}
               >
+
                 <Box
                   sx={{
-                    flex: 1,
-                    pr: { xs: 0, md: i % 2 === 0 ? 6 : 0 },
-                    pl: { xs: 6, md: i % 2 === 1 ? 6 : 0 },
-                    textAlign: { xs: "left", md: i % 2 === 0 ? "right" : "left" },
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Typography variant="h4" sx={{ color: "primary.main", fontWeight: 200, mb: 0.5 }}>
-                    {m.year}
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary">
-                    {m.event}
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    position: { xs: "absolute", md: "relative" },
-                    left: { xs: 14, md: "auto" },
-                    width: 12,
-                    height: 12,
-                    borderRadius: "50%",
-                    backgroundColor: "primary.main",
-                    border: "2px solid #0a0a0a",
-                    outline: "1px solid rgba(201,169,110,0.4)",
-                    zIndex: 1,
-                    mt: { xs: 0.5, md: 0 },
-                    alignSelf: "center",
-                    flexShrink: 0,
+                    width: 18,
+                    height: "1px",
+                    backgroundColor: "#e4002b",
+                    mr: 1.2,
                   }}
                 />
-                <Box sx={{ flex: 1 }} />
-              </Box>
-            ))}
-          </Box>
-        </Container>
-      </Box>
 
-      {/* ── TEAM ── */}
-      <Box id="team" sx={{ py: { xs: 8, md: 14 }, backgroundColor: "#080808" }}>
-        <Container maxWidth="xl">
-          <Box ref={setRef("team-heading")} sx={{ mb: 8, ...fadeIn("team-heading") }}>
-            <Typography variant="overline" color="primary" sx={{ display: "block", mb: 1.5 }}>
-              The People Behind the Work
-            </Typography>
-            <Typography variant="h2" sx={{ fontSize: { xs: "2.2rem", md: "3.5rem" }, fontWeight: 200 }}>
-              Meet the{" "}
-              <Box component="span" sx={{ color: "primary.main" }}>
-                Team
-              </Box>
-            </Typography>
-          </Box>
-
-          <Grid container spacing={4}>
-            {team.map((member, i) => (
-              <Grid item xs={12} sm={6} lg={3} key={member.name}>
-                <Box
-                  ref={setRef(`team-${i}`)}
-                  sx={{ ...fadeIn(`team-${i}`, i * 0.1) }}
+                <Typography
+                  sx={{
+                    color: "#27251f",
+                    fontSize: "7px",
+                    letterSpacing: "2px",
+                  }}
                 >
-                  <Card sx={{ p: 3.5, height: "100%", textAlign: "center" }}>
-                    <Avatar
-                      sx={{
-                        width: 72,
-                        height: 72,
-                        mx: "auto",
-                        mb: 2.5,
-                        background: "linear-gradient(135deg, #c9a96e, #a07840)",
-                        color: "#0a0a0a",
-                        fontSize: "1.4rem",
-                        fontWeight: 700,
-                      }}
-                    >
-                      {member.initials}
-                    </Avatar>
-                    <Typography variant="h6" sx={{ fontWeight: 500, mb: 0.5 }}>
-                      {member.name}
-                    </Typography>
-                    <Typography
-                      variant="caption"
-                      color="primary.main"
-                      sx={{ display: "block", mb: 2, letterSpacing: "0.05em" }}
-                    >
-                      {member.role}
-                    </Typography>
-                    <Divider sx={{ mb: 2 }} />
-                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8 }}>
-                      {member.bio}
-                    </Typography>
-                  </Card>
-                </Box>
-              </Grid>
-            ))}
+                  ABOUT KHLOROW
+                </Typography>
+
+              </Box>
+
+              <Typography
+                sx={{
+                  color: "#89847b",
+                  fontSize: "7px",
+                  letterSpacing: "1.1px",
+                }}
+              >
+                MONOGRAPH / SPATIAL PHILOSOPHY
+              </Typography>
+
+            </Box>
+
           </Grid>
-        </Container>
+
+
+          {/* RIGHT CONTENT */}
+
+          <Grid
+            size={{
+              xs: 12,
+              md: 9,
+            }}
+          >
+
+            {/* MAIN HEADING */}
+
+            <Typography
+              sx={{
+                fontFamily: "Georgia, 'Times New Roman', serif",
+                fontWeight: 400,
+                fontSize: {
+                  xs: "37px",
+                  sm: "45px",
+                  md: "55px",
+                },
+                lineHeight: {
+                  xs: 1,
+                  md: 0.98,
+                },
+                letterSpacing: "-1px",
+                maxWidth: "650px",
+                mb: {
+                  xs: 6,
+                  md: 8,
+                },
+              }}
+            >
+              We shape interiors that feel
+              <br className="desktopBreak" />
+              deeply personal, calm, and
+              <br className="desktopBreak" />
+              enduring.
+            </Typography>
+
+
+            {/* DESCRIPTION */}
+
+            <Box
+              sx={{
+                maxWidth: "720px",
+                ml: {
+                  xs: 0,
+                  md: "auto",
+                },
+                mb: {
+                  xs: 6,
+                  md: 8,
+                },
+              }}
+            >
+
+              <Typography
+                sx={{
+                  color: "#77736b",
+                  fontSize: "10px",
+                  lineHeight: 1.65,
+                  mb: 2.5,
+                }}
+              >
+                At Khlorow, we believe that an interior should never impose;
+                it should adapt intuitively to daily rituals and elevate human
+                connection. Through meticulous balance between volume, light,
+                and natural materials, our work explores how spaces can nurture
+                clarity and stillness.
+              </Typography>
+
+              <Typography
+                sx={{
+                  color: "#77736b",
+                  fontSize: "10px",
+                  lineHeight: 1.65,
+                }}
+              >
+                Every project is approached as a bespoke dialogue between
+                architectural context and personal narrative. From monolithic
+                stone formations to tactile linen drapery, we curate
+                environments that feel effortless, grounded, and enduring.
+              </Typography>
+
+            </Box>
+
+
+            {/* THREE PRINCIPLE CARDS */}
+
+            <Grid
+              container
+              spacing={2}
+            >
+
+              <PrincipleCard
+                number="01"
+                category="DISCIPLINE"
+                title="Spatial Clarity"
+                description="Harmonizing volume, natural daylight, and circulation to create effortless living sanctuaries."
+                footer="PROPORTION  •  LUMINANCE"
+              />
+
+              <PrincipleCard
+                number="02"
+                category="AUTHENTICITY"
+                title="Material Integrity"
+                description="Honoring authentic travertine, unlacquered brass, smoked timber, and lime plaster."
+                footer="TACTILITY  •  PATINA"
+              />
+
+              <PrincipleCard
+                number="03"
+                category="CRAFTSMANSHIP"
+                title="Bespoke Artistry"
+                description="Collaborating with master artisans to produce one-of-a-kind custom millwork and finishes."
+                footer="ATELIER  •  PRECISION"
+              />
+
+            </Grid>
+
+          </Grid>
+
+        </Grid>
+
       </Box>
 
-      {/* ── CTA ── */}
-      <Box sx={{ py: { xs: 8, md: 10 }, textAlign: "center" }}>
-        <Container maxWidth="md">
+
+      {/* =====================================================
+          03. OUR APPROACH
+      ====================================================== */}
+
+      <Box
+        sx={{
+          backgroundColor: "#f8f5ef",
+          py: {
+            xs: 8,
+            md: 11,
+          },
+          px: {
+            xs: 2.5,
+            sm: 4,
+            md: 4.5,
+          },
+        }}
+      >
+
+        {/* SECTION LABEL */}
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            mb: 1.8,
+          }}
+        >
+
+          <Box
+            sx={{
+              width: 18,
+              height: "1px",
+              backgroundColor: "#e4002b",
+              mr: 1.2,
+            }}
+          />
+
           <Typography
-            variant="h3"
-            sx={{ fontWeight: 200, mb: 3, fontSize: { xs: "2rem", md: "3rem" } }}
+            sx={{
+              color: "#e4002b",
+              fontSize: "7px",
+              letterSpacing: "2px",
+            }}
           >
-            Ready to Work with Us?
+            OUR APPROACH
           </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ mb: 5, lineHeight: 1.9 }}>
-            Whether you have a detailed brief or just a feeling, we'd love to talk.
-          </Typography>
-          <Button
-            component={Link}
-            href="/contact"
-            variant="contained"
-            color="primary"
-            size="large"
-            id="about-cta-contact"
-            endIcon={<ArrowForwardIcon />}
+
+        </Box>
+
+
+        {/* HEADING */}
+
+        <Typography
+          sx={{
+            fontFamily: "Georgia, 'Times New Roman', serif",
+            fontWeight: 400,
+            fontSize: {
+              xs: "37px",
+              sm: "44px",
+              md: "51px",
+            },
+            lineHeight: {
+              xs: 1,
+              md: 0.98,
+            },
+            letterSpacing: "-1px",
+            maxWidth: "850px",
+            mb: {
+              xs: 5,
+              md: 7,
+            },
+          }}
+        >
+          Quiet architecture, tactile truth, and
+          <br className="desktopBreak" />
+          spaces shaped around human ritual.
+        </Typography>
+
+
+        {/* TWO COLUMN APPROACH */}
+
+        <Grid
+          container
+          spacing={{
+            xs: 5,
+            md: 7,
+          }}
+          alignItems="flex-start"
+        >
+
+          {/* LEFT */}
+
+          <Grid
+            size={{
+              xs: 12,
+              md: 6,
+            }}
           >
-            Get in Touch
-          </Button>
-        </Container>
+
+            <Typography
+              sx={{
+                color: "#77736b",
+                fontSize: "10px",
+                lineHeight: 1.65,
+                maxWidth: "500px",
+                mb: 3.5,
+              }}
+            >
+              We approach every commission as an intimate dialogue between
+              the site&apos;s natural light, authentic materials, and the
+              unhurried rhythms of daily living. We reject fleeting
+              ornamentation in favor of monolithic forms, hand-applied lime
+              plaster, and bespoke joinery that patinas with grace.
+            </Typography>
+
+
+            {/* APPROACH POINT 01 */}
+
+            <ApproachPoint
+              number="01"
+              title="Spatial Intention"
+              description="Choreographing light, volume, and seamless movement to evoke an effortless sense of calm and visual pause."
+            />
+
+
+            {/* APPROACH POINT 02 */}
+
+            <ApproachPoint
+              number="02"
+              title="Material Honesty"
+              description="Honoring raw travertine, blackened timber, unlacquered brass, and tactile linens that mature with character over time."
+            />
+
+
+            {/* APPROACH POINT 03 */}
+
+            <ApproachPoint
+              number="03"
+              title="Bespoke Execution"
+              description="From foundational architectural interventions to custom millwork, curated lighting, and individual art curation."
+            />
+
+          </Grid>
+
+
+          {/* RIGHT IMAGE */}
+
+          <Grid
+            size={{
+              xs: 12,
+              md: 6,
+            }}
+          >
+
+            <Box
+              sx={{
+                width: "100%",
+                overflow: "hidden",
+                borderRadius: "4px",
+                boxShadow: "0 8px 25px rgba(0,0,0,.08)",
+              }}
+            >
+
+              {/* DUMMY IMAGE */}
+
+              <Box
+                component="img"
+                src={images.approach}
+                alt="Khlorow design approach"
+                sx={{
+                  display: "block",
+                  width: "100%",
+                  aspectRatio: "1 / 1",
+                  objectFit: "cover",
+                }}
+              />
+
+            </Box>
+
+          </Grid>
+
+        </Grid>
+
       </Box>
+
+
+      {/* =====================================================
+          04. CALL TO ACTION
+      ====================================================== */}
+
+      <Box
+        sx={{
+          backgroundColor: "#faf8f3",
+          py: {
+            xs: 7,
+            md: 10,
+          },
+          px: {
+            xs: 2.5,
+            sm: 4,
+            md: 4.5,
+          },
+          borderTop: {
+            xs: "2px solid #e4002b",
+            md: "2px solid #e4002b",
+          },
+        }}
+      >
+
+        <Box
+          sx={{
+            backgroundColor: "#f0ede7",
+            minHeight: {
+              xs: "300px",
+              md: "240px",
+            },
+            display: "flex",
+            alignItems: "center",
+            px: {
+              xs: 4,
+              sm: 5,
+              md: 7,
+            },
+            py: {
+              xs: 5,
+              md: 4,
+            },
+            position: "relative",
+            overflow: "hidden",
+            borderRadius: "7px",
+          }}
+        >
+
+          {/* LEFT CONTENT */}
+
+          <Box
+            sx={{
+              width: {
+                xs: "100%",
+                md: "70%",
+              },
+            }}
+          >
+
+            {/* LABEL */}
+
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                mb: 1.5,
+              }}
+            >
+
+              <Box
+                sx={{
+                  width: 5,
+                  height: 5,
+                  borderRadius: "50%",
+                  backgroundColor: "#e4002b",
+                  mr: 1,
+                }}
+              />
+
+              <Typography
+                sx={{
+                  fontSize: "7px",
+                  letterSpacing: "1.8px",
+                  color: "#36342f",
+                }}
+              >
+                PRIVATE SPATIAL COMMISSION
+              </Typography>
+
+            </Box>
+
+
+            {/* CTA HEADING */}
+
+            <Typography
+              sx={{
+                fontFamily: "Georgia, 'Times New Roman', serif",
+                fontSize: {
+                  xs: "31px",
+                  sm: "37px",
+                  md: "44px",
+                },
+                lineHeight: 1,
+                mb: 2,
+              }}
+            >
+              Have a space in mind?
+            </Typography>
+
+
+            {/* CTA DESCRIPTION */}
+
+            <Typography
+              sx={{
+                color: "#77736b",
+                fontSize: "10px",
+                lineHeight: 1.6,
+                maxWidth: "540px",
+                mb: 2.5,
+              }}
+            >
+              Every commission begins with an intimate dialogue between site,
+              light, and personal ritual. Let us discuss your architectural
+              aspirations and archival requirements.
+            </Typography>
+
+
+            {/* CTA BUTTONS */}
+
+            <Stack
+              direction="row"
+              spacing={2}
+              alignItems="center"
+              flexWrap="wrap"
+              useFlexGap
+            >
+
+              <Button
+                href="/#contact"
+                variant="contained"
+                sx={{
+                  backgroundColor: "#e4002b",
+                  borderRadius: 0,
+                  color: "#fff",
+                  fontSize: "8px",
+                  letterSpacing: "1.8px",
+                  px: 2.5,
+                  py: 1.3,
+                  boxShadow: "none",
+
+                  "&:hover": {
+                    backgroundColor: "#c90026",
+                    boxShadow: "none",
+                  },
+                }}
+              >
+                START YOUR PROJECT
+              </Button>
+
+
+              <Button
+                href="/#portfolio"
+                sx={{
+                  color: "#27251f",
+                  fontSize: "8px",
+                  letterSpacing: "1.5px",
+                  px: 0,
+                  minWidth: "auto",
+
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                    color: "#e4002b",
+                  },
+                }}
+              >
+                VIEW PORTFOLIO ↗
+              </Button>
+
+            </Stack>
+
+          </Box>
+
+
+          {/* RIGHT EMPTY PANEL / DESIGN ELEMENT */}
+
+          <Box
+            sx={{
+              display: {
+                xs: "none",
+                md: "block",
+              },
+              position: "absolute",
+              right: 0,
+              top: 0,
+              width: "26%",
+              height: "100%",
+              borderLeft: "1px solid rgba(0,0,0,.05)",
+            }}
+          />
+
+        </Box>
+
+      </Box>
+
+
+      {/* =====================================================
+          FOOTER
+      ====================================================== */}
+
+      <Box
+        sx={{
+          backgroundColor: "#171713",
+          color: "rgba(255,255,255,.55)",
+          px: {
+            xs: 2.5,
+            md: 5,
+          },
+          py: 3.5,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexDirection: {
+            xs: "column",
+            md: "row",
+          },
+          gap: 2,
+        }}
+      >
+
+        <Typography
+          sx={{
+            color: "#fff",
+            fontFamily: "Georgia, serif",
+            fontSize: "20px",
+            letterSpacing: "2px",
+          }}
+        >
+          KHLOROW
+        </Typography>
+
+        <Typography
+          sx={{
+            fontSize: "8px",
+            letterSpacing: "1px",
+          }}
+        >
+          © {new Date().getFullYear()} Khlorow. All rights reserved.
+        </Typography>
+
+        <Typography
+          sx={{
+            fontSize: "8px",
+            letterSpacing: "1px",
+          }}
+        >
+          INTERIOR DESIGN / ARCHITECTURE
+        </Typography>
+
+      </Box>
+
+    </Box>
+  );
+}
+
+
+/* ==========================================================
+   PRINCIPLE CARD
+========================================================== */
+
+function PrincipleCard({
+  number,
+  category,
+  title,
+  description,
+  footer,
+}) {
+  return (
+    <Grid
+      size={{
+        xs: 12,
+        sm: 6,
+        md: 4,
+      }}
+    >
+
+      <Box
+        sx={{
+          position: "relative",
+          minHeight: {
+            xs: "185px",
+            md: "175px",
+          },
+          backgroundColor: "#f3f0ea",
+          p: {
+            xs: 2.5,
+            md: 3,
+          },
+          transition: "all .3s ease",
+
+          "&:hover": {
+            transform: "translateY(-3px)",
+          },
+        }}
+      >
+
+        {/* TOP */}
+
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            mb: 2,
+          }}
+        >
+
+          <Typography
+            sx={{
+              color: "#857f75",
+              fontSize: "6px",
+              letterSpacing: "1.8px",
+            }}
+          >
+            {number} / {category}
+          </Typography>
+
+          <Typography
+            sx={{
+              color: "#d1cdc4",
+              fontFamily: "Georgia, serif",
+              fontSize: "14px",
+            }}
+          >
+            {number}
+          </Typography>
+
+        </Box>
+
+
+        {/* TITLE */}
+
+        <Typography
+          sx={{
+            fontFamily: "Georgia, 'Times New Roman', serif",
+            fontSize: "14px",
+            mb: 1.5,
+          }}
+        >
+          {title}
+        </Typography>
+
+
+        {/* DESCRIPTION */}
+
+        <Typography
+          sx={{
+            color: "#77736b",
+            fontSize: "8.5px",
+            lineHeight: 1.55,
+            maxWidth: "250px",
+          }}
+        >
+          {description}
+        </Typography>
+
+
+        {/* FOOTER */}
+
+        <Typography
+          sx={{
+            position: "absolute",
+            bottom: 18,
+            left: {
+              xs: 20,
+              md: 24,
+            },
+            color: "#8b867e",
+            fontSize: "6px",
+            letterSpacing: "1.2px",
+          }}
+        >
+          {footer}
+        </Typography>
+
+      </Box>
+
+    </Grid>
+  );
+}
+
+
+/* ==========================================================
+   APPROACH POINT
+========================================================== */
+
+function ApproachPoint({
+  number,
+  title,
+  description,
+}) {
+  return (
+    <Box
+      sx={{
+        backgroundColor: "#f2efe9",
+        px: 2,
+        py: 1.8,
+        mb: 1.5,
+        borderRadius: "4px",
+      }}
+    >
+
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: 1,
+          mb: 0.7,
+        }}
+      >
+
+        <Typography
+          sx={{
+            color: "#e4002b",
+            fontSize: "6px",
+            letterSpacing: "1px",
+            fontWeight: 500,
+          }}
+        >
+          POINT {number}
+        </Typography>
+
+        <Typography
+          sx={{
+            fontFamily: "Georgia, serif",
+            fontSize: "12px",
+          }}
+        >
+          {title}
+        </Typography>
+
+      </Box>
+
+      <Typography
+        sx={{
+          color: "#77736b",
+          fontSize: "8px",
+          lineHeight: 1.55,
+        }}
+      >
+        {description}
+      </Typography>
+
     </Box>
   );
 }

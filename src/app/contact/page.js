@@ -1,406 +1,737 @@
 "use client";
 
-import { useState } from "react";
+import React from "react";
 import {
   Box,
+  Button,
   Container,
   Grid,
-  Typography,
-  TextField,
-  Button,
   MenuItem,
   Select,
-  FormControl,
-  InputLabel,
-  Snackbar,
-  Alert,
-  Stack,
-  Divider,
+  TextField,
+  Typography,
 } from "@mui/material";
-import EmailIcon from "@mui/icons-material/Email";
-import PhoneIcon from "@mui/icons-material/Phone";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import ScheduleIcon from "@mui/icons-material/Schedule";
-import SendIcon from "@mui/icons-material/Send";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
-const contactInfo = [
-  {
-    icon: <EmailIcon />,
-    label: "Email",
-    value: "hello@khlorow.com",
-    href: "mailto:hello@khlorow.com",
-  },
-  {
-    icon: <PhoneIcon />,
-    label: "Phone",
-    value: "+1 (555) 987-6543",
-    href: "tel:+15559876543",
-  },
-  {
-    icon: <LocationOnIcon />,
-    label: "Studio",
-    value: "123 Design Ave, New York, NY 10001",
-    href: "#",
-  },
-  {
-    icon: <ScheduleIcon />,
-    label: "Hours",
-    value: "Mon – Fri, 9am – 6pm EST",
-    href: null,
-  },
-];
 
-const services = [
-  "Interior Design",
-  "Architecture",
-  "Design Consultation",
-  "Renovation & Refurbishment",
-  "Other",
-];
+/* ==========================================================
+   DUMMY IMAGE
+   Replace this with your actual downloaded image
+========================================================== */
 
-const budgets = [
-  "Under $100K",
-  "$100K – $250K",
-  "$250K – $500K",
-  "$500K – $1M",
-  "$1M+",
-  "Not Sure Yet",
-];
+const contactImage = "/images/contact-space.jpg";
+
+
+/* ==========================================================
+   CONTACT PAGE
+========================================================== */
 
 export default function ContactPage() {
-  const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    service: "",
-    budget: "",
-    message: "",
-  });
-  const [open, setOpen] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitting(true);
-    // Simulate async submission
-    setTimeout(() => {
-      setSubmitting(false);
-      setOpen(true);
-      setForm({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        service: "",
-        budget: "",
-        message: "",
-      });
-    }, 1200);
-  };
-
   return (
-    <Box>
-      {/* ── HERO ── */}
+    <Box
+      sx={{
+        backgroundColor: "#faf8f3",
+        color: "#171713",
+        minHeight: "100vh",
+        overflow: "hidden",
+      }}
+    >
+
+      {/* ====================================================
+          01. CONTACT INTRO
+      ==================================================== */}
+
       <Box
         sx={{
-          minHeight: { xs: "40vh", md: "50vh" },
-          background: "linear-gradient(135deg, #0d0a05 0%, #0a0a0a 50%, #050510 100%)",
-          display: "flex",
-          alignItems: "center",
-          borderBottom: "1px solid rgba(201,169,110,0.08)",
-          position: "relative",
-          overflow: "hidden",
+          px: {
+            xs: 2.5,
+            sm: 4,
+            md: 4.5,
+          },
+          pt: {
+            xs: 6,
+            md: 7,
+          },
+          pb: {
+            xs: 6,
+            md: 8,
+          },
         }}
       >
+
+        {/* SECTION LABEL */}
+
         <Box
           sx={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "2px",
-            background: "linear-gradient(90deg, transparent, #c9a96e40, transparent)",
+            display: "flex",
+            alignItems: "center",
+            mb: 2,
           }}
-        />
-        <Container maxWidth="xl" sx={{ py: { xs: 8, md: 12 } }}>
-          <Typography variant="overline" color="primary" sx={{ display: "block", mb: 2 }}>
-            Let's Connect
-          </Typography>
+        >
+
+          <Box
+            sx={{
+              width: 18,
+              height: "1px",
+              backgroundColor: "#e4002b",
+              mr: 1.2,
+            }}
+          />
+
           <Typography
-            variant="h1"
-            sx={{ fontSize: { xs: "2.8rem", md: "5rem" }, fontWeight: 200, mb: 3 }}
+            sx={{
+              fontSize: "7px",
+              letterSpacing: "2px",
+              color: "#27251f",
+            }}
           >
-            Start a{" "}
-            <Box component="span" sx={{ color: "primary.main" }}>
-              Conversation
-            </Box>
+            CONTACT US
           </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 500, lineHeight: 1.9 }}>
-            Every great project begins with a great conversation. Tell us about your
-            vision and we'll be in touch within 24 hours.
-          </Typography>
-        </Container>
+
+        </Box>
+
+
+        {/* MAIN HEADING */}
+
+        <Typography
+          component="h1"
+          sx={{
+            fontFamily:
+              "Georgia, 'Times New Roman', serif",
+            fontWeight: 400,
+            fontSize: {
+              xs: "38px",
+              sm: "48px",
+              md: "56px",
+            },
+            lineHeight: {
+              xs: 1,
+              md: 0.98,
+            },
+            letterSpacing: "-1.3px",
+            maxWidth: "650px",
+            mb: 2.5,
+          }}
+        >
+          Begin a conversation about
+          <br />
+          your space.
+        </Typography>
+
+
+        {/* DESCRIPTION */}
+
+        <Typography
+          sx={{
+            color: "#77736b",
+            fontSize: {
+              xs: "9px",
+              md: "10px",
+            },
+            lineHeight: 1.6,
+            maxWidth: "650px",
+            mb: 4,
+          }}
+        >
+          Every commission begins as an intimate dialogue between site,
+          light, and living ritual.
+          <br />
+          Share your vision, project scale, or spatial aspirations.
+        </Typography>
+
+
+        {/* =================================================
+            CONTACT IMAGE
+        ================================================= */}
+
+        <Box
+          sx={{
+            width: "100%",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+
+          <Box
+            component="img"
+            src={contactImage}
+            alt="Interior consultation space"
+            sx={{
+              display: "block",
+              width: "100%",
+              height: {
+                xs: "330px",
+                sm: "430px",
+                md: "500px",
+              },
+              objectFit: "cover",
+              objectPosition: "center",
+            }}
+          />
+
+
+          {/* IMAGE CAPTION */}
+
+          <Box
+            sx={{
+              position: "absolute",
+              left: {
+                xs: 12,
+                md: 18,
+              },
+              bottom: {
+                xs: 12,
+                md: 18,
+              },
+              backgroundColor:
+                "rgba(250,248,243,.94)",
+              px: {
+                xs: 1.5,
+                md: 2,
+              },
+              py: {
+                xs: 1,
+                md: 1.2,
+              },
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+
+            <Box
+              sx={{
+                width: 5,
+                height: 5,
+                borderRadius: "50%",
+                backgroundColor: "#e4002b",
+                mr: 1,
+              }}
+            />
+
+            <Typography
+              sx={{
+                fontSize: {
+                  xs: "5.5px",
+                  md: "6px",
+                },
+                letterSpacing: "1.2px",
+                whiteSpace: "nowrap",
+              }}
+            >
+              ATELIER SALON & PRIVATE CONSULTATIONS — FIG. 05 / ENGAGEMENT
+            </Typography>
+
+          </Box>
+
+        </Box>
+
       </Box>
 
-      {/* ── CONTENT ── */}
-      <Box sx={{ py: { xs: 8, md: 14 } }}>
-        <Container maxWidth="xl">
-          <Grid container spacing={8}>
-            {/* Left — Contact Info */}
-            <Grid item xs={12} md={4}>
-              <Typography
-                variant="h4"
-                sx={{ fontWeight: 300, mb: 1, fontSize: { xs: "1.8rem", md: "2.2rem" } }}
-              >
-                Get In Touch
-              </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.9, mb: 5 }}>
-                Our studio is open to enquiries from new clients. Whether you have a
-                detailed brief or just an idea, we'd love to hear from you.
-              </Typography>
 
-              <Stack spacing={3.5}>
-                {contactInfo.map((info) => (
-                  <Box key={info.label} sx={{ display: "flex", gap: 2, alignItems: "flex-start" }}>
-                    <Box
-                      sx={{
-                        width: 44,
-                        height: 44,
-                        borderRadius: "50%",
-                        border: "1px solid rgba(201,169,110,0.25)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "primary.main",
-                        flexShrink: 0,
-                      }}
-                    >
-                      {info.icon}
-                    </Box>
-                    <Box>
-                      <Typography variant="caption" color="text.secondary" sx={{ display: "block", mb: 0.3, textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                        {info.label}
-                      </Typography>
-                      {info.href ? (
-                        <Typography
-                          component="a"
-                          href={info.href}
-                          variant="body2"
-                          sx={{
-                            color: "text.primary",
-                            textDecoration: "none",
-                            transition: "color 0.2s",
-                            "&:hover": { color: "primary.main" },
-                          }}
-                        >
-                          {info.value}
-                        </Typography>
-                      ) : (
-                        <Typography variant="body2">{info.value}</Typography>
-                      )}
-                    </Box>
-                  </Box>
-                ))}
-              </Stack>
+      {/* ====================================================
+          02. CONTACT FORM
+      ==================================================== */}
 
-              <Divider sx={{ my: 5 }} />
+      <Box
+        sx={{
+          backgroundColor: "#faf8f3",
+          px: {
+            xs: 2.5,
+            sm: 4,
+            md: 4.5,
+          },
+          pb: {
+            xs: 8,
+            md: 11,
+          },
+        }}
+      >
 
-              <Typography variant="overline" color="primary" sx={{ display: "block", mb: 2, fontSize: "0.7rem" }}>
-                Follow Us
-              </Typography>
-              <Stack direction="row" spacing={1.5}>
-                {[
-                  { icon: <InstagramIcon />, href: "#", label: "Instagram" },
-                  { icon: <LinkedInIcon />, href: "#", label: "LinkedIn" },
-                ].map((s) => (
-                  <Box
-                    key={s.label}
-                    component="a"
-                    href={s.href}
-                    aria-label={s.label}
-                    sx={{
-                      width: 44,
-                      height: 44,
-                      borderRadius: "50%",
-                      border: "1px solid rgba(201,169,110,0.2)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "text.secondary",
-                      transition: "all 0.3s ease",
-                      "&:hover": {
-                        color: "primary.main",
-                        borderColor: "primary.main",
-                        backgroundColor: "rgba(201,169,110,0.08)",
-                      },
-                    }}
-                  >
-                    {s.icon}
-                  </Box>
-                ))}
-              </Stack>
+        {/* FORM HEADER */}
+
+        <Box
+          sx={{
+            textAlign: "center",
+            mb: 4,
+          }}
+        >
+
+          <Typography
+            sx={{
+              color: "#e4002b",
+              fontSize: "7px",
+              letterSpacing: "2px",
+              mb: 1.3,
+            }}
+          >
+            GET IN TOUCH
+          </Typography>
+
+
+          <Typography
+            sx={{
+              fontFamily:
+                "Georgia, 'Times New Roman', serif",
+              fontWeight: 400,
+              fontSize: {
+                xs: "29px",
+                sm: "35px",
+                md: "39px",
+              },
+              lineHeight: 1,
+              letterSpacing: "-.5px",
+              mb: 1.3,
+            }}
+          >
+            LET&apos;S CREATE YOUR SPACE
+          </Typography>
+
+
+          <Typography
+            sx={{
+              color: "#77736b",
+              fontSize: "9px",
+            }}
+          >
+            Tell us a little about your project and how we can help.
+          </Typography>
+
+        </Box>
+
+
+        {/* =================================================
+            FORM CONTAINER
+        ================================================= */}
+
+        <Box
+          component="form"
+          onSubmit={(event) => {
+            event.preventDefault();
+
+            // Add your API / email submission logic here
+            console.log("Contact form submitted");
+          }}
+          sx={{
+            width: {
+              xs: "100%",
+              sm: "90%",
+              md: "80%",
+            },
+            maxWidth: "780px",
+            mx: "auto",
+            backgroundColor: "#f3f0ea",
+            border: "1px solid #e5e0d8",
+            p: {
+              xs: 2.5,
+              sm: 3,
+              md: 3.5,
+            },
+          }}
+        >
+
+          <Grid
+            container
+            spacing={{
+              xs: 2,
+              md: 2.2,
+            }}
+          >
+
+            {/* ============================================
+                NAME
+            ============================================= */}
+
+            <Grid
+              size={{
+                xs: 12,
+                md: 6,
+              }}
+            >
+
+              <FormLabel>
+                YOUR NAME
+              </FormLabel>
+
+              <TextField
+                fullWidth
+                name="name"
+                placeholder="Full Name"
+                variant="outlined"
+                size="small"
+                required
+                sx={fieldStyle}
+              />
+
             </Grid>
 
-            {/* Right — Form */}
-            <Grid item xs={12} md={8}>
-              <Box
-                component="form"
-                onSubmit={handleSubmit}
+
+            {/* ============================================
+                PHONE
+            ============================================= */}
+
+            <Grid
+              size={{
+                xs: 12,
+                md: 6,
+              }}
+            >
+
+              <FormLabel>
+                PHONE NUMBER
+              </FormLabel>
+
+              <TextField
+                fullWidth
+                name="phone"
+                placeholder="+1 (555) 000–0000"
+                variant="outlined"
+                size="small"
+                sx={fieldStyle}
+              />
+
+            </Grid>
+
+
+            {/* ============================================
+                EMAIL
+            ============================================= */}
+
+            <Grid
+              size={{
+                xs: 12,
+                md: 6,
+              }}
+            >
+
+              <FormLabel>
+                EMAIL ADDRESS
+              </FormLabel>
+
+              <TextField
+                fullWidth
+                type="email"
+                name="email"
+                placeholder="hello@example.com"
+                variant="outlined"
+                size="small"
+                required
+                sx={fieldStyle}
+              />
+
+            </Grid>
+
+
+            {/* ============================================
+                PROJECT TYPE
+            ============================================= */}
+
+            <Grid
+              size={{
+                xs: 12,
+                md: 6,
+              }}
+            >
+
+              <FormLabel>
+                PROJECT TYPE
+              </FormLabel>
+
+              <Select
+                fullWidth
+                name="projectType"
+                defaultValue="Residential Interior"
+                size="small"
                 sx={{
-                  p: { xs: 3, md: 5 },
-                  border: "1px solid rgba(201,169,110,0.1)",
-                  borderRadius: 1,
-                  backgroundColor: "#0d0d0d",
+                  ...fieldStyle,
+
+                  "& .MuiSelect-select": {
+                    fontSize: "8px",
+                    color: "#4a4741",
+                    py: 1,
+                  },
                 }}
               >
-                <Typography variant="h5" sx={{ fontWeight: 400, mb: 4 }}>
-                  Project Enquiry
-                </Typography>
 
-                <Grid container spacing={3}>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      fullWidth
-                      label="First Name"
-                      name="firstName"
-                      id="contact-first-name"
-                      value={form.firstName}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      fullWidth
-                      label="Last Name"
-                      name="lastName"
-                      id="contact-last-name"
-                      value={form.lastName}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      fullWidth
-                      label="Email Address"
-                      name="email"
-                      id="contact-email"
-                      type="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      fullWidth
-                      label="Phone Number"
-                      name="phone"
-                      id="contact-phone"
-                      value={form.phone}
-                      onChange={handleChange}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <FormControl fullWidth>
-                      <InputLabel id="service-label">Service of Interest</InputLabel>
-                      <Select
-                        labelId="service-label"
-                        id="contact-service"
-                        name="service"
-                        value={form.service}
-                        onChange={handleChange}
-                        label="Service of Interest"
-                      >
-                        {services.map((s) => (
-                          <MenuItem key={s} value={s}>
-                            {s}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <FormControl fullWidth>
-                      <InputLabel id="budget-label">Approximate Budget</InputLabel>
-                      <Select
-                        labelId="budget-label"
-                        id="contact-budget"
-                        name="budget"
-                        value={form.budget}
-                        onChange={handleChange}
-                        label="Approximate Budget"
-                      >
-                        {budgets.map((b) => (
-                          <MenuItem key={b} value={b}>
-                            {b}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      label="Tell us about your project"
-                      name="message"
-                      id="contact-message"
-                      value={form.message}
-                      onChange={handleChange}
-                      multiline
-                      rows={5}
-                      required
-                      placeholder="Describe your project, timeline, location, and any other details that would help us understand your vision..."
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      size="large"
-                      id="contact-submit"
-                      disabled={submitting}
-                      endIcon={<SendIcon />}
-                      sx={{ minWidth: 200 }}
-                    >
-                      {submitting ? "Sending..." : "Send Enquiry"}
-                    </Button>
-                    <Typography variant="caption" color="text.secondary" sx={{ display: "block", mt: 2 }}>
-                      We respond to all enquiries within 1 business day.
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </Box>
+                <MenuItem value="Residential Interior">
+                  Residential Interior
+                </MenuItem>
+
+                <MenuItem value="Architecture">
+                  Architecture
+                </MenuItem>
+
+                <MenuItem value="Commercial Interior">
+                  Commercial Interior
+                </MenuItem>
+
+                <MenuItem value="Hospitality">
+                  Hospitality
+                </MenuItem>
+
+                <MenuItem value="Restoration">
+                  Restoration
+                </MenuItem>
+
+                <MenuItem value="Custom Furniture">
+                  Custom Furniture
+                </MenuItem>
+
+                <MenuItem value="Turnkey Execution">
+                  Turnkey Execution
+                </MenuItem>
+
+              </Select>
+
             </Grid>
+
+
+            {/* ============================================
+                MESSAGE
+            ============================================= */}
+
+            <Grid
+              size={{
+                xs: 12,
+              }}
+            >
+
+              <FormLabel>
+                MESSAGE
+              </FormLabel>
+
+              <TextField
+                fullWidth
+                multiline
+                rows={4}
+                name="message"
+                placeholder="Share the scope, location, and aspirations for your space..."
+                variant="outlined"
+                required
+                sx={fieldStyle}
+              />
+
+            </Grid>
+
+
+            {/* ============================================
+                SUBMIT
+            ============================================= */}
+
+            <Grid
+              size={{
+                xs: 12,
+              }}
+            >
+
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{
+                  backgroundColor: "#e4002b",
+                  color: "#fff",
+                  borderRadius: 0,
+                  fontSize: "7px",
+                  letterSpacing: "1.8px",
+                  px: 3,
+                  py: 1.5,
+                  boxShadow: "none",
+
+                  "&:hover": {
+                    backgroundColor: "#c90026",
+                    boxShadow: "none",
+                  },
+                }}
+              >
+                START A PROJECT
+              </Button>
+
+            </Grid>
+
           </Grid>
-        </Container>
+
+        </Box>
+
+
+        {/* =================================================
+            CONTACT DETAILS
+        ================================================= */}
+
+        <Box
+          sx={{
+            mt: 3.5,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexWrap: "wrap",
+            columnGap: {
+              xs: 3,
+              sm: 4,
+              md: 5,
+            },
+            rowGap: 1.5,
+          }}
+        >
+
+          <ContactDetail>
+            CALL US: [PHONE NUMBER]
+          </ContactDetail>
+
+          <ContactDetail>
+            WHATSAPP US: [WHATSAPP NUMBER]
+          </ContactDetail>
+
+          <ContactDetail>
+            EMAIL US: [EMAIL ADDRESS]
+          </ContactDetail>
+
+        </Box>
+
       </Box>
 
-      {/* Success Snackbar */}
-      <Snackbar
-        open={open}
-        autoHideDuration={6000}
-        onClose={() => setOpen(false)}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+
+      {/* ====================================================
+          FOOTER
+      ==================================================== */}
+
+      <Box
+        sx={{
+          backgroundColor: "#171713",
+          color: "rgba(255,255,255,.55)",
+          px: {
+            xs: 3,
+            md: 5,
+          },
+          py: 3.5,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexDirection: {
+            xs: "column",
+            md: "row",
+          },
+          gap: 2,
+        }}
       >
-        <Alert
-          onClose={() => setOpen(false)}
-          severity="success"
-          variant="filled"
-          sx={{ backgroundColor: "primary.dark", color: "white" }}
+
+        <Typography
+          sx={{
+            color: "#fff",
+            fontFamily:
+              "Georgia, 'Times New Roman', serif",
+            fontSize: "20px",
+            letterSpacing: "2px",
+          }}
         >
-          Thank you! We'll be in touch within 24 hours.
-        </Alert>
-      </Snackbar>
+          KHLOROW
+        </Typography>
+
+        <Typography
+          sx={{
+            fontSize: "8px",
+            letterSpacing: "1px",
+          }}
+        >
+          © {new Date().getFullYear()} Khlorow. All rights reserved.
+        </Typography>
+
+        <Typography
+          sx={{
+            fontSize: "8px",
+            letterSpacing: "1px",
+          }}
+        >
+          INTERIOR DESIGN / ARCHITECTURE
+        </Typography>
+
+      </Box>
+
     </Box>
   );
 }
+
+
+/* ==========================================================
+   FORM LABEL
+========================================================== */
+
+function FormLabel({ children }) {
+  return (
+    <Typography
+      component="label"
+      sx={{
+        display: "block",
+        color: "#393630",
+        fontSize: "6px",
+        letterSpacing: "1.4px",
+        mb: 0.8,
+      }}
+    >
+      {children}
+    </Typography>
+  );
+}
+
+
+/* ==========================================================
+   CONTACT DETAIL
+========================================================== */
+
+function ContactDetail({ children }) {
+  return (
+    <Typography
+      sx={{
+        color: "#555149",
+        fontSize: "6.5px",
+        letterSpacing: "1px",
+        textAlign: "center",
+      }}
+    >
+      {children}
+    </Typography>
+  );
+}
+
+
+/* ==========================================================
+   TEXT FIELD STYLE
+========================================================== */
+
+const fieldStyle = {
+  "& .MuiOutlinedInput-root": {
+    backgroundColor: "#faf8f3",
+    borderRadius: 0,
+
+    "& fieldset": {
+      borderColor: "#ddd8d0",
+    },
+
+    "&:hover fieldset": {
+      borderColor: "#bcb5aa",
+    },
+
+    "&.Mui-focused fieldset": {
+      borderColor: "#e4002b",
+    },
+  },
+
+  "& input": {
+    fontSize: "8px",
+    color: "#4a4741",
+    py: 1.15,
+  },
+
+  "& textarea": {
+    fontSize: "8px",
+    color: "#4a4741",
+    lineHeight: 1.5,
+  },
+
+  "& input::placeholder": {
+    color: "#aaa59c",
+    opacity: 1,
+  },
+
+  "& textarea::placeholder": {
+    color: "#aaa59c",
+    opacity: 1,
+  },
+};
