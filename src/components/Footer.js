@@ -124,7 +124,7 @@ export default function Footer() {
               sx={{
                 maxWidth: 390,
 
-                fontFamily: "Arial, Helvetica, sans-serif",
+                fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
                 fontSize: {
                   xs: "0.9rem",
                   md: "0.95rem",
@@ -180,7 +180,7 @@ export default function Footer() {
 
               <Typography
                 sx={{
-                  fontFamily: "Arial, Helvetica, sans-serif",
+                  fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
                   fontSize: "0.9rem",
                   fontWeight: 300,
                   lineHeight: 1.6,
@@ -253,7 +253,7 @@ export default function Footer() {
         >
           <Typography
             sx={{
-              fontFamily: "Arial, Helvetica, sans-serif",
+              fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
               fontSize: "0.68rem",
               fontWeight: 400,
               letterSpacing: "0.18em",
@@ -279,7 +279,7 @@ function FooterHeading({ children }) {
       sx={{
         mb: 1.6,
 
-        fontFamily: "Arial, Helvetica, sans-serif",
+        fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
         fontSize: "0.72rem",
         fontWeight: 400,
 
@@ -307,7 +307,7 @@ function FooterLink({ children, ...props }) {
         display: "inline-block",
         width: "fit-content",
 
-        fontFamily: "Arial, Helvetica, sans-serif",
+        fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
         fontSize: {
           xs: "0.88rem",
           md: "0.9rem",

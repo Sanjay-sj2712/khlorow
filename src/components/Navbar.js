@@ -42,7 +42,7 @@ export default function Navbar() {
           color: "#252525",
           borderTop: "3px solid #252525",
           borderBottom: "none",
-          boxShadow: "none",
+          boxShadow: "0 2px 12px rgba(37, 37, 37, 0.08)",
         }}
       >
         <Container
@@ -65,7 +65,7 @@ export default function Navbar() {
               },
               height: {
                 xs: 70,
-                md: 60,
+                md: 70,
               },
 
               // Desktop: 3-column layout
@@ -98,7 +98,7 @@ export default function Navbar() {
                   width: "auto",
                   height: {
                     xs: 34,
-                    md: 30,
+                    md: 25,
                   },
                   objectFit: "contain",
                 }}
@@ -139,7 +139,7 @@ export default function Navbar() {
 
                       color: active ? "#e3133d" : "#494949",
 
-                      fontFamily: "Arial, Helvetica, sans-serif",
+                      fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
                       fontSize: "0.70rem",
                       fontWeight: 500,
                       textTransform: "uppercase",
@@ -202,7 +202,7 @@ export default function Navbar() {
 
                 borderRadius: 0,
 
-                fontFamily: "Arial, Helvetica, sans-serif",
+                fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
                 fontSize: "0.56rem",
                 fontWeight: 400,
                 letterSpacing: "0.2em",
@@ -315,7 +315,7 @@ export default function Navbar() {
 
               <Box
                 sx={{
-                  fontFamily: '"Times New Roman", Georgia, serif',
+                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
                   fontSize: "1.45rem",
                 }}
               >
@@ -364,7 +364,7 @@ export default function Navbar() {
                     <ListItemText
                       primary={link.label}
                       primaryTypographyProps={{
-                        fontFamily: "Arial, Helvetica, sans-serif",
+                        fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
                         fontSize: "0.72rem",
                         letterSpacing: "0.2em",
                         textTransform: "uppercase",

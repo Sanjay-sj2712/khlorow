@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import AnimateOnScroll from "@/components/AnimateOnScroll";
 import {
   Box,
   Button,
-  Container,
   Grid,
   Stack,
   Typography,
@@ -26,13 +26,30 @@ const images = {
 ========================================================== */
 
 export default function AboutPage() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <Box
       sx={{
         backgroundColor: "#f8f5ef",
         color: "#171713",
         minHeight: "100vh",
-        overflow: "hidden",
       }}
     >
 
@@ -40,24 +57,28 @@ export default function AboutPage() {
           01. ABOUT HERO
       ====================================================== */}
 
+      {/* =====================================================
+    ABOUT HERO
+===================================================== */}
+
       <Box
+        component="section"
         sx={{
           position: "relative",
           width: "100%",
+
           height: {
-            xs: "75vh",
-            sm: "80vh",
-            md: "100vh",
+            xs: "560px",
+            sm: "600px",
+            md: "640px",
+            lg: "690px",
           },
-          minHeight: {
-            xs: "550px",
-            md: "650px",
-          },
+
           overflow: "hidden",
+          backgroundColor: "#24241f",
         }}
       >
-
-        {/* DUMMY HERO IMAGE */}
+        {/* ================= BACKGROUND IMAGE ================= */}
 
         <Box
           component="img"
@@ -66,145 +87,217 @@ export default function AboutPage() {
           sx={{
             position: "absolute",
             inset: 0,
+
             width: "100%",
             height: "100%",
+
             objectFit: "cover",
-            objectPosition: "center",
+
+            objectPosition: {
+              xs: "58% center",
+              sm: "center center",
+              md: "center center",
+            },
+
+            transform: `scale(${1 + Math.min(scrollY * 0.0001, 0.02)})`,
+            transition: "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+            willChange: "transform",
           }}
         />
 
-        {/* DARK OVERLAY */}
+        {/* ================= DARK OVERLAY ================= */}
 
         <Box
           sx={{
             position: "absolute",
             inset: 0,
-            background:
-              "linear-gradient(90deg, rgba(15,15,10,.62) 0%, rgba(15,15,10,.28) 55%, rgba(15,15,10,.08) 100%)",
+            zIndex: 1,
+
+            background: `
+        linear-gradient(
+          90deg,
+          rgba(20, 21, 16, 0.52) 0%,
+          rgba(20, 21, 16, 0.30) 48%,
+          rgba(20, 21, 16, 0.15) 100%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(15, 16, 12, 0.04) 0%,
+          rgba(15, 16, 12, 0.06) 58%,
+          rgba(15, 16, 12, 0.38) 100%
+        )
+      `,
           }}
         />
 
-        {/* HERO CONTENT */}
+        {/* ================= HERO CONTENT ================= */}
 
         <Box
           sx={{
             position: "absolute",
             zIndex: 2,
+
             left: {
-              xs: "7%",
+              xs: 24,
+              sm: 40,
               md: "5.5%",
             },
-            bottom: {
-              xs: "9%",
-              md: "11%",
+
+            /*
+             * In the reference the content is vertically
+             * centered slightly below the middle.
+             */
+            top: {
+              xs: "50%",
+              md: "51%",
             },
+
+            transform: "translateY(-50%)",
+
             width: {
-              xs: "86%",
+              xs: "calc(100% - 48px)",
               sm: "75%",
-              md: "650px",
+              md: "700px",
             },
           }}
         >
+          {/* ================= LABEL ================= */}
 
-          {/* LABEL */}
-
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              mb: {
-                xs: 2,
-                md: 2.5,
-              },
-            }}
-          >
-
+          <AnimateOnScroll animation="fade-up" delay="0s">
             <Box
               sx={{
-                width: 18,
-                height: "1px",
-                backgroundColor: "#e4002b",
-                mr: 1.2,
-              }}
-            />
+                display: "flex",
+                alignItems: "center",
 
-            <Typography
-              sx={{
-                color: "#fff",
-                fontSize: "7px",
-                letterSpacing: "2px",
+                mb: {
+                  xs: 2.2,
+                  md: 2.5,
+                },
               }}
             >
-              ABOUT KHLOROW
+              {/* RED LINE */}
+
+              <Box
+                sx={{
+                  width: {
+                    xs: 18,
+                    md: 22,
+                  },
+
+                  height: "1px",
+
+                  backgroundColor: "#e3133d",
+
+                  mr: {
+                    xs: 1.2,
+                    md: 1.4,
+                  },
+
+                  flexShrink: 0,
+                }}
+              />
+
+              <Typography
+                sx={{
+                  fontFamily: "Arial, Helvetica, sans-serif",
+
+                  fontSize: {
+                    xs: "6px",
+                    md: "12px",
+                  },
+
+                  fontWeight: 500,
+
+                  letterSpacing: {
+                    xs: "1.6px",
+                    md: "2px",
+                  },
+
+                  lineHeight: 1,
+
+                  color: "rgba(255,255,255,0.88)",
+
+                  textTransform: "uppercase",
+                }}
+              >
+                ABOUT US
+              </Typography>
+            </Box>
+          </AnimateOnScroll>
+
+          {/* ================= HEADING ================= */}
+
+          <AnimateOnScroll animation="fade-up" delay="0.1s">
+            <Typography
+              component="h1"
+              sx={{
+                m: 0,
+
+                color: "#ffffff",
+
+                fontFamily:
+                  "var(--font-cormorant), 'Cormorant Garamond', Georgia, 'Times New Roman', serif",
+
+                fontWeight: 500,
+
+                fontSize: {
+                  xs: "42px",
+                  sm: "52px",
+                  md: "70px",
+                },
+
+                lineHeight: {
+                  xs: 1.02,
+                  md: 0.98,
+                },
+
+                letterSpacing: {
+                  xs: "-1.4px",
+                  md: "-2px",
+                },
+
+                maxWidth: {
+                  xs: "100%",
+                  md: "700px",
+                },
+              }}
+            >
+              We shape interiors that
+              <br />
+              feel deeply personal,
+              <br />
+              calm, and enduring.
             </Typography>
+          </AnimateOnScroll>
 
-          </Box>
+          {/* ================= DESCRIPTION ================= */}
 
+          <AnimateOnScroll animation="fade-up" delay="0.22s">
+            <Typography
+              sx={{
+                mt: {
+                  xs: 2.3,
+                  md: 2.5,
+                },
 
-          {/* SMALL SUBTITLE */}
+                fontSize: {
+                  xs: "9px",
+                  sm: "10px",
+                  md: "16px",
+                },
 
-          <Typography
-            sx={{
-              color: "rgba(255,255,255,.65)",
-              fontSize: "7px",
-              letterSpacing: "1.2px",
-              mb: 1.5,
-            }}
-          >
-            MONOGRAPH / SPATIAL PHILOSOPHY
-          </Typography>
+                fontWeight: 300,
 
+                lineHeight: 1.6,
 
-          {/* HERO HEADING */}
+                color: "rgba(255,255,255,0.68)",
 
-          <Typography
-            component="h1"
-            sx={{
-              color: "#fff",
-              fontFamily: "Georgia, 'Times New Roman', serif",
-              fontWeight: 400,
-              fontSize: {
-                xs: "43px",
-                sm: "55px",
-                md: "72px",
-              },
-              lineHeight: {
-                xs: 0.94,
-                md: 0.92,
-              },
-              letterSpacing: {
-                xs: "-1.5px",
-                md: "-2.5px",
-              },
-              maxWidth: "650px",
-            }}
-          >
-            We shape interiors that
-            <br />
-            feel deeply personal,
-            <br />
-            calm, and enduring.
-          </Typography>
-
-
-          {/* HERO DESCRIPTION */}
-
-          <Typography
-            sx={{
-              color: "rgba(255,255,255,.65)",
-              fontSize: {
-                xs: "8px",
-                md: "9px",
-              },
-              mt: 2,
-              maxWidth: "420px",
-              lineHeight: 1.5,
-            }}
-          >
-            Crafted with quiet clarity, material honesty, and human-centered
-            design.
-          </Typography>
-
+                maxWidth: "520px",
+              }}
+            >
+              Crafted with quiet luxury, material honesty, and human-centered design.
+            </Typography>
+          </AnimateOnScroll>
         </Box>
       </Box>
 
@@ -213,215 +306,300 @@ export default function AboutPage() {
           02. PHILOSOPHY / INTRODUCTION
       ====================================================== */}
 
+      {/* =====================================================
+    ABOUT KHLOROW — PHILOSOPHY
+===================================================== */}
+
       <Box
+        component="section"
         sx={{
           backgroundColor: "#faf8f3",
+
           py: {
             xs: 8,
-            md: 11,
+            md: 10,
+            lg: 11,
           },
+
           px: {
-            xs: 2.5,
-            sm: 4,
-            md: 4.5,
+            xs: 3,
+            sm: 5,
+            md: "5%",
           },
         }}
       >
+        {/* =====================================================
+      TOP CONTENT
+  ===================================================== */}
 
-        <Grid
-          container
-          spacing={{
-            xs: 5,
-            md: 7,
+        <Box
+          sx={{
+            display: "grid",
+
+            gridTemplateColumns: {
+              xs: "1fr",
+              md: "28% 1fr",
+            },
+
+            columnGap: {
+              md: 7,
+              lg: 9,
+            },
+
+            rowGap: {
+              xs: 5,
+              md: 0,
+            },
           }}
         >
+          {/* =================================================
+        LEFT LABEL
+    ================================================= */}
 
-          {/* LEFT LABEL */}
-
-          <Grid
-            size={{
-              xs: 12,
-              md: 3,
-            }}
-          >
-
-            <Box
-              sx={{
-                position: {
-                  md: "sticky",
-                },
-                top: 40,
-              }}
-            >
-
+          <AnimateOnScroll animation="fade-up" delay="0s">
+            <Box>
               <Box
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  mb: 1.3,
+
+                  mb: 1.4,
                 }}
               >
-
+                {/* Red line */}
                 <Box
                   sx={{
-                    width: 18,
+                    width: 20,
                     height: "1px",
-                    backgroundColor: "#e4002b",
-                    mr: 1.2,
+
+                    backgroundColor: "#e3133d",
+
+                    mr: 1.3,
+
+                    flexShrink: 0,
                   }}
                 />
 
                 <Typography
                   sx={{
-                    color: "#27251f",
-                    fontSize: "7px",
-                    letterSpacing: "2px",
+                    fontFamily: "Arial, Helvetica, sans-serif",
+
+                    fontSize: {
+                      xs: "6px",
+                      md: "14px",
+                    },
+
+                    fontWeight: 500,
+
+                    letterSpacing: "1.8px",
+
+                    lineHeight: 1,
+
+                    color: "#37352f",
+
+                    textTransform: "uppercase",
                   }}
                 >
-                  ABOUT KHLOROW
+                  ABOUT US
                 </Typography>
-
               </Box>
 
               <Typography
                 sx={{
-                  color: "#89847b",
-                  fontSize: "7px",
-                  letterSpacing: "1.1px",
+                  fontFamily: "Arial, Helvetica, sans-serif",
+
+                  fontSize: {
+                    xs: "5.5px",
+                    md: "8px",
+                  },
+
+                  fontWeight: 400,
+
+                  letterSpacing: "1.15px",
+
+                  lineHeight: 1.4,
+
+                  color: "#99948b",
+
+                  textTransform: "uppercase",
                 }}
               >
                 MONOGRAPH / SPATIAL PHILOSOPHY
               </Typography>
-
             </Box>
+          </AnimateOnScroll>
 
-          </Grid>
+          {/* =================================================
+        RIGHT CONTENT
+    ================================================= */}
 
+          <Box>
+            {/* HEADING */}
 
-          {/* RIGHT CONTENT */}
+            <AnimateOnScroll animation="fade-up" delay="0s">
+              <Typography
+                component="h2"
+                sx={{
+                  m: 0,
 
-          <Grid
-            size={{
-              xs: 12,
-              md: 9,
-            }}
-          >
+                  fontFamily:
+                    "var(--font-cormorant), 'Cormorant Garamond', Georgia, 'Times New Roman', serif",
 
-            {/* MAIN HEADING */}
+                  fontWeight: 400,
 
-            <Typography
-              sx={{
-                fontFamily: "Georgia, 'Times New Roman', serif",
-                fontWeight: 400,
-                fontSize: {
-                  xs: "37px",
-                  sm: "45px",
-                  md: "55px",
-                },
-                lineHeight: {
-                  xs: 1,
-                  md: 0.98,
-                },
-                letterSpacing: "-1px",
-                maxWidth: "650px",
-                mb: {
-                  xs: 6,
-                  md: 8,
-                },
-              }}
-            >
-              We shape interiors that feel
-              <br className="desktopBreak" />
-              deeply personal, calm, and
-              <br className="desktopBreak" />
-              enduring.
-            </Typography>
+                  fontSize: {
+                    xs: "38px",
+                    sm: "44px",
+                    md: "50px",
+                    lg: "52px",
+                  },
 
+                  lineHeight: {
+                    xs: 1.03,
+                    md: 1.02,
+                  },
+
+                  letterSpacing: {
+                    xs: "-1px",
+                    md: "-1.4px",
+                  },
+
+                  color: "#292922",
+
+                  maxWidth: "690px",
+
+                  mb: {
+                    xs: 5,
+                    md: 8,
+                  },
+                }}
+              >
+                We shape interiors that feel
+                <br />
+                deeply personal, calm, and
+                <br />
+                enduring.
+              </Typography>
+            </AnimateOnScroll>
 
             {/* DESCRIPTION */}
 
-            <Box
-              sx={{
-                maxWidth: "720px",
-                ml: {
-                  xs: 0,
-                  md: "auto",
-                },
-                mb: {
-                  xs: 6,
-                  md: 8,
-                },
-              }}
-            >
-
-              <Typography
+            <AnimateOnScroll animation="fade-up" delay="0.15s">
+              <Box
                 sx={{
-                  color: "#77736b",
-                  fontSize: "10px",
-                  lineHeight: 1.65,
-                  mb: 2.5,
+                  maxWidth: "690px",
+
+                  mb: {
+                    xs: 6,
+                    md: 8,
+                  },
                 }}
               >
-                At Khlorow, we believe that an interior should never impose;
-                it should adapt intuitively to daily rituals and elevate human
-                connection. Through meticulous balance between volume, light,
-                and natural materials, our work explores how spaces can nurture
-                clarity and stillness.
-              </Typography>
+                <Typography
+                  sx={{
 
-              <Typography
-                sx={{
-                  color: "#77736b",
-                  fontSize: "10px",
-                  lineHeight: 1.65,
-                }}
-              >
-                Every project is approached as a bespoke dialogue between
-                architectural context and personal narrative. From monolithic
-                stone formations to tactile linen drapery, we curate
-                environments that feel effortless, grounded, and enduring.
-              </Typography>
+                    color: "#716e67",
 
-            </Box>
+                    fontSize: {
+                      xs: "10px",
+                      md: "16px",
+                    },
 
+                    fontWeight: 300,
 
-            {/* THREE PRINCIPLE CARDS */}
+                    lineHeight: 1.65,
 
-            <Grid
-              container
-              spacing={2}
-            >
+                    mb: 2.3,
+                  }}
+                >
+                  At Khlorow, we believe that an interior should never impose; it
+                  should adapt intuitively to daily rituals and elevate human
+                  connection. Through meticulous balance between volume, light, and
+                  natural materials, our work explores how spaces can nurture clarity
+                  and stillness.
+                </Typography>
 
-              <PrincipleCard
-                number="01"
-                category="DISCIPLINE"
-                title="Spatial Clarity"
-                description="Harmonizing volume, natural daylight, and circulation to create effortless living sanctuaries."
-                footer="PROPORTION  •  LUMINANCE"
-              />
+                <Typography
+                  sx={{
 
-              <PrincipleCard
-                number="02"
-                category="AUTHENTICITY"
-                title="Material Integrity"
-                description="Honoring authentic travertine, unlacquered brass, smoked timber, and lime plaster."
-                footer="TACTILITY  •  PATINA"
-              />
+                    color: "#716e67",
 
-              <PrincipleCard
-                number="03"
-                category="CRAFTSMANSHIP"
-                title="Bespoke Artistry"
-                description="Collaborating with master artisans to produce one-of-a-kind custom millwork and finishes."
-                footer="ATELIER  •  PRECISION"
-              />
+                    fontSize: {
+                      xs: "10px",
+                      md: "16px",
+                    },
 
-            </Grid>
+                    fontWeight: 300,
 
-          </Grid>
+                    lineHeight: 1.65,
+                  }}
+                >
+                  Every project is approached as a bespoke dialogue between
+                  architectural context and personal narrative. From monolithic stone
+                  formations to tactile linen drapery, we curate environments that feel
+                  effortless, grounded, and enduring.
+                </Typography>
+              </Box>
+            </AnimateOnScroll>
+          </Box>
+        </Box>
 
-        </Grid>
+        {/* =====================================================
+      PRINCIPLE CARDS
+      Separate from top grid so cards span full width
+  ===================================================== */}
 
+        <Box
+          sx={{
+            display: "grid",
+
+            gridTemplateColumns: {
+              xs: "1fr",
+              sm: "repeat(2, 1fr)",
+              md: "repeat(3, 1fr)",
+            },
+
+            gap: {
+              xs: 2,
+              md: 2.5,
+            },
+
+            mt: {
+              xs: 0,
+              md: 1,
+            },
+          }}
+        >
+          <AnimateOnScroll animation="fade-up" delay="0s">
+            <PrincipleCard
+              number="01"
+              category="DISCIPLINE"
+              title="Spatial Clarity"
+              description="Harmonizing volume, natural daylight, and circulation to create effortless living sanctuaries."
+              footer="PROPORTION  •  LUMINANCE"
+            />
+          </AnimateOnScroll>
+
+          <AnimateOnScroll animation="fade-up" delay="0.12s">
+            <PrincipleCard
+              number="02"
+              category="AUTHENTICITY"
+              title="Material Integrity"
+              description="Honoring authentic travertine, unlacquered brass, smoked timber, and lime plaster."
+              footer="TACTILITY  •  PATINA"
+            />
+          </AnimateOnScroll>
+
+          <AnimateOnScroll animation="fade-up" delay="0.22s">
+            <PrincipleCard
+              number="03"
+              category="CRAFTSMANSHIP"
+              title="Bespoke Artistry"
+              description="Collaborating with master artisans to produce one-of-a-kind custom millwork and finishes."
+              footer="ATELIER  •  PRECISION"
+            />
+          </AnimateOnScroll>
+        </Box>
       </Box>
 
 
@@ -430,187 +608,256 @@ export default function AboutPage() {
       ====================================================== */}
 
       <Box
+        component="section"
         sx={{
           backgroundColor: "#f8f5ef",
+
           py: {
             xs: 8,
-            md: 11,
+            md: 10,
+            lg: 11,
           },
+
           px: {
-            xs: 2.5,
-            sm: 4,
-            md: 4.5,
+            xs: 3,
+            sm: 5,
+            md: "5%",
           },
         }}
       >
+        {/* ================= SECTION LABEL ================= */}
 
-        {/* SECTION LABEL */}
-
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            mb: 1.8,
-          }}
-        >
-
+        <AnimateOnScroll animation="fade-up" delay="0s">
           <Box
             sx={{
-              width: 18,
-              height: "1px",
-              backgroundColor: "#e4002b",
-              mr: 1.2,
-            }}
-          />
+              display: "flex",
+              alignItems: "center",
 
-          <Typography
-            sx={{
-              color: "#e4002b",
-              fontSize: "7px",
-              letterSpacing: "2px",
+              mb: {
+                xs: 2,
+                md: 2.2,
+              },
             }}
           >
-            OUR APPROACH
-          </Typography>
-
-        </Box>
-
-
-        {/* HEADING */}
-
-        <Typography
-          sx={{
-            fontFamily: "Georgia, 'Times New Roman', serif",
-            fontWeight: 400,
-            fontSize: {
-              xs: "37px",
-              sm: "44px",
-              md: "51px",
-            },
-            lineHeight: {
-              xs: 1,
-              md: 0.98,
-            },
-            letterSpacing: "-1px",
-            maxWidth: "850px",
-            mb: {
-              xs: 5,
-              md: 7,
-            },
-          }}
-        >
-          Quiet architecture, tactile truth, and
-          <br className="desktopBreak" />
-          spaces shaped around human ritual.
-        </Typography>
-
-
-        {/* TWO COLUMN APPROACH */}
-
-        <Grid
-          container
-          spacing={{
-            xs: 5,
-            md: 7,
-          }}
-          alignItems="flex-start"
-        >
-
-          {/* LEFT */}
-
-          <Grid
-            size={{
-              xs: 12,
-              md: 6,
-            }}
-          >
+            <Box
+              sx={{
+                width: 20,
+                height: "1px",
+                backgroundColor: "#e3133d",
+                mr: 1.3,
+                flexShrink: 0,
+              }}
+            />
 
             <Typography
               sx={{
-                color: "#77736b",
-                fontSize: "10px",
-                lineHeight: 1.65,
-                maxWidth: "500px",
-                mb: 3.5,
+                fontFamily: "Arial, Helvetica, sans-serif",
+
+                color: "#e3133d",
+
+                fontSize: {
+                  xs: "6px",
+                  md: "14px",
+                },
+
+                fontWeight: 500,
+                letterSpacing: "1.8px",
+                lineHeight: 1,
+                textTransform: "uppercase",
               }}
             >
-              We approach every commission as an intimate dialogue between
-              the site&apos;s natural light, authentic materials, and the
-              unhurried rhythms of daily living. We reject fleeting
-              ornamentation in favor of monolithic forms, hand-applied lime
-              plaster, and bespoke joinery that patinas with grace.
+              OUR APPROACH
             </Typography>
+          </Box>
+        </AnimateOnScroll>
 
+        {/* ================= MAIN HEADING ================= */}
 
-            {/* APPROACH POINT 01 */}
+        <AnimateOnScroll animation="fade-up" delay="0.08s">
+          <Typography
+            component="h2"
+            sx={{
+              m: 0,
 
-            <ApproachPoint
-              number="01"
-              title="Spatial Intention"
-              description="Choreographing light, volume, and seamless movement to evoke an effortless sense of calm and visual pause."
-            />
+              fontFamily:
+                "var(--font-cormorant), 'Cormorant Garamond', Georgia, 'Times New Roman', serif",
 
+              fontWeight: 400,
 
-            {/* APPROACH POINT 02 */}
+              fontSize: {
+                xs: "38px",
+                sm: "45px",
+                md: "49px",
+                lg: "52px",
+              },
 
-            <ApproachPoint
-              number="02"
-              title="Material Honesty"
-              description="Honoring raw travertine, blackened timber, unlacquered brass, and tactile linens that mature with character over time."
-            />
+              lineHeight: {
+                xs: 1.04,
+                md: 1.02,
+              },
 
+              letterSpacing: {
+                xs: "-1px",
+                md: "-1.4px",
+              },
 
-            {/* APPROACH POINT 03 */}
+              color: "#292922",
 
-            <ApproachPoint
-              number="03"
-              title="Bespoke Execution"
-              description="From foundational architectural interventions to custom millwork, curated lighting, and individual art curation."
-            />
+              maxWidth: {
+                xs: "100%",
+                md: "900px",
+              },
 
-          </Grid>
-
-
-          {/* RIGHT IMAGE */}
-
-          <Grid
-            size={{
-              xs: 12,
-              md: 6,
+              mb: {
+                xs: 5,
+                md: 7,
+              },
             }}
           >
+            Quiet architecture, tactile truth, and
+            <br />
+            spaces shaped around human ritual.
+          </Typography>
+        </AnimateOnScroll>
 
+        {/* =====================================================
+      CONTENT
+  ===================================================== */}
+
+        <Box
+          sx={{
+            display: "grid",
+
+            gridTemplateColumns: {
+              xs: "1fr",
+              md: "0.95fr 1.05fr",
+            },
+
+            columnGap: {
+              md: 5,
+              lg: 6,
+            },
+
+            rowGap: {
+              xs: 5,
+            },
+
+            alignItems: "start",
+          }}
+        >
+          {/* =================================================
+        LEFT
+    ================================================= */}
+
+          <Box>
+            {/* DESCRIPTION */}
+
+            <AnimateOnScroll animation="fade-left" delay="0s">
+              <Typography
+                sx={{
+
+                  color: "#716e67",
+
+                  fontSize: {
+                    xs: "10px",
+                    md: "16px",
+                  },
+
+                  fontWeight: 300,
+
+                  lineHeight: 1.7,
+
+                  maxWidth: "540px",
+
+                  mb: {
+                    xs: 4,
+                    md: 4.5,
+                  },
+                }}
+              >
+                We approach every commission as an intimate dialogue between the
+                site&apos;s natural light, authentic materials, and the unhurried
+                rhythms of daily living. We reject fleeting ornamentation in favor of
+                monolithic forms, hand-applied lime plaster, and bespoke joinery that
+                patinas with grace.
+              </Typography>
+            </AnimateOnScroll>
+
+            {/* POINTS */}
+
+            <Stack
+              spacing={{
+                xs: 1.5,
+                md: 2,
+              }}
+            >
+              <AnimateOnScroll animation="fade-up" delay="0.08s">
+                <ApproachPoint
+                  number="01"
+                  title="Spatial Intention"
+                  description="Choreographing light, volume, and seamless movement to evoke an effortless sense of calm and visual pause."
+                />
+              </AnimateOnScroll>
+
+              <AnimateOnScroll animation="fade-up" delay="0.18s">
+                <ApproachPoint
+                  number="02"
+                  title="Material Honesty"
+                  description="Honoring raw travertine, blackened timber, unlacquered brass, and tactile linens that mature with character over time."
+                />
+              </AnimateOnScroll>
+
+              <AnimateOnScroll animation="fade-up" delay="0.28s">
+                <ApproachPoint
+                  number="03"
+                  title="Bespoke Execution"
+                  description="From foundational architectural interventions to custom millwork, curated lighting, and individual art curation."
+                />
+              </AnimateOnScroll>
+            </Stack>
+          </Box>
+
+          {/* =================================================
+        RIGHT IMAGE
+    ================================================= */}
+
+          <AnimateOnScroll animation="fade-right" delay="0.1s">
             <Box
               sx={{
                 width: "100%",
+
                 overflow: "hidden",
-                borderRadius: "4px",
-                boxShadow: "0 8px 25px rgba(0,0,0,.08)",
+
+                borderRadius: "5px",
+
+                boxShadow: "0 6px 18px rgba(35,30,20,0.10)",
               }}
             >
-
-              {/* DUMMY IMAGE */}
-
               <Box
                 component="img"
                 src={images.approach}
                 alt="Khlorow design approach"
                 sx={{
                   display: "block",
+
                   width: "100%",
-                  aspectRatio: "1 / 1",
+
+                  height: {
+                    xs: "430px",
+                    sm: "520px",
+                    md: "535px",
+                    lg: "550px",
+                  },
+
                   objectFit: "cover",
+
+                  objectPosition: "center center",
                 }}
               />
-
             </Box>
-
-          </Grid>
-
-        </Grid>
-
+          </AnimateOnScroll>
+        </Box>
       </Box>
-
 
       {/* =====================================================
           04. CALL TO ACTION
@@ -628,10 +875,6 @@ export default function AboutPage() {
             sm: 4,
             md: 4.5,
           },
-          borderTop: {
-            xs: "2px solid #e4002b",
-            md: "2px solid #e4002b",
-          },
         }}
       >
 
@@ -640,7 +883,7 @@ export default function AboutPage() {
             backgroundColor: "#f0ede7",
             minHeight: {
               xs: "300px",
-              md: "240px",
+              md: "400px",
             },
             display: "flex",
             alignItems: "center",
@@ -672,124 +915,132 @@ export default function AboutPage() {
 
             {/* LABEL */}
 
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                mb: 1.5,
-              }}
-            >
-
+            <AnimateOnScroll animation="fade-up" delay="0s">
               <Box
                 sx={{
-                  width: 5,
-                  height: 5,
-                  borderRadius: "50%",
-                  backgroundColor: "#e4002b",
-                  mr: 1,
-                }}
-              />
-
-              <Typography
-                sx={{
-                  fontSize: "7px",
-                  letterSpacing: "1.8px",
-                  color: "#36342f",
+                  display: "flex",
+                  alignItems: "center",
+                  mb: 1.5,
                 }}
               >
-                PRIVATE SPATIAL COMMISSION
-              </Typography>
 
-            </Box>
+                <Box
+                  sx={{
+                    width: 8,
+                    height: 8,
+                    borderRadius: "50%",
+                    backgroundColor: "#e4002b",
+                    mr: 2,
+                  }}
+                />
+
+                <Typography
+                  sx={{
+                    fontSize: "12px",
+                    letterSpacing: "1.8px",
+                    color: "#36342f",
+                  }}
+                >
+                  PRIVATE SPATIAL COMMISSION
+                </Typography>
+
+              </Box>
+            </AnimateOnScroll>
 
 
             {/* CTA HEADING */}
 
-            <Typography
-              sx={{
-                fontFamily: "Georgia, 'Times New Roman', serif",
-                fontSize: {
-                  xs: "31px",
-                  sm: "37px",
-                  md: "44px",
-                },
-                lineHeight: 1,
-                mb: 2,
-              }}
-            >
-              Have a space in mind?
-            </Typography>
+            <AnimateOnScroll animation="fade-up" delay="0.1s">
+              <Typography
+                sx={{
+                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                  fontSize: {
+                    xs: "31px",
+                    sm: "37px",
+                    md: "52px",
+                  },
+                  lineHeight: 1,
+                  mb: 2,
+                }}
+              >
+                Have a space in mind?
+              </Typography>
+            </AnimateOnScroll>
 
 
             {/* CTA DESCRIPTION */}
 
-            <Typography
-              sx={{
-                color: "#77736b",
-                fontSize: "10px",
-                lineHeight: 1.6,
-                maxWidth: "540px",
-                mb: 2.5,
-              }}
-            >
-              Every commission begins with an intimate dialogue between site,
-              light, and personal ritual. Let us discuss your architectural
-              aspirations and archival requirements.
-            </Typography>
+            <AnimateOnScroll animation="fade-up" delay="0.2s">
+              <Typography
+                sx={{
+                  color: "#77736b",
+                  fontSize: "14px",
+                  lineHeight: 1.6,
+                  maxWidth: "540px",
+                  mb: 3,
+                }}
+              >
+                Every commission begins with an intimate dialogue between site,
+                light, and personal ritual. Let us discuss your architectural
+                aspirations and archival requirements.
+              </Typography>
+            </AnimateOnScroll>
 
 
             {/* CTA BUTTONS */}
 
-            <Stack
-              direction="row"
-              spacing={2}
-              alignItems="center"
-              flexWrap="wrap"
-              useFlexGap
-            >
+            <AnimateOnScroll animation="fade-up" delay="0.3s">
+              <Stack
+                direction="row"
+                spacing={3}
+                alignItems="center"
+                flexWrap="wrap"
+                useFlexGap
+              >
 
-              <Button
-                href="/#contact"
-                variant="contained"
-                sx={{
-                  backgroundColor: "#e4002b",
-                  borderRadius: 0,
-                  color: "#fff",
-                  fontSize: "8px",
-                  letterSpacing: "1.8px",
-                  px: 2.5,
-                  py: 1.3,
-                  boxShadow: "none",
-
-                  "&:hover": {
-                    backgroundColor: "#c90026",
+                <Button
+                  href="/#contact"
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "#e4002b",
+                    borderRadius: 0,
+                    color: "#fff",
+                    fontSize: "10px",
+                    letterSpacing: "1.8px",
+                    px: 2.5,
+                    py: 1.3,
                     boxShadow: "none",
-                  },
-                }}
-              >
-                START YOUR PROJECT
-              </Button>
+
+                    "&:hover": {
+                      backgroundColor: "#c90026",
+                      boxShadow: "none",
+                    },
+                  }}
+                >
+                  START YOUR PROJECT
+                </Button>
 
 
-              <Button
-                href="/#portfolio"
-                sx={{
-                  color: "#27251f",
-                  fontSize: "8px",
-                  letterSpacing: "1.5px",
-                  px: 0,
-                  minWidth: "auto",
+                <Button
+                  href="/#portfolio"
+                  sx={{
+                    color: "#27251f",
+                    fontSize: "10px",
+                    letterSpacing: "1.5px",
+                    px: 0,
+                    minWidth: "auto",
 
-                  "&:hover": {
-                    backgroundColor: "transparent",
-                    color: "#e4002b",
-                  },
-                }}
-              >
-                VIEW PORTFOLIO ↗
-              </Button>
+                    "&:hover": {
+                      backgroundColor: "transparent",
+                      color: "#e4002b",
+                    },
+                  }}
+                >
+                  VIEW PORTFOLIO ↗
+                </Button>
 
-            </Stack>
+              </Stack>
+            </AnimateOnScroll>
 
           </Box>
 
@@ -812,63 +1063,6 @@ export default function AboutPage() {
           />
 
         </Box>
-
-      </Box>
-
-
-      {/* =====================================================
-          FOOTER
-      ====================================================== */}
-
-      <Box
-        sx={{
-          backgroundColor: "#171713",
-          color: "rgba(255,255,255,.55)",
-          px: {
-            xs: 2.5,
-            md: 5,
-          },
-          py: 3.5,
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexDirection: {
-            xs: "column",
-            md: "row",
-          },
-          gap: 2,
-        }}
-      >
-
-        <Typography
-          sx={{
-            color: "#fff",
-            fontFamily: "Georgia, serif",
-            fontSize: "20px",
-            letterSpacing: "2px",
-          }}
-        >
-          KHLOROW
-        </Typography>
-
-        <Typography
-          sx={{
-            fontSize: "8px",
-            letterSpacing: "1px",
-          }}
-        >
-          © {new Date().getFullYear()} Khlorow. All rights reserved.
-        </Typography>
-
-        <Typography
-          sx={{
-            fontSize: "8px",
-            letterSpacing: "1px",
-          }}
-        >
-          INTERIOR DESIGN / ARCHITECTURE
-        </Typography>
-
       </Box>
 
     </Box>
@@ -879,7 +1073,6 @@ export default function AboutPage() {
 /* ==========================================================
    PRINCIPLE CARD
 ========================================================== */
-
 function PrincipleCard({
   number,
   category,
@@ -888,181 +1081,288 @@ function PrincipleCard({
   footer,
 }) {
   return (
-    <Grid
-      size={{
-        xs: 12,
-        sm: 6,
-        md: 4,
-      }}
-    >
-
-      <Box
-        sx={{
-          position: "relative",
-          minHeight: {
-            xs: "185px",
-            md: "175px",
-          },
-          backgroundColor: "#f3f0ea",
-          p: {
-            xs: 2.5,
-            md: 3,
-          },
-          transition: "all .3s ease",
-
-          "&:hover": {
-            transform: "translateY(-3px)",
-          },
-        }}
-      >
-
-        {/* TOP */}
-
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            mb: 2,
-          }}
-        >
-
-          <Typography
-            sx={{
-              color: "#857f75",
-              fontSize: "6px",
-              letterSpacing: "1.8px",
-            }}
-          >
-            {number} / {category}
-          </Typography>
-
-          <Typography
-            sx={{
-              color: "#d1cdc4",
-              fontFamily: "Georgia, serif",
-              fontSize: "14px",
-            }}
-          >
-            {number}
-          </Typography>
-
-        </Box>
-
-
-        {/* TITLE */}
-
-        <Typography
-          sx={{
-            fontFamily: "Georgia, 'Times New Roman', serif",
-            fontSize: "14px",
-            mb: 1.5,
-          }}
-        >
-          {title}
-        </Typography>
-
-
-        {/* DESCRIPTION */}
-
-        <Typography
-          sx={{
-            color: "#77736b",
-            fontSize: "8.5px",
-            lineHeight: 1.55,
-            maxWidth: "250px",
-          }}
-        >
-          {description}
-        </Typography>
-
-
-        {/* FOOTER */}
-
-        <Typography
-          sx={{
-            position: "absolute",
-            bottom: 18,
-            left: {
-              xs: 20,
-              md: 24,
-            },
-            color: "#8b867e",
-            fontSize: "6px",
-            letterSpacing: "1.2px",
-          }}
-        >
-          {footer}
-        </Typography>
-
-      </Box>
-
-    </Grid>
-  );
-}
-
-
-/* ==========================================================
-   APPROACH POINT
-========================================================== */
-
-function ApproachPoint({
-  number,
-  title,
-  description,
-}) {
-  return (
     <Box
       sx={{
-        backgroundColor: "#f2efe9",
-        px: 2,
-        py: 1.8,
-        mb: 1.5,
-        borderRadius: "4px",
+        position: "relative",
+
+        minHeight: {
+          xs: 230,
+          md: 245,
+        },
+
+        backgroundColor: "#f5f2ed",
+
+        px: {
+          xs: 3,
+          md: 3.5,
+          lg: 4,
+        },
+
+        py: {
+          xs: 3.5,
+          md: 4,
+        },
       }}
     >
+      {/* ===============================================
+          TOP ROW
+      =============================================== */}
 
       <Box
         sx={{
           display: "flex",
           alignItems: "center",
-          gap: 1,
-          mb: 0.7,
+          justifyContent: "space-between",
+
+          mb: {
+            xs: 3,
+            md: 3.5,
+          },
         }}
       >
+        {/* CATEGORY */}
 
         <Typography
           sx={{
-            color: "#e4002b",
-            fontSize: "6px",
-            letterSpacing: "1px",
+            fontFamily: "Arial, Helvetica, sans-serif",
+
+            fontSize: "12px",
+
             fontWeight: 500,
+
+            letterSpacing: "1.5px",
+
+            color: "#8f5d52",
+
+            textTransform: "uppercase",
+          }}
+        >
+          {number} / {category}
+        </Typography>
+
+        {/* LARGE FADED NUMBER */}
+
+        <Typography
+          sx={{
+            fontFamily:
+              "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+
+            fontSize: "24px",
+
+            fontWeight: 400,
+
+            lineHeight: 1,
+
+            color: "#d7d2ca",
+          }}
+        >
+          {number}
+        </Typography>
+      </Box>
+
+      {/* ===============================================
+          TITLE
+      =============================================== */}
+
+      <Typography
+        sx={{
+          fontFamily:
+            "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+
+          fontSize: {
+            xs: "19px",
+            md: "24px",
+          },
+
+          fontWeight: 400,
+
+          lineHeight: 1.15,
+
+          color: "#34332d",
+
+          mb: 2,
+        }}
+      >
+        {title}
+      </Typography>
+
+      {/* ===============================================
+          DESCRIPTION
+      =============================================== */}
+
+      <Typography
+        sx={{
+
+          fontSize: {
+            xs: "10px",
+            md: "14px",
+          },
+
+          fontWeight: 300,
+
+          lineHeight: 1.7,
+
+          color: "#65625c",
+
+          maxWidth: "250px",
+
+          mb: 6,
+        }}
+      >
+        {description}
+      </Typography>
+
+      {/* ===============================================
+          FOOTER
+      =============================================== */}
+
+      <Typography
+        sx={{
+          position: {
+            md: "absolute",
+          },
+
+          left: {
+            md: 28,
+            lg: 32,
+          },
+
+          bottom: {
+            md: 30,
+          },
+
+          fontSize: "10px",
+
+          fontWeight: 400,
+
+          letterSpacing: "1.1px",
+
+          color: "#9c978e",
+
+          textTransform: "uppercase",
+        }}
+      >
+        {footer}
+      </Typography>
+    </Box>
+  );
+}
+
+/* ==========================================================
+   APPROACH POINT
+========================================================== */
+
+function ApproachPoint({ number, title, description }) {
+  return (
+    <Box
+      sx={{
+        backgroundColor: "#f3f0eb",
+
+        px: {
+          xs: 2.5,
+          md: 3,
+        },
+
+        py: {
+          xs: 2.5,
+          md: 2.7,
+        },
+
+        minHeight: {
+          md: 105,
+        },
+
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+
+        borderRadius: "4px",
+      }}
+    >
+      {/* NUMBER + TITLE */}
+
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "baseline",
+
+          gap: {
+            xs: 1.2,
+            md: 1.4,
+          },
+
+          mb: 1.2,
+        }}
+      >
+        <Typography
+          component="span"
+          sx={{
+
+            color: "#e3133d",
+
+            fontSize: {
+              xs: "6px",
+              md: "10px",
+            },
+
+            fontWeight: 600,
+
+            letterSpacing: "1.1px",
+
+            whiteSpace: "nowrap",
+
+            textTransform: "uppercase",
           }}
         >
           POINT {number}
         </Typography>
 
         <Typography
+          component="h3"
           sx={{
-            fontFamily: "Georgia, serif",
-            fontSize: "12px",
+            m: 0,
+
+            fontFamily:
+              "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+
+            color: "#38362f",
+
+            fontSize: {
+              xs: "16px",
+              md: "20px",
+            },
+
+            fontWeight: 400,
+
+            lineHeight: 1.1,
           }}
         >
           {title}
         </Typography>
-
       </Box>
+
+      {/* DESCRIPTION */}
 
       <Typography
         sx={{
-          color: "#77736b",
-          fontSize: "8px",
-          lineHeight: 1.55,
+
+          color: "#67645e",
+
+          fontSize: {
+            xs: "9px",
+            md: "14px",
+          },
+
+          fontWeight: 300,
+
+          lineHeight: 1.65,
+
+          maxWidth: "95%",
         }}
       >
         {description}
       </Typography>
-
     </Box>
   );
 }
+

@@ -39,3 +39,53 @@ h1, h2, h3, h4, h5, h6 {
   background: #c9a96e33;
   color: #f5f0eb;
 }
+
+/* ============================================================
+   SCROLL REVEAL ANIMATIONS
+   Used by src/components/AnimateOnScroll.js
+============================================================ */
+
+@keyframes khr-fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes khr-fade-left {
+  from { opacity: 0; transform: translateX(-28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes khr-fade-right {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes khr-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Hidden state – elements start invisible */
+.khr-reveal {
+  opacity: 0;
+}
+
+/* When the IntersectionObserver fires .khr-visible, run the chosen animation */
+.khr-reveal.khr-visible {
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.khr-reveal.khr-visible[data-anim="fade-up"]    { animation-name: khr-fade-up; }
+.khr-reveal.khr-visible[data-anim="fade-left"]  { animation-name: khr-fade-left; }
+.khr-reveal.khr-visible[data-anim="fade-right"] { animation-name: khr-fade-right; }
+.khr-reveal.khr-visible[data-anim="fade-in"]    { animation-name: khr-fade-in; }
+
+/* Respect user motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .khr-reveal,
+  .khr-reveal.khr-visible {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}

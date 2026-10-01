@@ -1,313 +1,1392 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
+import AnimateOnScroll from "@/components/AnimateOnScroll";
 import {
   Box,
-  Container,
-  Grid,
-  Typography,
-  Card,
-  CardMedia,
-  CardContent,
-  Chip,
-  Stack,
   Button,
-  ToggleButtonGroup,
-  ToggleButton,
+  Container,
+  Stack,
+  Typography,
 } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Link from "next/link";
 
-const allProjects = [
+/* =========================================================
+   IMAGES
+   Replace these with your actual public image paths
+========================================================= */
+
+const images = {
+  featuredProcess: "/images/service-02.jpg",      // floor plan / process study
+  featuredProject: "/images/service-01.jpg",      // completed interior
+
+  alpine: "/images/project-4.jpg",             // courtyard / warm tones
+  coastal: "/images/project-hospitality.jpg",   // open coastal pavilion
+  courtyard: "/images/project-residential.jpg",   // residential interior
+  salon: "/images/project-7.jpg",             // amber lounge
+  townhouse: "/images/project-6.jpg",             // gallery / townhouse
+  lakehouse: "/images/project-5.jpg",             // loft / dramatic light
+};
+
+/* =========================================================
+   PROJECT DATA
+========================================================= */
+
+const projects = [
   {
-    title: "Skyline Penthouse",
+    id: 1,
     category: "Residential",
-    location: "New York, USA",
-    year: "2024",
-    area: "4,200 sq ft",
-    img: "/images/project-residential.jpg",
-    desc: "A two-level penthouse reimagined as a serene urban sanctuary with panoramic city views and handcrafted material detailing.",
+    location: "Aspen, Colorado",
+    year: "2026",
+    title: "Private Alpine Residence",
+    description:
+      "Monolithic travertine fireplaces meet expansive double-height timber framing, creating a quiet dialogue between architecture, landscape, and alpine light.",
+    image: images.alpine,
+    layout: "wide",
+    figure: "FIG. 01 / ALPINE",
   },
   {
-    title: "Meridian HQ",
-    category: "Commercial",
-    location: "Los Angeles, USA",
-    year: "2023",
-    area: "18,000 sq ft",
-    img: "/images/project-commercial.jpg",
-    desc: "A headquarters that embodies the brand's disruptive spirit — industrial bones wrapped in refined finishes and thoughtful workflow zones.",
+    id: 2,
+    category: "Residential",
+    location: "California",
+    year: "2025",
+    title: "The Coastal Pavilion",
+    description:
+      "Expansive minimalist glazing and liminal pavilion spaces frame sea, sky, and shifting coastal light.",
+    image: images.coastal,
+    figure: "FIG. 02 / COASTAL",
   },
   {
-    title: "Velour Boutique Hotel",
+    id: 3,
+    category: "Residential",
+    location: "Kyoto",
+    year: "2026",
+    title: "Still House Courtyard Suite",
+    description:
+      "A restrained courtyard residence shaped by filtered daylight, natural timber, and a quiet relationship between interior and garden.",
+    image: images.courtyard,
+    figure: "FIG. 03 / STILL",
+  },
+  {
+    id: 4,
     category: "Hospitality",
-    location: "Miami, USA",
-    year: "2023",
-    area: "32,000 sq ft",
-    img: "/images/project-hospitality.jpg",
-    desc: "40-room luxury boutique hotel with a lobby designed as a destination in itself — marble, brass, and curated art at every turn.",
+    location: "New York",
+    year: "2025",
+    title: "The Green Room Salon",
+    description:
+      "A subterranean social interior where deep velvet, warm brass, and intimate lighting establish an atmospheric evening retreat.",
+    image: images.salon,
+    figure: "FIG. 04 / HOSPITALITY",
   },
   {
-    title: "The Arbor Residence",
+    id: 5,
     category: "Residential",
-    location: "Los Angeles, USA",
-    year: "2022",
-    area: "6,800 sq ft",
-    img: "/images/project-residential.jpg",
-    desc: "A biophilic family home where architecture dissolves into nature — living walls, natural stone, and light-filled volumes.",
+    location: "London",
+    year: "2024",
+    title: "Minimalist Stone Townhouse",
+    description:
+      "Warm limestone accents, tactile oak, and framed garden views establish a calm residential composition.",
+    image: images.townhouse,
+    figure: "FIG. 05 / TOWNHOUSE",
   },
   {
-    title: "Studio Noire",
-    category: "Commercial",
-    location: "Chicago, USA",
-    year: "2022",
-    area: "5,400 sq ft",
-    img: "/images/project-commercial.jpg",
-    desc: "A creative agency studio defined by dramatic contrasts — raw concrete, matte black steel, and warm walnut accents.",
-  },
-  {
-    title: "Casa Serena",
+    id: 6,
     category: "Residential",
-    location: "Miami, USA",
-    year: "2021",
-    area: "3,900 sq ft",
-    img: "/images/project-residential.jpg",
-    desc: "Coastal minimalism at its finest — a home that opens completely to the ocean, blurring the line between inside and outside.",
+    location: "Lake Tahoe",
+    year: "2025",
+    title: "The Light House Sanctuary",
+    description:
+      "Dramatic central daylight pours through a sculptural volume, balancing monumental stone with restrained furniture and natural warmth.",
+    image: images.lakehouse,
+    layout: "wide",
+    figure: "FIG. 06 / SANCTUARY",
   },
 ];
 
-const categories = ["All", "Residential", "Commercial", "Hospitality"];
+const filters = [
+  "All Works",
+  "Residential",
+  "Hospitality",
+  "Commercial",
+];
+
+/* =========================================================
+   MATERIAL DATA
+========================================================= */
+
+const materials = [
+  {
+    code: "Tv",
+    title: "IVORY TRAVERTINE",
+    detail: "HONED / LIGHT VEIN",
+    background:
+      "linear-gradient(135deg, #ddd7ce 0%, #f1ede7 100%)",
+  },
+  {
+    code: "Sl",
+    title: "SLAKED LIME PLASTER",
+    detail: "NATURAL / WARM GREY",
+    background:
+      "linear-gradient(135deg, #cbc8c2 0%, #e8e5df 100%)",
+  },
+  {
+    code: "Br",
+    title: "PATINATED BRONZE",
+    detail: "SATIN / AGED FINISH",
+    background:
+      "linear-gradient(135deg, #eacb8b 0%, #f4daa4 100%)",
+  },
+  {
+    code: "Ok",
+    title: "SMOKED ALPINE OAK",
+    detail: "NATURAL / DARK GRAIN",
+    background: "#17241c",
+    light: true,
+  },
+];
+
+/* =========================================================
+   SHARED STYLES
+========================================================= */
+
+const serif = {
+  fontFamily:
+    "var(--font-cormorant), 'Cormorant Garamond', Georgia, 'Times New Roman', serif",
+  fontWeight: 400,
+};
+
+const eyebrow = {
+  fontSize: "14px",
+  fontWeight: 500,
+  letterSpacing: "1.7px",
+  textTransform: "uppercase",
+  color: "#34322d",
+};
+
+const red = "#e3133d";
+const text = "#282821";
+const muted = "#716d65";
+const background = "#faf8f3";
+
+/* =========================================================
+   PAGE
+========================================================= */
 
 export default function ProjectsPage() {
-  const [active, setActive] = useState("All");
-  const [visible, setVisible] = useState({});
-  const refs = useRef({});
+  const [activeFilter, setActiveFilter] = useState("All Works");
 
-  const filtered =
-    active === "All" ? allProjects : allProjects.filter((p) => p.category === active);
-
-  useEffect(() => {
-    setVisible({});
-    const timeout = setTimeout(() => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting)
-              setVisible((prev) => ({ ...prev, [e.target.dataset.key]: true }));
-          });
-        },
-        { threshold: 0.05 }
+  const visibleProjects =
+    activeFilter === "All Works"
+      ? projects
+      : projects.filter(
+        (project) => project.category === activeFilter
       );
-      Object.values(refs.current).forEach((el) => el && observer.observe(el));
-      return () => observer.disconnect();
-    }, 50);
-    return () => clearTimeout(timeout);
-  }, [active]);
-
-  const setRef = (key) => (el) => {
-    refs.current[key] = el;
-    if (el) el.dataset.key = key;
-  };
 
   return (
-    <Box>
-      {/* ── HERO ── */}
+    <Box
+      component="main"
+      sx={{
+        backgroundColor: background,
+        color: text,
+        minHeight: "100vh",
+      }}
+    >
+      {/* ===================================================
+          PAGE INTRO
+      =================================================== */}
+
       <Box
+        component="section"
         sx={{
-          minHeight: { xs: "40vh", md: "50vh" },
-          background: "linear-gradient(135deg, #0d0a05 0%, #0a0a0a 50%, #050510 100%)",
-          display: "flex",
-          alignItems: "center",
-          borderBottom: "1px solid rgba(201,169,110,0.08)",
-          position: "relative",
-          overflow: "hidden",
+          pt: {
+            xs: 8,
+            md: 10,
+          },
+
+          pb: {
+            xs: 5,
+            md: 10,
+          },
         }}
       >
-        <Box
-          sx={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "2px",
-            background: "linear-gradient(90deg, transparent, #c9a96e40, transparent)",
-          }}
-        />
-        <Container maxWidth="xl" sx={{ py: { xs: 8, md: 12 } }}>
-          <Typography variant="overline" color="primary" sx={{ display: "block", mb: 2 }}>
-            Portfolio
-          </Typography>
-          <Typography
-            variant="h1"
-            sx={{ fontSize: { xs: "2.8rem", md: "5rem" }, fontWeight: 200, mb: 3 }}
+        <PageContainer>
+          <Box
+            sx={{
+              display: "grid",
+
+              gridTemplateColumns: {
+                xs: "1fr",
+                md: "48% 1fr",
+              },
+
+              gap: {
+                xs: 4,
+                md: 8,
+              },
+
+              alignItems: "end",
+            }}
           >
-            Our{" "}
-            <Box component="span" sx={{ color: "primary.main" }}>
-              Projects
+            {/* LEFT */}
+
+            <Box>
+              <AnimateOnScroll animation="fade-up" delay="0s">
+                <SectionLabel>
+                  OUR PORTFOLIO
+                </SectionLabel>
+              </AnimateOnScroll>
+
+              <AnimateOnScroll animation="fade-up" delay="0.12s">
+                <Typography
+                  component="h1"
+                  sx={{
+                    ...serif,
+
+                    mt: 2,
+
+                    fontSize: {
+                      xs: "42px",
+                      sm: "52px",
+                      md: "58px",
+                      lg: "62px",
+                    },
+
+                    lineHeight: {
+                      xs: 0.98,
+                      md: 0.95,
+                    },
+
+                    letterSpacing: "-1.7px",
+
+                    maxWidth: "600px",
+                  }}
+                >
+                  Curated architectural
+                  <br />
+                  spaces shaped by light,
+                </Typography>
+              </AnimateOnScroll>
             </Box>
-          </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 500, lineHeight: 1.9 }}>
-            A curated selection of residential, commercial, and hospitality projects
-            — each one a testament to the power of thoughtful design.
-          </Typography>
-        </Container>
+
+            {/* RIGHT SMALL INDEX */}
+
+            <Box
+              sx={{
+                display: {
+                  xs: "none",
+                  md: "flex",
+                },
+
+                justifyContent: "flex-end",
+
+                pb: 1,
+              }}
+            >
+            </Box>
+          </Box>
+        </PageContainer>
       </Box>
 
-      {/* ── FILTER + GRID ── */}
-      <Box sx={{ py: { xs: 6, md: 12 } }}>
-        <Container maxWidth="xl">
-          {/* Filter Tabs */}
-          <Box sx={{ mb: 8, display: "flex", justifyContent: "center" }}>
-            <ToggleButtonGroup
-              value={active}
-              exclusive
-              onChange={(_, val) => val && setActive(val)}
+      {/* ===================================================
+          FEATURED PROJECT
+      =================================================== */}
+
+      <Box
+        component="section"
+        sx={{
+          pb: {
+            xs: 6,
+            md: 7,
+          },
+        }}
+      >
+        <PageContainer>
+          {/* FEATURED META */}
+
+          <Box
+            sx={{
+              display: "flex",
+
+              flexDirection: {
+                xs: "column",
+                md: "row",
+              },
+
+              justifyContent: "space-between",
+
+              alignItems: {
+                xs: "flex-start",
+                md: "flex-end",
+              },
+
+              gap: 2,
+
+              mb: 2,
+            }}
+          >
+            <Box>
+              <AnimateOnScroll animation="fade-up" delay="0s">
+                <Typography
+                  sx={{
+                    ...eyebrow,
+                    color: red,
+                    mb: 1.5,
+                  }}
+                >
+                  ARCHITECTURAL METHOD / 01
+                </Typography>
+              </AnimateOnScroll>
+
+              <Typography
+                sx={{
+                  ...serif,
+                  fontSize: "32px",
+                  lineHeight: 1.1,
+                  fontWeight: 500
+                }}
+              >
+                The Alpine Pavilion Residence
+              </Typography>
+            </Box>
+
+            <Typography
               sx={{
-                gap: 1,
-                flexWrap: "wrap",
-                justifyContent: "center",
-                "& .MuiToggleButton-root": {
-                  border: "1px solid rgba(201,169,110,0.2)",
-                  borderRadius: "2px !important",
-                  color: "text.secondary",
-                  px: 3,
-                  py: 1,
-                  fontSize: "0.8rem",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  transition: "all 0.3s ease",
-                  "&:hover": {
-                    borderColor: "primary.main",
-                    color: "primary.main",
-                    backgroundColor: "rgba(201,169,110,0.06)",
-                  },
-                  "&.Mui-selected": {
-                    backgroundColor: "rgba(201,169,110,0.12)",
-                    borderColor: "primary.main",
-                    color: "primary.main",
-                    fontWeight: 600,
-                    "&:hover": {
-                      backgroundColor: "rgba(201,169,110,0.18)",
+                ...eyebrow,
+                color: "#56524b",
+              }}
+            >
+              DRAG CURSOR OR TOUCH TO DISSECT PLAN VS. STONE REALIZATION
+            </Typography>
+          </Box>
+
+          {/* FEATURED IMAGE — DRAG COMPARE SLIDER */}
+
+          <ImageCompareSlider
+            leftImage={images.featuredProcess}
+            rightImage={images.featuredProject}
+            leftLabel="5.8M / TECHNICAL DRAWING"
+            rightLabel="REALIZED INTERIOR / 2026"
+          />
+        </PageContainer>
+      </Box>
+
+      {/* ===================================================
+          FILTERS
+      =================================================== */}
+
+      <Box component="section">
+        <PageContainer>
+          <Box
+            sx={{
+              display: "flex",
+
+              gap: {
+                xs: 3,
+                md: 5,
+              },
+
+              overflowX: "auto",
+
+              borderBottom: "1px solid #d9d4cc",
+
+              "&::-webkit-scrollbar": {
+                display: "none",
+              },
+            }}
+          >
+            {filters.map((filter) => {
+              const active = filter === activeFilter;
+
+              return (
+                <Box
+                  key={filter}
+                  component="button"
+                  onClick={() => setActiveFilter(filter)}
+                  sx={{
+                    appearance: "none",
+                    border: 0,
+                    outline: 0,
+
+                    background: "transparent",
+
+                    cursor: "pointer",
+
+                    position: "relative",
+
+                    flexShrink: 0,
+
+                    px: 0,
+                    pb: 1.7,
+
+                    color: active ? text : "#77736c",
+
+                    fontSize: "16px",
+
+                    letterSpacing: "0.8px",
+
+                    "&::after": {
+                      content: '""',
+
+                      position: "absolute",
+
+                      left: 0,
+                      bottom: -1,
+
+                      width: active ? "100%" : 0,
+                      height: "1px",
+
+                      backgroundColor: red,
+
+                      transition: "width .25s ease",
                     },
-                  },
+
+                    "&:hover": {
+                      color: text,
+                    },
+                  }}
+                >
+                  {filter}
+                </Box>
+              );
+            })}
+          </Box>
+        </PageContainer>
+      </Box>
+
+      {/* ===================================================
+          PROJECT GRID
+      =================================================== */}
+
+      <Box
+        component="section"
+        sx={{
+          pt: {
+            xs: 4,
+            md: 5,
+          },
+
+          pb: {
+            xs: 9,
+            md: 11,
+          },
+        }}
+      >
+        <PageContainer>
+          <Box
+            sx={{
+              display: "grid",
+
+              gridTemplateColumns: {
+                xs: "1fr",
+                md: "repeat(2, 1fr)",
+              },
+
+              columnGap: {
+                md: 3,
+              },
+
+              rowGap: {
+                xs: 6,
+                md: 6.5,
+              },
+            }}
+          >
+            {visibleProjects.map((project, index) => (
+              <AnimateOnScroll
+                key={project.id}
+                animation="fade-up"
+                delay={`${index * 0.08}s`}
+              >
+                <ProjectCard
+                  project={project}
+                />
+              </AnimateOnScroll>
+            ))}
+          </Box>
+        </PageContainer>
+      </Box>
+
+      {/* ===================================================
+          MATERIAL PALETTE
+      =================================================== */}
+
+      <Box
+        component="section"
+        sx={{
+          backgroundColor: "#f4f1eb",
+
+          py: {
+            xs: 8,
+            md: 9,
+          },
+        }}
+      >
+        <PageContainer>
+          <AnimateOnScroll animation="fade-up" delay="0s">
+            <Typography
+              sx={{
+                ...eyebrow,
+
+                color: "#8d8579",
+
+                mb: 1.4,
+              }}
+            >
+              MATERIAL ARCHIVE
+            </Typography>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll animation="fade-up" delay="0.1s">
+            <Typography
+              component="h2"
+              sx={{
+                ...serif,
+
+                fontSize: {
+                  xs: "32px",
+                  md: "44px",
+                },
+
+                lineHeight: 1,
+
+                mb: 1.5,
+              }}
+            >
+              Honest Earth Materials &amp; Textures
+            </Typography>
+          </AnimateOnScroll>
+
+          <AnimateOnScroll animation="fade-up" delay="0.18s">
+            <Typography
+              sx={{
+                fontSize: "16px",
+
+                lineHeight: 1.6,
+
+                color: muted,
+
+                maxWidth: "550px",
+
+                mb: {
+                  xs: 4,
+                  md: 5,
                 },
               }}
             >
-              {categories.map((cat) => (
-                <ToggleButton key={cat} value={cat} id={`filter-${cat.toLowerCase()}`}>
-                  {cat}
-                </ToggleButton>
-              ))}
-            </ToggleButtonGroup>
-          </Box>
+              Raw, tactile materials selected for their natural aging,
+              warmth, tonal depth, and ability to develop character over time.
+            </Typography>
+          </AnimateOnScroll>
 
-          {/* Project Grid */}
-          <Grid container spacing={4}>
-            {filtered.map((project, i) => (
-              <Grid item xs={12} md={6} lg={4} key={`${project.title}-${active}`}>
-                <Box
-                  ref={setRef(`proj-${i}`)}
-                  sx={{
-                    opacity: visible[`proj-${i}`] ? 1 : 0,
-                    transform: visible[`proj-${i}`] ? "translateY(0) scale(1)" : "translateY(30px) scale(0.98)",
-                    transition: `opacity 0.6s ease ${i * 0.08}s, transform 0.6s ease ${i * 0.08}s`,
-                  }}
-                >
-                  <Card sx={{ height: "100%", overflow: "hidden" }}>
-                    <Box sx={{ position: "relative", overflow: "hidden" }}>
-                      <CardMedia
-                        component="img"
-                        image={project.img}
-                        alt={project.title}
-                        sx={{
-                          height: 300,
-                          objectFit: "cover",
-                          transition: "transform 0.5s ease",
-                          "&:hover": { transform: "scale(1.04)" },
-                        }}
-                      />
-                      <Box
-                        sx={{
-                          position: "absolute",
-                          inset: 0,
-                          background: "linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 60%)",
-                        }}
-                      />
-                      <Chip
-                        label={project.category}
-                        size="small"
-                        sx={{
-                          position: "absolute",
-                          top: 16,
-                          left: 16,
-                          backgroundColor: "rgba(201,169,110,0.92)",
-                          color: "#0a0a0a",
-                          fontWeight: 600,
-                          fontSize: "0.68rem",
-                          letterSpacing: "0.06em",
-                        }}
-                      />
-                    </Box>
-                    <CardContent sx={{ p: 3 }}>
-                      <Typography variant="h6" sx={{ fontWeight: 500, mb: 0.5 }}>
-                        {project.title}
-                      </Typography>
-                      <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
-                        <Typography variant="caption" color="text.secondary">
-                          {project.location}
-                        </Typography>
-                        <Typography variant="caption" color="text.secondary">
-                          ·
-                        </Typography>
-                        <Typography variant="caption" color="text.secondary">
-                          {project.year}
-                        </Typography>
-                        <Typography variant="caption" color="text.secondary">
-                          ·
-                        </Typography>
-                        <Typography variant="caption" color="text.secondary">
-                          {project.area}
-                        </Typography>
-                      </Stack>
-                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8 }}>
-                        {project.desc}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Box>
-              </Grid>
+          <Box
+            sx={{
+              display: "grid",
+
+              gridTemplateColumns: {
+                xs: "repeat(2, 1fr)",
+                md: "repeat(4, 1fr)",
+              },
+
+              gap: {
+                xs: 2,
+                md: 2.5,
+              },
+            }}
+          >
+            {materials.map((material, index) => (
+              <AnimateOnScroll
+                key={material.code}
+                animation="fade-up"
+                delay={`${index * 0.1}s`}
+              >
+                <MaterialCard
+                  {...material}
+                />
+              </AnimateOnScroll>
             ))}
-          </Grid>
-        </Container>
+          </Box>
+        </PageContainer>
       </Box>
 
-      {/* ── CTA ── */}
+      {/* ===================================================
+          CTA
+      =================================================== */}
+
       <Box
         sx={{
-          py: { xs: 8, md: 10 },
-          textAlign: "center",
-          borderTop: "1px solid rgba(201,169,110,0.08)",
+          backgroundColor: "#faf8f3",
+          py: {
+            xs: 7,
+            md: 10,
+          },
+          px: {
+            xs: 2.5,
+            sm: 4,
+            md: 4.5,
+          },
         }}
       >
-        <Container maxWidth="md">
-          <Typography variant="h3" sx={{ fontWeight: 200, mb: 3, fontSize: { xs: "2rem", md: "3rem" } }}>
-            Have a Project in Mind?
-          </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ mb: 5, lineHeight: 1.9 }}>
-            We'd love to hear about your vision. Let's design something extraordinary together.
-          </Typography>
-          <Button
-            component={Link}
-            href="/contact"
-            variant="contained"
-            color="primary"
-            size="large"
-            id="projects-cta-contact"
-            endIcon={<ArrowForwardIcon />}
+
+        <Box
+          sx={{
+            backgroundColor: "#f0ede7",
+            minHeight: {
+              xs: "300px",
+              md: "400px",
+            },
+            display: "flex",
+            alignItems: "center",
+            px: {
+              xs: 4,
+              sm: 5,
+              md: 7,
+            },
+            py: {
+              xs: 5,
+              md: 4,
+            },
+            position: "relative",
+            overflow: "hidden",
+            borderRadius: "7px",
+          }}
+        >
+
+          {/* LEFT CONTENT */}
+
+          <Box
+            sx={{
+              width: {
+                xs: "100%",
+                md: "70%",
+              },
+            }}
           >
-            Start Your Project
-          </Button>
-        </Container>
+
+            {/* LABEL */}
+
+            <AnimateOnScroll animation="fade-up" delay="0s">
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  mb: 1.5,
+                }}
+              >
+
+                <Box
+                  sx={{
+                    width: 8,
+                    height: 8,
+                    borderRadius: "50%",
+                    backgroundColor: "#e4002b",
+                    mr: 2,
+                  }}
+                />
+
+                <Typography
+                  sx={{
+                    fontSize: "12px",
+                    letterSpacing: "1.8px",
+                    color: "#36342f",
+                  }}
+                >
+                  PRIVATE SPATIAL COMMISSION
+                </Typography>
+
+              </Box>
+            </AnimateOnScroll>
+
+
+            {/* CTA HEADING */}
+
+            <AnimateOnScroll animation="fade-up" delay="0.1s">
+              <Typography
+                sx={{
+                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                  fontSize: {
+                    xs: "31px",
+                    sm: "37px",
+                    md: "52px",
+                  },
+                  lineHeight: 1,
+                  mb: 2,
+                }}
+              >
+                Have a space in mind?
+              </Typography>
+            </AnimateOnScroll>
+
+
+            {/* CTA DESCRIPTION */}
+
+            <AnimateOnScroll animation="fade-up" delay="0.2s">
+              <Typography
+                sx={{
+                  color: "#77736b",
+                  fontSize: "14px",
+                  lineHeight: 1.6,
+                  maxWidth: "540px",
+                  mb: 3,
+                }}
+              >
+                Every commission begins with an intimate dialogue between site,
+                light, and personal ritual. Let us discuss your architectural
+                aspirations and archival requirements.
+              </Typography>
+            </AnimateOnScroll>
+
+
+            {/* CTA BUTTONS */}
+
+            <AnimateOnScroll animation="fade-up" delay="0.3s">
+              <Stack
+                direction="row"
+                spacing={3}
+                alignItems="center"
+                flexWrap="wrap"
+                useFlexGap
+              >
+
+                <Button
+                  href="/#contact"
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "#e4002b",
+                    borderRadius: 0,
+                    color: "#fff",
+                    fontSize: "10px",
+                    letterSpacing: "1.8px",
+                    px: 2.5,
+                    py: 1.3,
+                    boxShadow: "none",
+
+                    "&:hover": {
+                      backgroundColor: "#c90026",
+                      boxShadow: "none",
+                    },
+                  }}
+                >
+                  START YOUR PROJECT
+                </Button>
+
+
+                <Button
+                  href="/#service"
+                  sx={{
+                    color: "#27251f",
+                    fontSize: "10px",
+                    letterSpacing: "1.5px",
+                    px: 0,
+                    minWidth: "auto",
+
+                    "&:hover": {
+                      backgroundColor: "transparent",
+                      color: "#e4002b",
+                    },
+                  }}
+                >
+                  VIEW SERVICES ↗
+                </Button>
+
+              </Stack>
+            </AnimateOnScroll>
+
+          </Box>
+
+
+          {/* RIGHT EMPTY PANEL / DESIGN ELEMENT */}
+
+          <Box
+            sx={{
+              display: {
+                xs: "none",
+                md: "block",
+              },
+              position: "absolute",
+              right: 0,
+              top: 0,
+              width: "26%",
+              height: "100%",
+              borderLeft: "1px solid rgba(0,0,0,.05)",
+            }}
+          />
+
+        </Box>
       </Box>
+    </Box>
+  );
+}
+
+/* =========================================================
+   IMAGE COMPARE SLIDER (DRAGGABLE BEFORE / AFTER)
+========================================================= */
+
+function ImageCompareSlider({
+  leftImage,
+  rightImage,
+  leftLabel = "5.8M / TECHNICAL DRAWING",
+  rightLabel = "REALIZED INTERIOR / 2026",
+}) {
+  const [sliderPos, setSliderPos] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
+  const containerRef = useRef(null);
+
+  const updatePosition = useCallback((clientX) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const percentage = Math.min(Math.max((x / rect.width) * 100, 0), 100);
+    setSliderPos(percentage);
+  }, []);
+
+  const handlePointerDown = (e) => {
+    setIsDragging(true);
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {}
+    updatePosition(e.clientX);
+  };
+
+  const handlePointerMove = (e) => {
+    if (!isDragging) return;
+    updatePosition(e.clientX);
+  };
+
+  const handlePointerUp = (e) => {
+    setIsDragging(false);
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {}
+  };
+
+  return (
+    <Box
+      ref={containerRef}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
+      sx={{
+        position: "relative",
+        width: "100%",
+        height: {
+          xs: "380px",
+          sm: "480px",
+          md: "540px",
+          lg: "580px",
+        },
+        overflow: "hidden",
+        borderRadius: "2px",
+        cursor: "ew-resize",
+        userSelect: "none",
+        touchAction: "none",
+        backgroundColor: "#1b221d",
+      }}
+    >
+      {/* RIGHT IMAGE (UNDERNEATH) */}
+      <Box
+        component="img"
+        src={rightImage}
+        alt="Realized Interior"
+        sx={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          display: "block",
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* LEFT IMAGE (CLIPPED ON TOP) */}
+      <Box
+        sx={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          clipPath: `inset(0 ${100 - sliderPos}% 0 0)`,
+          WebkitClipPath: `inset(0 ${100 - sliderPos}% 0 0)`,
+          pointerEvents: "none",
+        }}
+      >
+        <Box
+          component="img"
+          src={leftImage}
+          alt="Architectural Plan & Studies"
+          sx={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+      </Box>
+
+      {/* LEFT LABEL TAG */}
+      <ImageTag
+        sx={{
+          top: 18,
+          left: 18,
+          pointerEvents: "none",
+          opacity: sliderPos > 12 ? 1 : 0,
+          transition: "opacity 0.2s ease",
+        }}
+      >
+        {leftLabel}
+      </ImageTag>
+
+      {/* RIGHT LABEL TAG */}
+      <ImageTag
+        sx={{
+          top: 18,
+          right: 18,
+          pointerEvents: "none",
+          opacity: sliderPos < 88 ? 1 : 0,
+          transition: "opacity 0.2s ease",
+        }}
+      >
+        {rightLabel}
+      </ImageTag>
+
+
+      {/* DIVIDER VERTICAL LINE */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          bottom: 0,
+          left: `${sliderPos}%`,
+          width: "2px",
+          backgroundColor: "#ffffff",
+          boxShadow: "0 0 10px rgba(0,0,0,0.6)",
+          zIndex: 5,
+          pointerEvents: "none",
+          transform: "translateX(-50%)",
+        }}
+      />
+
+      {/* DRAG HANDLE BUTTON */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: `${sliderPos}%`,
+          transform: isDragging
+            ? "translate(-50%, -50%) scale(1.12)"
+            : "translate(-50%, -50%) scale(1)",
+          transition: isDragging ? "transform 0.1s ease" : "transform 0.2s ease",
+          width: 44,
+          height: 44,
+          borderRadius: "50%",
+          backgroundColor: "#152019",
+          border: "2px solid #ffffff",
+          color: "#ffffff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          boxShadow: "0 4px 18px rgba(0,0,0,0.45)",
+          zIndex: 6,
+          pointerEvents: "none",
+        }}
+      >
+        <Typography
+          sx={{
+            fontSize: "14px",
+            fontWeight: 700,
+            letterSpacing: "-1px",
+            lineHeight: 1,
+            userSelect: "none",
+          }}
+        >
+          ‹ ›
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
+
+/* =========================================================
+   PROJECT CARD
+========================================================= */
+
+function ProjectCard({ project }) {
+  const isWide = project.layout === "wide";
+
+  return (
+    <Box
+      component="article"
+      sx={{
+        gridColumn: {
+          xs: "span 1",
+          md: isWide ? "1 / -1" : "span 1",
+        },
+      }}
+    >
+      {/* IMAGE */}
+
+      <Box
+        sx={{
+          display: "block",
+          position: "relative",
+          overflow: "hidden",
+          backgroundColor: "#e8e3da",
+          mb: 2,
+          borderRadius: "2px",
+          "&:hover img": {
+            transform: "scale(1.06)",
+          },
+          "&:hover .image-overlay": {
+            backgroundColor: "rgba(20,20,15,.06)",
+          },
+        }}
+      >
+        <Box
+          component="img"
+          src={project.image}
+          alt={project.title}
+          sx={{
+            display: "block",
+
+            width: "100%",
+
+            height: {
+              xs: isWide ? "340px" : "320px",
+              sm: isWide ? "470px" : "430px",
+              md: isWide ? "500px" : "420px",
+              lg: isWide ? "540px" : "470px",
+            },
+
+            objectFit: "cover",
+
+            transition: "transform .7s cubic-bezier(.2,.7,.2,1)",
+            willChange: "transform",
+          }}
+        />
+
+        {/* FIGURE LABEL */}
+
+        <ImageTag
+          sx={{
+            top: 14,
+            left: 14,
+            pointerEvents: "none",
+          }}
+        >
+          {project.figure}
+        </ImageTag>
+
+        {/* HOVER OVERLAY */}
+
+        <Box
+          className="image-overlay"
+          sx={{
+            position: "absolute",
+            inset: 0,
+            backgroundColor: "rgba(20,20,15,0)",
+            transition: "background-color .4s ease",
+            pointerEvents: "none",
+          }}
+        />
+      </Box>
+
+      {/* META */}
+
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+
+          gap: 2,
+
+          mb: 1,
+        }}
+      >
+        <Typography
+          sx={{
+            ...eyebrow,
+
+            color: "#8d887f",
+
+            fontSize: "10px",
+          }}
+        >
+          {project.category} · {project.location}
+        </Typography>
+
+        <Typography
+          sx={{
+            ...eyebrow,
+
+            color: "#6f6b63",
+
+            fontSize: "12px",
+          }}
+        >
+          {project.year}
+        </Typography>
+      </Box>
+
+      {/* INFO */}
+
+      <Box
+        sx={{
+          display: "grid",
+
+          gridTemplateColumns: {
+            xs: "1fr",
+            md: "1fr",
+          },
+
+          gap: {
+            xs: 1.5,
+            md: 1.5,
+          },
+        }}
+      >
+        <Typography
+          component="h2"
+          sx={{
+            ...serif,
+
+            color: text,
+
+            fontSize: {
+              xs: "22px",
+              md: "32px",
+            },
+
+            lineHeight: 1,
+          }}
+        >
+          {project.title}
+        </Typography>
+
+        <Typography
+          sx={{
+
+            color: muted,
+
+            fontSize: "16px",
+
+            lineHeight: 1.65,
+
+            maxWidth: "600px",
+          }}
+        >
+          {project.description}
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
+
+/* =========================================================
+   MATERIAL CARD
+========================================================= */
+
+function MaterialCard({
+  code,
+  title,
+  detail,
+  background,
+  light,
+}) {
+  return (
+    <Box
+      sx={{
+        backgroundColor: "#faf8f4",
+        overflow: "hidden",
+        cursor: "default",
+
+        p: {
+          xs: 1.2,
+          md: 1.5,
+        },
+
+        transition: "box-shadow .35s ease, transform .35s ease",
+
+        "&:hover": {
+          transform: "translateY(-4px)",
+          boxShadow: "0 12px 32px rgba(0,0,0,0.10)",
+
+          "& .material-swatch": {
+            transform: "scale(1.07)",
+          },
+        },
+      }}
+    >
+      <Box
+        sx={{
+          height: {
+            xs: 140,
+            sm: 170,
+            md: 260,
+          },
+
+          overflow: "hidden",
+          mb: 1.5,
+        }}
+      >
+        <Box
+          className="material-swatch"
+          sx={{
+            width: "100%",
+            height: "100%",
+
+            background,
+
+            display: "flex",
+
+            alignItems: "center",
+            justifyContent: "center",
+
+            transition: "transform .55s cubic-bezier(.2,.7,.2,1)",
+            willChange: "transform",
+          }}
+        >
+          <Typography
+            sx={{
+              ...serif,
+
+              fontSize: "18px",
+
+              color: light
+                ? "rgba(255,255,255,.82)"
+                : "#514b43",
+            }}
+          >
+            {code}
+          </Typography>
+        </Box>
+      </Box>
+
+      <Typography
+        sx={{
+          ...eyebrow,
+
+          fontSize: "12px",
+
+          color: text,
+
+          mb: 0.5,
+        }}
+      >
+        {title}
+      </Typography>
+
+      <Typography
+        sx={{
+
+          fontSize: "8px",
+
+          letterSpacing: "0.8px",
+
+          color: "#918b82",
+
+          textTransform: "uppercase",
+        }}
+      >
+        {detail}
+      </Typography>
+    </Box>
+  );
+}
+
+/* =========================================================
+   SMALL SHARED COMPONENTS
+========================================================= */
+
+function PageContainer({ children }) {
+  return (
+    <Container
+      maxWidth={false}
+      sx={{
+        px: {
+          xs: 3,
+          sm: 5,
+          md: "5%",
+        },
+      }}
+    >
+      {children}
+    </Container>
+  );
+}
+
+function SectionLabel({ children }) {
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <Box
+        sx={{
+          width: 8,
+          height: 8,
+
+          backgroundColor: red,
+
+          mr: 1.2,
+
+          flexShrink: 0,
+        }}
+      />
+
+      <Typography
+        sx={{
+          ...eyebrow,
+
+          color: "#514d46",
+        }}
+      >
+        {children}
+      </Typography>
+    </Box>
+  );
+}
+
+function ImageTag({ children, sx = {} }) {
+  return (
+    <Box
+      sx={{
+        position: "absolute",
+
+        zIndex: 3,
+
+        backgroundColor: "rgba(250,248,243,.95)",
+
+        px: 1.8,
+        py: 1,
+
+        ...sx,
+      }}
+    >
+      <Typography
+        sx={{
+          fontSize: "10px",
+
+          fontWeight: 600,
+
+          letterSpacing: "1.2px",
+
+          lineHeight: 1,
+
+          color: "#292721",
+
+          textTransform: "uppercase",
+
+          whiteSpace: "nowrap",
+        }}
+      >
+        {children}
+      </Typography>
     </Box>
   );
 }
