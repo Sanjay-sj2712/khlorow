@@ -418,11 +418,16 @@ export default function ProjectsPage() {
                     px: 0,
                     pb: 1.7,
 
+                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontWeight: active ? 500 : 400,
+
                     color: active ? text : "#77736c",
 
-                    fontSize: "16px",
+                    fontSize: { xs: "18px", md: "22px" },
 
-                    letterSpacing: "0.8px",
+                    letterSpacing: "0.5px",
+
+                    transition: "color .2s ease",
 
                     "&::after": {
                       content: '""',
@@ -1054,10 +1059,10 @@ function ProjectCard({ project }) {
             width: "100%",
 
             height: {
-              xs: isWide ? "340px" : "320px",
-              sm: isWide ? "470px" : "430px",
-              md: isWide ? "500px" : "420px",
-              lg: isWide ? "540px" : "470px",
+              xs: "320px",
+              sm: "420px",
+              md: "440px",
+              lg: "480px",
             },
 
             objectFit: "cover",
