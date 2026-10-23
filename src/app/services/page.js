@@ -17,13 +17,14 @@ import {
 ========================================================== */
 
 const images = {
-  hero: "/images/services-hero.jpg",
+  hero: "/images/02serviceFrontPhoto.jpg",
 
-  service01: "/images/service-01.jpg",
-  service02: "/images/service-02.jpg",
-  service03: "/images/service-03.jpg",
-  service04: "/images/service-04.jpg",
-  service05: "/images/service-05.jpg",
+  service01: "/images/02aArchitectural&InteriorDesign.jpg",
+  // service02: "/images/service-02.jpg",
+  service02: "/images/02bspacePlanning&LayoutChoreography.jpg",
+  service03: "/images/02cBespokeMillwork&CustomFurniture.jpg",
+  service04: "/images/02dRestoration.jpg",
+  service05: "/images/02e_turnkey_execution_site_management.jpg",
 };
 
 

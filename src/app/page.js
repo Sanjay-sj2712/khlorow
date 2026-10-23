@@ -23,15 +23,15 @@ import Link from "next/link";
 ============================================================ */
 
 const images = {
-  hero: "/images/hero-light.jpg",
+  hero: "/images/00FrontCoverPagePhoto.jpg",
 
-  portfolio1: "/images/project-residential.jpg",
-  portfolio2: "/images/project-commercial.jpg",
-  portfolio3: "/images/project-hospitality.jpg",
-  portfolio4: "/images/project-4.jpg",
-  portfolio5: "/images/project-5.jpg",
-  portfolio6: "/images/project-6.jpg",
-  portfolio7: "/images/project-7.jpg",
+  portfolio1: "/images/a.jpg",
+  portfolio2: "/images/b.jpg",
+  portfolio3: "/images/c.jpg",
+  portfolio4: "/images/d.jpg",
+  portfolio5: "/images/e.jpg",
+  portfolio6: "/images/f.jpg",
+  portfolio7: "/images/g.jpg",
   approach: "/images/approach.jpg",
 };
 
@@ -470,11 +470,10 @@ export default function HomePage() {
               mb: 2.5,
             }}
           >
-            Spaces designed
+            Spaces designed around
             <br />
-            around the way you
+            the way you live.
             <br />
-            live.
           </Typography>
 
           <Typography
