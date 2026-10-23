@@ -16,7 +16,7 @@ import {
 ========================================================== */
 
 const images = {
-  hero: "/images/about-hero.jpg",
+  hero: "/images/01aboutUsPageFrontPhoto.jpg",
   approach: "/images/about-approach.jpg",
 };
 

@@ -20,12 +20,32 @@ const images = {
   featuredProcess: "/images/service-02.jpg",      // floor plan / process study
   featuredProject: "/images/service-01.jpg",      // completed interior
 
-  alpine: "/images/project-4.jpg",             // courtyard / warm tones
-  coastal: "/images/project-hospitality.jpg",   // open coastal pavilion
-  courtyard: "/images/project-residential.jpg",   // residential interior
-  salon: "/images/project-7.jpg",             // amber lounge
-  townhouse: "/images/project-6.jpg",             // gallery / townhouse
-  lakehouse: "/images/project-5.jpg",             // loft / dramatic light
+  alpine: "/images/01mr.karthickResidence.jpg",             // courtyard / warm tones
+  coastal: "/images/02mr.kannanResidence.jpg",   // open coastal pavilion
+  courtyard: "/images/03mr.raviResidence.jpg",   // residential interior
+  salon: "/images/04mr.rajeshResidence.jpg",             // amber lounge
+  townhouse: "/images/05mr.gopinathResidence.jpg",             // gallery / townhouse
+  lakehouse: "/images/06mr.sidharthResidence.jpg",             // loft / dramatic light
+  alpin: "/images/07.jpg",             // courtyard / warm tones
+  coasta: "/images/08mr.gowrishankarResidence.jpg",   // open coastal pavilion
+  court: "/images/09mr.sureshResidence.jpg",   // residential interior
+  saloon: "/images/10ThangamCafe.jpg",             // amber lounge
+  townhouses: "/images/11mayurGasOffice.jpg",             // gallery / townhouse
+  lakehouses: "/images/12mr.ramprasathResidence.jpg",
+
+  Interior_1: "/images/01mrs.sumathiResidence.jpg",
+  Interior_2: "/images/02arunClinic.jpg",
+  Interior_3: "/images/03PARJewellers.jpg",
+  Interior_4: "/images/04PARJewellers.jpg",
+  Interior_5: "/images/06DenseForestHighwayRestaurant.jpg",
+  Interior_6: "/images/07DenseForestHighwayRestaurant.jpg",
+  Interior_7: "/images/08mr.jayachandranResidence.jpg",
+  Interior_8: "/images/09 mr.simonResidence.jpg",
+  Interior_9: "/images/09TeutonicOffice.jpg",
+  Interior_10: "/images/10mr.ramkumarResidence.jpg",
+  Interior_11: "/images/11mrs.sumathiResidence.jpg",
+  Interior_12: "/images/12kalyanaMandapamkallakuruchi.jpg",
+
 };
 
 /* =========================================================
@@ -35,7 +55,7 @@ const images = {
 const projects = [
   {
     id: 1,
-    category: "Residential",
+    category: "Architecture",
     location: "Aspen, Colorado",
     year: "2026",
     title: "Private Alpine Residence",
@@ -47,7 +67,7 @@ const projects = [
   },
   {
     id: 2,
-    category: "Residential",
+    category: "Architecture",
     location: "California",
     year: "2025",
     title: "The Coastal Pavilion",
@@ -58,7 +78,7 @@ const projects = [
   },
   {
     id: 3,
-    category: "Residential",
+    category: "Architecture",
     location: "Kyoto",
     year: "2026",
     title: "Still House Courtyard Suite",
@@ -69,7 +89,7 @@ const projects = [
   },
   {
     id: 4,
-    category: "Hospitality",
+    category: "Architecture",
     location: "New York",
     year: "2025",
     title: "The Green Room Salon",
@@ -80,7 +100,7 @@ const projects = [
   },
   {
     id: 5,
-    category: "Residential",
+    category: "Architecture",
     location: "London",
     year: "2024",
     title: "Minimalist Stone Townhouse",
@@ -91,7 +111,7 @@ const projects = [
   },
   {
     id: 6,
-    category: "Residential",
+    category: "Architecture",
     location: "Lake Tahoe",
     year: "2025",
     title: "The Light House Sanctuary",
@@ -101,13 +121,216 @@ const projects = [
     layout: "wide",
     figure: "FIG. 06 / SANCTUARY",
   },
+  {
+    id: 7,
+    category: "Architecture",
+    location: "Aspen, Colorado",
+    year: "2026",
+    title: "Private Alpine Residence",
+    description:
+      "Monolithic travertine fireplaces meet expansive double-height timber framing, creating a quiet dialogue between architecture, landscape, and alpine light.",
+    image: images.alpin,
+    layout: "wide",
+    figure: "FIG. 01 / ALPINE",
+  },
+  {
+    id: 8,
+    category: "Architecture",
+    location: "California",
+    year: "2025",
+    title: "The Coastal Pavilion",
+    description:
+      "Expansive minimalist glazing and liminal pavilion spaces frame sea, sky, and shifting coastal light.",
+    image: images.coasta,
+    figure: "FIG. 02 / COASTAL",
+  },
+  {
+    id: 9,
+    category: "Architecture",
+    location: "Kyoto",
+    year: "2026",
+    title: "Still House Courtyard Suite",
+    description:
+      "A restrained courtyard residence shaped by filtered daylight, natural timber, and a quiet relationship between interior and garden.",
+    image: images.court,
+    figure: "FIG. 03 / STILL",
+  },
+  {
+    id: 10,
+    category: "Architecture",
+    location: "New York",
+    year: "2025",
+    title: "The Green Room Salon",
+    description:
+      "A subterranean social interior where deep velvet, warm brass, and intimate lighting establish an atmospheric evening retreat.",
+    image: images.saloon,
+    figure: "FIG. 04 / HOSPITALITY",
+  },
+  {
+    id: 11,
+    category: "Architecture",
+    location: "London",
+    year: "2024",
+    title: "Minimalist Stone Townhouse",
+    description:
+      "Warm limestone accents, tactile oak, and framed garden views establish a calm residential composition.",
+    image: images.townhouses,
+    figure: "FIG. 05 / TOWNHOUSE",
+  },
+  {
+    id: 12,
+    category: "Architecture",
+    location: "Lake Tahoe",
+    year: "2025",
+    title: "The Light House Sanctuary",
+    description:
+      "Dramatic central daylight pours through a sculptural volume, balancing monumental stone with restrained furniture and natural warmth.",
+    image: images.lakehouses,
+    layout: "wide",
+    figure: "FIG. 06 / SANCTUARY",
+  },
+  {
+    id: 13,
+    category: "Interior Design",
+    location: "Aspen, Colorado",
+    year: "2026",
+    title: "Private Alpine Residence",
+    description:
+      "Monolithic travertine fireplaces meet expansive double-height timber framing, creating a quiet dialogue between Interior Design, landscape, and alpine light.",
+    image: images.Interior_1,
+    layout: "wide",
+    figure: "FIG. 01 / ALPINE",
+  },
+  {
+    id: 14,
+    category: "Interior Design",
+    location: "California",
+    year: "2025",
+    title: "The Coastal Pavilion",
+    description:
+      "Expansive minimalist glazing and liminal pavilion spaces frame sea, sky, and shifting coastal light.",
+    image: images.Interior_2,
+    figure: "FIG. 02 / COASTAL",
+  },
+  {
+    id: 15,
+    category: "Interior Design",
+    location: "Kyoto",
+    year: "2026",
+    title: "Still House Courtyard Suite",
+    description:
+      "A restrained courtyard residence shaped by filtered daylight, natural timber, and a quiet relationship between interior and garden.",
+    image: images.Interior_3,
+    figure: "FIG. 03 / STILL",
+  },
+  {
+    id: 16,
+    category: "Interior Design",
+    location: "New York",
+    year: "2025",
+    title: "The Green Room Salon",
+    description:
+      "A subterranean social interior where deep velvet, warm brass, and intimate lighting establish an atmospheric evening retreat.",
+    image: images.Interior_4,
+    figure: "FIG. 04 / HOSPITALITY",
+  },
+  {
+    id: 17,
+    category: "Interior Design",
+    location: "London",
+    year: "2024",
+    title: "Minimalist Stone Townhouse",
+    description:
+      "Warm limestone accents, tactile oak, and framed garden views establish a calm residential composition.",
+    image: images.Interior_5,
+    figure: "FIG. 05 / TOWNHOUSE",
+  },
+  {
+    id: 18,
+    category: "Interior Design",
+    location: "Lake Tahoe",
+    year: "2025",
+    title: "The Light House Sanctuary",
+    description:
+      "Dramatic central daylight pours through a sculptural volume, balancing monumental stone with restrained furniture and natural warmth.",
+    image: images.Interior_6,
+    layout: "wide",
+    figure: "FIG. 06 / SANCTUARY",
+  },
+  {
+    id: 19,
+    category: "Interior Design",
+    location: "Aspen, Colorado",
+    year: "2026",
+    title: "Private Alpine Residence",
+    description:
+      "Monolithic travertine fireplaces meet expansive double-height timber framing, creating a quiet dialogue between Interior Design, landscape, and alpine light.",
+    image: images.Interior_7,
+    layout: "wide",
+    figure: "FIG. 01 / ALPINE",
+  },
+  {
+    id: 20,
+    category: "Interior Design",
+    location: "California",
+    year: "2025",
+    title: "The Coastal Pavilion",
+    description:
+      "Expansive minimalist glazing and liminal pavilion spaces frame sea, sky, and shifting coastal light.",
+    image: images.Interior_8,
+    figure: "FIG. 02 / COASTAL",
+  },
+  {
+    id: 21,
+    category: "Interior Design",
+    location: "Kyoto",
+    year: "2026",
+    title: "Still House Courtyard Suite",
+    description:
+      "A restrained courtyard residence shaped by filtered daylight, natural timber, and a quiet relationship between interior and garden.",
+    image: images.Interior_9,
+    figure: "FIG. 03 / STILL",
+  },
+  {
+    id: 22,
+    category: "Interior Design",
+    location: "New York",
+    year: "2025",
+    title: "The Green Room Salon",
+    description:
+      "A subterranean social interior where deep velvet, warm brass, and intimate lighting establish an atmospheric evening retreat.",
+    image: images.Interior_10,
+    figure: "FIG. 04 / HOSPITALITY",
+  },
+  {
+    id: 23,
+    category: "Interior Design",
+    location: "London",
+    year: "2024",
+    title: "Minimalist Stone Townhouse",
+    description:
+      "Warm limestone accents, tactile oak, and framed garden views establish a calm residential composition.",
+    image: images.Interior_11,
+    figure: "FIG. 05 / TOWNHOUSE",
+  },
+  {
+    id: 24,
+    category: "Interior Design",
+    location: "Lake Tahoe",
+    year: "2025",
+    title: "The Light House Sanctuary",
+    description:
+      "Dramatic central daylight pours through a sculptural volume, balancing monumental stone with restrained furniture and natural warmth.",
+    image: images.Interior_12,
+    layout: "wide",
+    figure: "FIG. 06 / SANCTUARY",
+  },
 ];
 
 const filters = [
   "All Works",
-  "Residential",
-  "Hospitality",
-  "Commercial",
+  "Interior Design",
+  "Architecture"
 ];
 
 /* =========================================================
@@ -848,7 +1071,7 @@ function ImageCompareSlider({
     setIsDragging(true);
     try {
       e.currentTarget.setPointerCapture(e.pointerId);
-    } catch {}
+    } catch { }
     updatePosition(e.clientX);
   };
 
@@ -861,7 +1084,7 @@ function ImageCompareSlider({
     setIsDragging(false);
     try {
       e.currentTarget.releasePointerCapture(e.pointerId);
-    } catch {}
+    } catch { }
   };
 
   return (
