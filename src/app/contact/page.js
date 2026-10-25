@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import {
   Box,
@@ -42,6 +42,36 @@ const serifHeading = {
 ========================================================== */
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    projectType: "Residential Interior",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { name, phone, email, projectType, message } = formData;
+    const text = [
+      `*New Project Enquiry — Khlorow*`,
+      ``,
+      `*Name:* ${name || "—"}`,
+      `*Phone:* ${phone || "—"}`,
+      `*Email:* ${email || "—"}`,
+      `*Project Type:* ${projectType || "—"}`,
+      `*Message:* ${message || "—"}`,
+    ].join("\n");
+
+    const encoded = encodeURIComponent(text);
+    window.open(`https://wa.me/917397541499?text=${encoded}`, "_blank");
+  };
+
   return (
     <Box
       sx={{
@@ -518,6 +548,7 @@ export default function ContactPage() {
           <AnimateOnScroll animation="fade-up" delay="0.26s">
             <Box
               component="form"
+              onSubmit={handleSubmit}
               sx={{
                 width: "100%",
                 maxWidth: "900px",
@@ -543,25 +574,25 @@ export default function ContactPage() {
                 {/* NAME */}
                 <Box>
                   <FormLabel>YOUR NAME</FormLabel>
-                  <StyledTextField fullWidth name="name" placeholder="Full Name" />
+                  <StyledTextField fullWidth name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} />
                 </Box>
 
                 {/* PHONE */}
                 <Box>
                   <FormLabel>PHONE NUMBER</FormLabel>
-                  <StyledTextField fullWidth name="phone" type="tel" placeholder="+1 (555) 000-0000" />
+                  <StyledTextField fullWidth name="phone" type="tel" placeholder="+91 98765 43210" value={formData.phone} onChange={handleChange} />
                 </Box>
 
                 {/* EMAIL */}
                 <Box>
                   <FormLabel>EMAIL ADDRESS</FormLabel>
-                  <StyledTextField fullWidth name="email" type="email" placeholder="hello@example.com" />
+                  <StyledTextField fullWidth name="email" type="email" placeholder="hello@example.com" value={formData.email} onChange={handleChange} />
                 </Box>
 
                 {/* PROJECT TYPE */}
                 <Box>
                   <FormLabel>PROJECT TYPE</FormLabel>
-                  <StyledTextField fullWidth select name="projectType" defaultValue="Residential Interior">
+                  <StyledTextField fullWidth select name="projectType" value={formData.projectType} onChange={handleChange}>
                     <MenuItem value="Residential Interior">Residential Interior</MenuItem>
                     <MenuItem value="Commercial Interior">Commercial Interior</MenuItem>
                     <MenuItem value="Architecture">Architecture</MenuItem>
@@ -581,6 +612,8 @@ export default function ContactPage() {
                   rows={4}
                   name="message"
                   placeholder="Share the scope, location, and aspirations for your space..."
+                  value={formData.message}
+                  onChange={handleChange}
                   sx={{
                     "& .MuiOutlinedInput-root": {
                       alignItems: "flex-start",
