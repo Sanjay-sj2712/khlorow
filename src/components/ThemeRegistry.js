@@ -11,14 +11,14 @@ const theme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#c9a96e",
-      light: "#e8d5b0",
-      dark: "#a07840",
+      main: "#e3133d",
+      light: "#f45b78",
+      dark: "#c90f33",
     },
     secondary: {
-      main: "#6e9bc9",
-      light: "#a0c4e0",
-      dark: "#3d6e9e",
+      main: "#c90f33",
+      light: "#e3133d",
+      dark: "#9f0b28",
     },
     background: {
       default: "#0a0a0a",
@@ -26,9 +26,9 @@ const theme = createTheme({
     },
     text: {
       primary: "#f5f0eb",
-      secondary: "#a89880",
+      secondary: "#d29aa5",
     },
-    divider: "rgba(201,169,110,0.15)",
+    divider: "rgba(227,19,61,0.15)",
   },
   typography: {
     // Default (body) font — Plus Jakarta Sans
@@ -65,17 +65,17 @@ const theme = createTheme({
           padding: "10px 28px",
         },
         containedPrimary: {
-          background: "linear-gradient(135deg, #c9a96e 0%, #a07840 100%)",
+          background: "linear-gradient(135deg, #e3133d 0%, #c90f33 100%)",
           "&:hover": {
-            background: "linear-gradient(135deg, #e8d5b0 0%, #c9a96e 100%)",
-            boxShadow: "0 8px 32px rgba(201,169,110,0.35)",
+            background: "linear-gradient(135deg, #f45b78 0%, #e3133d 100%)",
+            boxShadow: "0 8px 32px rgba(227,19,61,0.35)",
           },
         },
         outlinedPrimary: {
-          borderColor: "#c9a96e",
+          borderColor: "#e3133d",
           "&:hover": {
-            backgroundColor: "rgba(201,169,110,0.08)",
-            borderColor: "#e8d5b0",
+            backgroundColor: "rgba(227,19,61,0.08)",
+            borderColor: "#f45b78",
           },
         },
       },
@@ -84,13 +84,13 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: "#141414",
-          border: "1px solid rgba(201,169,110,0.08)",
+          border: "1px solid rgba(227,19,61,0.08)",
           backgroundImage: "none",
           transition: "transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease",
           "&:hover": {
             transform: "translateY(-4px)",
             boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
-            borderColor: "rgba(201,169,110,0.3)",
+            borderColor: "rgba(227,19,61,0.3)",
           },
         },
       },
@@ -109,13 +109,13 @@ const theme = createTheme({
         root: {
           "& .MuiOutlinedInput-root": {
             "& fieldset": {
-              borderColor: "rgba(201,169,110,0.25)",
+              borderColor: "rgba(227,19,61,0.25)",
             },
             "&:hover fieldset": {
-              borderColor: "rgba(201,169,110,0.5)",
+              borderColor: "rgba(227,19,61,0.5)",
             },
             "&.Mui-focused fieldset": {
-              borderColor: "#c9a96e",
+              borderColor: "#e3133d",
             },
           },
         },
@@ -124,7 +124,7 @@ const theme = createTheme({
     MuiDivider: {
       styleOverrides: {
         root: {
-          borderColor: "rgba(201,169,110,0.15)",
+          borderColor: "rgba(227,19,61,0.15)",
         },
       },
     },

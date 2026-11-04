@@ -83,7 +83,7 @@ export default function AboutPage() {
         <Box
           component="img"
           src={images.hero}
-          alt="Khlorow interior"
+          alt="khlorow interior"
           sx={{
             position: "absolute",
             inset: 0,
@@ -307,7 +307,7 @@ export default function AboutPage() {
       ====================================================== */}
 
       {/* =====================================================
-    ABOUT KHLOROW — PHILOSOPHY
+    ABOUT khlorow — PHILOSOPHY
 ===================================================== */}
 
       <Box
@@ -474,11 +474,11 @@ export default function AboutPage() {
                   },
                 }}
               >
-                We shape interiors that feel
+                Spaces Designed
                 <br />
-                deeply personal, calm, and
+                with Purpose.
                 <br />
-                enduring.
+                Crafted with Character.
               </Typography>
             </AnimateOnScroll>
 
@@ -512,11 +512,9 @@ export default function AboutPage() {
                     mb: 2.3,
                   }}
                 >
-                  At Khlorow, we believe that an interior should never impose; it
-                  should adapt intuitively to daily rituals and elevate human
-                  connection. Through meticulous balance between volume, light, and
-                  natural materials, our work explores how spaces can nurture clarity
-                  and stillness.
+                  We are an interior design studio driven by creativity, precision, and a deep understanding of space.
+                  Our approach combines timeless aesthetics with functional thinking, transforming ordinary spaces
+                  into meaningful environments that tell a story.
                 </Typography>
 
                 <Typography
@@ -534,10 +532,10 @@ export default function AboutPage() {
                     lineHeight: 1.65,
                   }}
                 >
-                  Every project is approached as a bespoke dialogue between
-                  architectural context and personal narrative. From monolithic stone
-                  formations to tactile linen drapery, we curate environments that feel
-                  effortless, grounded, and enduring.
+                  From conceptualisation to execution, every detail is thoughtfully considered. We believe in material
+                  honesty, design discipline, and bespoke artistry — ensuring that every element serves a purpose while
+                  contributing to the overall harmony of the space.
+
                 </Typography>
               </Box>
             </AnimateOnScroll>
@@ -573,9 +571,9 @@ export default function AboutPage() {
           <AnimateOnScroll animation="fade-up" delay="0s">
             <PrincipleCard
               number="01"
-              category="DISCIPLINE"
+              category="Design Discipline"
               title="Spatial Clarity"
-              description="Harmonizing volume, natural daylight, and circulation to create effortless living sanctuaries."
+              description="Every space deserves thoughtful planning, functional design, and attention to detail. Our disciplined design approach ensures a perfect balance of aesthetics, comfort, and practicality"
               footer="PROPORTION  •  LUMINANCE"
             />
           </AnimateOnScroll>
@@ -585,7 +583,7 @@ export default function AboutPage() {
               number="02"
               category="AUTHENTICITY"
               title="Material Integrity"
-              description="Honoring authentic travertine, unlacquered brass, smoked timber, and lime plaster."
+              description="Selection, quality control, efficient utilization, durability, material compatibility, sustainability, execution is our statement."
               footer="TACTILITY  •  PATINA"
             />
           </AnimateOnScroll>
@@ -595,7 +593,7 @@ export default function AboutPage() {
               number="03"
               category="CRAFTSMANSHIP"
               title="Bespoke Artistry"
-              description="Collaborating with master artisans to produce one-of-a-kind custom millwork and finishes."
+              description="Every Detail, A Work of Art, Tailored Spaces. Timeless Expressions. Designed to Be Distinctive"
               footer="ATELIER  •  PRECISION"
             />
           </AnimateOnScroll>
@@ -791,27 +789,43 @@ export default function AboutPage() {
                 md: 2,
               }}
             >
+
+              <Typography sx={{
+
+                color: "#e3133d",
+
+                fontSize: {
+                  xs: "10px",
+                  md: "15px",
+                },
+
+                fontWeight: 600,
+
+                letterSpacing: "1.1px",
+
+                whiteSpace: "nowrap",
+
+                textTransform: "uppercase",
+              }}> Khlorow Ideology</Typography>
+
               <AnimateOnScroll animation="fade-up" delay="0.08s">
                 <ApproachPoint
-                  number="01"
-                  title="Spatial Intention"
-                  description="Choreographing light, volume, and seamless movement to evoke an effortless sense of calm and visual pause."
+                  title="VISION "
+                  description="To shape thoughtful environments that stand the test of time, where design, craftsmanship, and functionality exist in perfect harmony."
                 />
               </AnimateOnScroll>
 
               <AnimateOnScroll animation="fade-up" delay="0.18s">
                 <ApproachPoint
-                  number="02"
-                  title="Material Honesty"
-                  description="Honoring raw travertine, blackened timber, unlacquered brass, and tactile linens that mature with character over time."
+                  title="PROMISE"
+                  description="Every space has a story. At Khlorow, we bring that story to life through intentional design, refined detailing, and uncompromising attention to quality."
                 />
               </AnimateOnScroll>
 
               <AnimateOnScroll animation="fade-up" delay="0.28s">
                 <ApproachPoint
-                  number="03"
-                  title="Bespoke Execution"
-                  description="From foundational architectural interventions to custom millwork, curated lighting, and individual art curation."
+                  title="PHILOSOPHY"
+                  description="We believe in creating spaces that are not just visually appealing but deeply personal. Every project begins with understanding the people, their lifestyle, and their aspirations."
                 />
               </AnimateOnScroll>
             </Stack>
@@ -836,7 +850,7 @@ export default function AboutPage() {
               <Box
                 component="img"
                 src={images.approach}
-                alt="Khlorow design approach"
+                alt="khlorow design approach"
                 sx={{
                   display: "block",
 
@@ -1252,7 +1266,7 @@ function PrincipleCard({
    APPROACH POINT
 ========================================================== */
 
-function ApproachPoint({ number, title, description }) {
+function ApproachPoint({ title, description }) {
   return (
     <Box
       sx={{
@@ -1279,7 +1293,7 @@ function ApproachPoint({ number, title, description }) {
         borderRadius: "4px",
       }}
     >
-      {/* NUMBER + TITLE */}
+
 
       <Box
         sx={{
@@ -1294,29 +1308,6 @@ function ApproachPoint({ number, title, description }) {
           mb: 1.2,
         }}
       >
-        <Typography
-          component="span"
-          sx={{
-
-            color: "#e3133d",
-
-            fontSize: {
-              xs: "6px",
-              md: "10px",
-            },
-
-            fontWeight: 600,
-
-            letterSpacing: "1.1px",
-
-            whiteSpace: "nowrap",
-
-            textTransform: "uppercase",
-          }}
-        >
-          POINT {number}
-        </Typography>
-
         <Typography
           component="h3"
           sx={{

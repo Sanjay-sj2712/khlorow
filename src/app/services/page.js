@@ -83,7 +83,7 @@ const services = [
   {
     number: "03",
     category: "ATELIER",
-    title: "Bespoke Millwork\n& Custom Furniture",
+    title: "PU and walnut wood millwork",
 
     description:
       "Furniture designed specifically for the space, rather than selected simply to fill it. We engineer monolithic hearth surrounds, cantilevered tables, fluted stone partitions, and integrated cabinetry tailored down to the millimeter.",
@@ -106,7 +106,7 @@ const services = [
   {
     number: "04",
     category: "HERITAGE",
-    title: "Restoration &\nArchitectural Renovation",
+    title: "Commercial restoration",
 
     description:
       "We carefully transform existing spaces while respecting what already makes them special. Historical structure provides the most profound dialogue with modern minimalism, stripping away decay while honoring authentic masonry.",
@@ -490,7 +490,7 @@ export default function ServicesPage() {
                   },
                 }}
               >
-                Every commission undertaken by Khlorow begins with spatial listening.
+                Every commission undertaken by khlorow begins with spatial listening.
                 We do not impose pre-formed aesthetics onto an enclosure; rather, we
                 interrogate the structural skeleton, natural daylight vectors, and the
                 quiet rituals of the inhabitants who will move within its boundaries.
@@ -540,7 +540,7 @@ export default function ServicesPage() {
               <AnimateOnScroll animation="fade-up" delay="0s">
                 <MethodPrinciple
                   number="I"
-                  title="Spatial Intention"
+                  // title="Spatial Intention"
                   description="Eliminating extraneous partitions to prioritize continuous light lines, natural acoustic resonance, and graceful human passage."
                 />
               </AnimateOnScroll>
@@ -548,15 +548,15 @@ export default function ServicesPage() {
               <AnimateOnScroll animation="fade-up" delay="0.12s">
                 <MethodPrinciple
                   number="II"
-                  title="Material Honesty"
-                  description="Selecting untreated travertine, slaked lime plasters, open-grain oak, and patinated bronze that gain dignity through time."
+                  // title="Material Honesty"
+                  description="Brilliant flooring tones, lighter room palettes, and timeless furniture elements — a thoughtful balance of color, texture, and natural materials that creates spaces growing more beautiful with time."
                 />
               </AnimateOnScroll>
 
               <AnimateOnScroll animation="fade-up" delay="0.22s">
                 <MethodPrinciple
                   number="III"
-                  title="Bespoke Execution"
+                  // title="Bespoke Execution"
                   description="Uncompromising millimeter tolerances stewarded directly alongside master joiners, stone carvers, and foundry artisans."
                 />
               </AnimateOnScroll>
@@ -1129,7 +1129,7 @@ function ServiceSection({ service }) {
    METHODOLOGICAL PRINCIPLE
 ========================================================== */
 
-function MethodPrinciple({ number, title, description }) {
+function MethodPrinciple({ number, description }) {
   return (
     <Box>
       {/* PRINCIPLE NUMBER */}
@@ -1160,7 +1160,7 @@ function MethodPrinciple({ number, title, description }) {
 
       {/* TITLE */}
 
-      <Typography
+      {/* <Typography
         component="h3"
         sx={{
           m: 0,
@@ -1183,7 +1183,7 @@ function MethodPrinciple({ number, title, description }) {
         }}
       >
         {title}
-      </Typography>
+      </Typography> */}
 
       {/* DESCRIPTION */}
 

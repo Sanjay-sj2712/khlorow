@@ -97,26 +97,18 @@ export default function Footer() {
               }}
             >
               <Box
-                component="img"
-                src="/images/logo_light.png"
-                alt="Khlorow"
+                component="span"
                 sx={{
-                  width: "auto",
-                  height: {
-                    xs: 55,
-                    md: 40,
-                  },
-
-                  /*
-                   * Remove this filter if logo.png
-                   * is already white.
-                   */
-                  filter: "brightness(0) invert(1)",
-
-                  objectFit: "contain",
-                  objectPosition: "left center",
+                  color: "#fff",
+                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                  fontSize: { xs: "3rem", md: "2.5rem" },
+                  fontWeight: 500,
+                  letterSpacing: "0.015em",
+                  lineHeight: 1,
                 }}
-              />
+              >
+                khlorow
+              </Box>
             </Box>
 
             {/* Description */}
@@ -136,7 +128,7 @@ export default function Footer() {
                 color: "rgba(255,255,255,0.95)",
               }}
             >
-              [Short description of Khlorow&apos;s interior design studio].
+              [Short description of khlorow&apos;s interior design studio].
               Crafted with quiet luxury, material honesty, and human-centered
               design.
             </Typography>
@@ -261,7 +253,7 @@ export default function Footer() {
               color: "#ffffff",
             }}
           >
-            © {new Date().getFullYear()} KHLOROW. ALL RIGHTS RESERVED.
+            © {new Date().getFullYear()} khlorow. ALL RIGHTS RESERVED.
           </Typography>
         </Box>
       </Container>

@@ -22,12 +22,12 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  title: "Khlorow – Interior & Architecture",
+  title: "khlorow – Interior & Architecture",
   description:
-    "Khlorow is a premium interior design and architecture firm crafting timeless spaces that inspire. Explore our portfolio of residential and commercial projects.",
-  keywords: "interior design, architecture, Khlorow, luxury interiors, home design",
+    "khlorow is a premium interior design and architecture firm crafting timeless spaces that inspire. Explore our portfolio of residential and commercial projects.",
+  keywords: "interior design, architecture, khlorow, luxury interiors, home design",
   openGraph: {
-    title: "Khlorow – Interior & Architecture",
+    title: "khlorow – Interior & Architecture",
     description: "Crafting timeless spaces that inspire.",
     type: "website",
   },
