@@ -91,13 +91,13 @@ export default function Navbar() {
             >
               <Box
                 component="img"
-                src="/images/logo.png"
+                src="/images/logo_red.png"
                 alt="Khlorow"
                 sx={{
                   display: "block",
                   width: "auto",
                   height: {
-                    xs: 34,
+                    xs: 24,
                     md: 25,
                   },
                   objectFit: "contain",
@@ -129,7 +129,7 @@ export default function Navbar() {
                     component={Link}
                     href={link.href}
                     disableRipple
-                    sx={{ 
+                    sx={{
                       position: "relative",
 
                       minWidth: "auto",
@@ -242,13 +242,12 @@ export default function Navbar() {
         anchor="right"
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
-        PaperProps={{
-          sx: {
+        sx={{
+          "& .MuiDrawer-paper": {
             width: "85%",
-            maxWidth: 320,
-            backgroundColor: "#f7f4ee",
-            color: "#252525",
-            boxShadow: "-10px 0 30px rgba(0,0,0,0.08)",
+            maxWidth: 260,
+            backgroundColor: "#f7f4ee !important",
+            color: "#f7f4ee",
           },
         }}
       >
@@ -281,52 +280,23 @@ export default function Navbar() {
               }}
             >
               <Box
+                component="img"
+                src="/images/logo_red.png"
+                alt="Khlorow"
                 sx={{
-                  position: "relative",
-                  width: 24,
-                  height: 23,
-                  mr: 1.3,
+                  display: "block",
+                  width: "auto",
+                  height: 24,
+                  objectFit: "contain",
                 }}
-              >
-                <Box
-                  sx={{
-                    position: "absolute",
-                    left: 1,
-                    top: 2,
-                    width: 13,
-                    height: 16,
-                    border: "1.3px solid #252525",
-                    borderBottom: "none",
-                    borderRadius: "10px 10px 0 0",
-                  }}
-                />
-
-                <Box
-                  sx={{
-                    position: "absolute",
-                    left: 0,
-                    bottom: 4,
-                    width: 22,
-                    height: "1.3px",
-                    backgroundColor: "#252525",
-                  }}
-                />
-              </Box>
-
-              <Box
-                sx={{
-                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
-                  fontSize: "1.45rem",
-                }}
-              >
-                Khlorow
-              </Box>
+              />
             </Box>
 
             <IconButton
               onClick={() => setDrawerOpen(false)}
               sx={{
                 color: "#252525",
+                mt: 0.6
               }}
             >
               <CloseIcon />
@@ -342,9 +312,6 @@ export default function Navbar() {
                 <ListItem
                   key={link.href}
                   disablePadding
-                  sx={{
-                    borderBottom: "1px solid rgba(37,37,37,0.12)",
-                  }}
                 >
                   <ListItemButton
                     component={Link}
@@ -365,7 +332,7 @@ export default function Navbar() {
                       primary={link.label}
                       primaryTypographyProps={{
                         fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
-                        fontSize: "0.72rem",
+                        fontSize: "0.7rem",
                         letterSpacing: "0.2em",
                         textTransform: "uppercase",
                       }}

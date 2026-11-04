@@ -8,6 +8,7 @@ import {
   Link as MuiLink,
 } from "@mui/material";
 import Link from "next/link";
+import { contactDetails } from "@/lib/contact";
 
 const navigationLinks = [
   { label: "Home", href: "/" },
@@ -18,11 +19,14 @@ const navigationLinks = [
 ];
 
 const socialLinks = [
-  { label: "Instagram", href: "#" },
-  { label: "Facebook", href: "#" },
-  { label: "Pinterest", href: "#" },
-  { label: "LinkedIn", href: "#" },
-  { label: "YouTube", href: "#" },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/khlorow_interiordesign/",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/khlorow-interiordesign-8898b9413/",
+  },
 ];
 
 export default function Footer() {
@@ -101,7 +105,7 @@ export default function Footer() {
                 sx={{
                   color: "#fff",
                   fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
-                  fontSize: { xs: "3rem", md: "2.5rem" },
+                  fontSize: { xs: "2rem", md: "2.5rem" },
                   fontWeight: 500,
                   letterSpacing: "0.015em",
                   lineHeight: 1,
@@ -118,7 +122,7 @@ export default function Footer() {
 
                 fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
                 fontSize: {
-                  xs: "0.9rem",
+                  xs: "0.8rem",
                   md: "0.95rem",
                 },
 
@@ -128,9 +132,9 @@ export default function Footer() {
                 color: "rgba(255,255,255,0.95)",
               }}
             >
-              [Short description of khlorow&apos;s interior design studio].
-              Crafted with quiet luxury, material honesty, and human-centered
-              design.
+              Khlorow is a Coimbatore-based interior design and architecture
+              studio creating thoughtful, timeless spaces shaped around the
+              people who live and work in them.
             </Typography>
           </Box>
 
@@ -158,28 +162,28 @@ export default function Footer() {
             <FooterHeading>Contact</FooterHeading>
 
             <Stack spacing={1.4}>
-              <FooterLink href="tel:+0000000000">
-                Phone: [Phone Number]
+              <FooterLink href={`tel:${contactDetails.phoneHref}`}>
+                Phone: {contactDetails.phone}
               </FooterLink>
 
-              <FooterLink href="https://wa.me/0000000000">
-                WhatsApp: [WhatsApp Number]
+              <FooterLink href={contactDetails.whatsappHref}>
+                WhatsApp: {contactDetails.phone}
               </FooterLink>
 
-              <FooterLink href="mailto:hello@khlorow.com">
-                Email: [Email Address]
+              <FooterLink href={`mailto:${contactDetails.email}`}>
+                Email: {contactDetails.email}
               </FooterLink>
 
               <Typography
                 sx={{
                   fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
-                  fontSize: "0.9rem",
+                  fontSize: {xs: "0.8rem", md: "0.9rem"},
                   fontWeight: 300,
                   lineHeight: 1.6,
                   color: "#ffffff",
                 }}
               >
-                Studio: [Office Address]
+                Office: {contactDetails.studioAddress}
               </Typography>
             </Stack>
           </Box>
@@ -301,7 +305,7 @@ function FooterLink({ children, ...props }) {
 
         fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
         fontSize: {
-          xs: "0.88rem",
+          xs: "0.8rem",
           md: "0.9rem",
         },
 

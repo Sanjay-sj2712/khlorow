@@ -12,6 +12,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { contactDetails } from "@/lib/contact";
 
 
 /* ==========================================================
@@ -69,7 +70,7 @@ export default function ContactPage() {
     ].join("\n");
 
     const encoded = encodeURIComponent(text);
-    window.open(`https://wa.me/917397541499?text=${encoded}`, "_blank");
+    window.open(`${contactDetails.whatsappHref}?text=${encoded}`, "_blank");
   };
 
   return (
@@ -163,7 +164,7 @@ export default function ContactPage() {
                   fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
 
                   fontSize: {
-                    xs: "6px",
+                    xs: "10px",
                     md: "12px",
                   },
 
@@ -201,7 +202,7 @@ export default function ContactPage() {
                 fontWeight: 600,
 
                 fontSize: {
-                  xs: "38px",
+                  xs: "36px",
                   sm: "44px",
                   md: "52px",
                 },
@@ -220,7 +221,7 @@ export default function ContactPage() {
 
                 maxWidth: {
                   xs: "100%",
-                  md: "700px",
+                  md: "600px",
                 },
 
                 mb: {
@@ -230,7 +231,6 @@ export default function ContactPage() {
               }}
             >
               Begin a conversation about
-              <br />
               your space.
             </Typography>
           </AnimateOnScroll>
@@ -245,7 +245,7 @@ export default function ContactPage() {
                 fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
 
                 fontSize: {
-                  xs: "9px",
+                  xs: "10px",
                   sm: "10px",
                   md: "14px",
                 },
@@ -256,7 +256,7 @@ export default function ContactPage() {
 
                 color: "#77736b",
 
-                maxWidth: "680px",
+                maxWidth: "550px",
 
                 mb: {
                   xs: 4,
@@ -265,9 +265,7 @@ export default function ContactPage() {
               }}
             >
               Every commission begins as an intimate dialogue between site, light, and
-              living ritual.
-              <br />
-              Share your vision, project scale, or spatial aspirations.
+              living ritual. Share your vision, project scale, or spatial aspirations.
             </Typography>
           </AnimateOnScroll>
 
@@ -287,141 +285,141 @@ export default function ContactPage() {
                 backgroundColor: "#ddd8ce",
               }}
             >
-            <Box
-              component="img"
-              src={contactImage}
-              alt="Interior consultation space"
-              sx={{
-                display: "block",
-
-                width: "100%",
-
-                height: {
-                  xs: "320px",
-                  sm: "420px",
-                  md: "500px",
-                  lg: "520px",
-                },
-
-                objectFit: "cover",
-
-                /*
-                 * The reference image keeps the doors/windows
-                 * around the visual center.
-                 */
-                objectPosition: "center center",
-              }}
-            />
-
-            {/* Subtle image treatment */}
-            <Box
-              sx={{
-                position: "absolute",
-                inset: 0,
-
-                pointerEvents: "none",
-
-                background:
-                  "linear-gradient(to bottom, rgba(25,20,12,0.01), rgba(25,20,12,0.06))",
-              }}
-            />
-
-            {/* =================================================
-          IMAGE CAPTION
-      ================================================= */}
-
-            <Box
-              sx={{
-                position: "absolute",
-
-                left: {
-                  xs: 12,
-                  sm: 18,
-                  md: 28,
-                },
-
-                bottom: {
-                  xs: 12,
-                  sm: 18,
-                  md: 28,
-                },
-
-                display: "inline-flex",
-
-                alignItems: "center",
-
-                backgroundColor: "rgba(250,248,243,0.96)",
-
-                px: {
-                  xs: 1.5,
-                  sm: 1.8,
-                  md: 2,
-                },
-
-                py: {
-                  xs: 1,
-                  md: 1.15,
-                },
-              }}
-            >
-              {/* Red dot */}
               <Box
+                component="img"
+                src={contactImage}
+                alt="Interior consultation space"
                 sx={{
-                  width: {
-                    xs: 4,
-                    md: 5,
-                  },
+                  display: "block",
+
+                  width: "100%",
 
                   height: {
-                    xs: 4,
-                    md: 5,
+                    xs: "320px",
+                    sm: "420px",
+                    md: "500px",
+                    lg: "520px",
                   },
 
-                  borderRadius: "50%",
+                  objectFit: "cover",
 
-                  backgroundColor: "#e3133d",
-
-                  mr: {
-                    xs: 0.9,
-                    md: 1,
-                  },
-
-                  flexShrink: 0,
+                  /*
+                   * The reference image keeps the doors/windows
+                   * around the visual center.
+                   */
+                  objectPosition: "center center",
                 }}
               />
 
-              <Typography
+              {/* Subtle image treatment */}
+              <Box
                 sx={{
-                  fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
+                  position: "absolute",
+                  inset: 0,
 
-                  fontSize: {
-                    xs: "5px",
-                    sm: "5.5px",
-                    md: "8px",
+                  pointerEvents: "none",
+
+                  background:
+                    "linear-gradient(to bottom, rgba(25,20,12,0.01), rgba(25,20,12,0.06))",
+                }}
+              />
+
+              {/* =================================================
+          IMAGE CAPTION
+      ================================================= */}
+
+              <Box
+                sx={{
+                  position: "absolute",
+
+                  left: {
+                    xs: 12,
+                    sm: 18,
+                    md: 28,
                   },
 
-                  fontWeight: 500,
-
-                  letterSpacing: {
-                    xs: "0.9px",
-                    md: "1.2px",
+                  bottom: {
+                    xs: 12,
+                    sm: 18,
+                    md: 28,
                   },
 
-                  lineHeight: 1,
+                  display: "inline-flex",
 
-                  color: "#282720",
+                  alignItems: "center",
 
-                  textTransform: "uppercase",
+                  backgroundColor: "rgba(250,248,243,0.96)",
 
-                  whiteSpace: {
-                    xs: "normal",
-                    sm: "nowrap",
+                  px: {
+                    xs: 1.5,
+                    sm: 1.8,
+                    md: 2,
+                  },
+
+                  py: {
+                    xs: 1,
+                    md: 1.15,
                   },
                 }}
               >
-                ATELIER SALON &amp; PRIVATE CONSULTATIONS — FIG. 05 / ENGAGEMENT
-              </Typography>
-            </Box>
+                {/* Red dot */}
+                <Box
+                  sx={{
+                    width: {
+                      xs: 4,
+                      md: 5,
+                    },
+
+                    height: {
+                      xs: 4,
+                      md: 5,
+                    },
+
+                    borderRadius: "50%",
+
+                    backgroundColor: "#e3133d",
+
+                    mr: {
+                      xs: 0.9,
+                      md: 1,
+                    },
+
+                    flexShrink: 0,
+                  }}
+                />
+
+                <Typography
+                  sx={{
+                    fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
+
+                    fontSize: {
+                      xs: "5px",
+                      sm: "5.5px",
+                      md: "8px",
+                    },
+
+                    fontWeight: 500,
+
+                    letterSpacing: {
+                      xs: "0.9px",
+                      md: "1.2px",
+                    },
+
+                    lineHeight: 1,
+
+                    color: "#282720",
+
+                    textTransform: "uppercase",
+
+                    whiteSpace: {
+                      xs: "normal",
+                      sm: "nowrap",
+                    },
+                  }}
+                >
+                  ATELIER SALON &amp; PRIVATE CONSULTATIONS — FIG. 05 / ENGAGEMENT
+                </Typography>
+              </Box>
             </Box>
           </AnimateOnScroll>
         </Box>
@@ -490,7 +488,7 @@ export default function ContactPage() {
                 ...serifHeading,
 
                 fontSize: {
-                  xs: "34px",
+                  xs: "24px",
                   sm: "42px",
                   md: "42px",
                 },
@@ -521,7 +519,7 @@ export default function ContactPage() {
                 fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
 
                 fontSize: {
-                  xs: "13px",
+                  xs: "12px",
                   md: "16px",
                 },
 
@@ -580,7 +578,7 @@ export default function ContactPage() {
                 {/* PHONE */}
                 <Box>
                   <FormLabel>PHONE NUMBER</FormLabel>
-                  <StyledTextField fullWidth name="phone" type="tel" placeholder="+91 98765 43210" value={formData.phone} onChange={handleChange} />
+                  <StyledTextField fullWidth name="phone" type="tel" placeholder="Your phone number" value={formData.phone} onChange={handleChange} />
                 </Box>
 
                 {/* EMAIL */}
@@ -635,7 +633,7 @@ export default function ContactPage() {
                     color: "#ffffff",
                     borderRadius: 0,
                     fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
-                    fontSize: "12px",
+                    fontSize: { xs: "10px", md: "12px" },
                     fontWeight: 400,
                     letterSpacing: "0.1em",
                     textTransform: "uppercase",
@@ -679,20 +677,20 @@ export default function ContactPage() {
                 },
               }}
             >
-              <ContactLink href="tel:">
-                CALL US: [PHONE NUMBER]
+              <ContactLink href={`tel:${contactDetails.phoneHref}`}>
+                CALL US: {contactDetails.phone}
               </ContactLink>
 
               <ContactSeparator />
 
-              <ContactLink href="#">
-                WHATSAPP US: [WHATSAPP NUMBER]
+              <ContactLink href={contactDetails.whatsappHref}>
+                WHATSAPP US: {contactDetails.phone}
               </ContactLink>
 
               <ContactSeparator />
 
-              <ContactLink href="mailto:">
-                EMAIL US: [EMAIL ADDRESS]
+              <ContactLink href={`mailto:${contactDetails.email}`}>
+                EMAIL US: {contactDetails.email}
               </ContactLink>
             </Box>
           </AnimateOnScroll>

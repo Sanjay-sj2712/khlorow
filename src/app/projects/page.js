@@ -379,7 +379,7 @@ const serif = {
 };
 
 const eyebrow = {
-  fontSize: "14px",
+  fontSize: { xs: "12px", md: "14px" },
   fontWeight: 500,
   letterSpacing: "1.7px",
   textTransform: "uppercase",
@@ -398,12 +398,7 @@ const background = "#faf8f3";
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState("All Works");
 
-  const visibleProjects =
-    activeFilter === "All Works"
-      ? projects
-      : projects.filter(
-        (project) => project.category === activeFilter
-      );
+  const visibleProjects = activeFilter === "All Works" ? projects : projects.filter((project) => project.category === activeFilter);
 
   return (
     <Box
@@ -468,7 +463,7 @@ export default function ProjectsPage() {
                     mt: 2,
 
                     fontSize: {
-                      xs: "42px",
+                      xs: "38px",
                       sm: "52px",
                       md: "58px",
                       lg: "62px",
@@ -563,7 +558,7 @@ export default function ProjectsPage() {
               <Typography
                 sx={{
                   ...serif,
-                  fontSize: "32px",
+                  fontSize: { xs: "28px", md: "32px" },
                   lineHeight: 1.1,
                   fontWeight: 500
                 }}
@@ -576,6 +571,7 @@ export default function ProjectsPage() {
               sx={{
                 ...eyebrow,
                 color: "#56524b",
+                fontSize: { xs: "8px", md: "12px" }
               }}
             >
               DRAG CURSOR OR TOUCH TO DISSECT PLAN VS. STONE REALIZATION
@@ -646,7 +642,7 @@ export default function ProjectsPage() {
 
                     color: active ? text : "#77736c",
 
-                    fontSize: { xs: "18px", md: "22px" },
+                    fontSize: { xs: "16px", md: "22px" },
 
                     letterSpacing: "0.5px",
 
@@ -771,7 +767,7 @@ export default function ProjectsPage() {
                 ...serif,
 
                 fontSize: {
-                  xs: "32px",
+                  xs: "28px",
                   md: "44px",
                 },
 
@@ -787,7 +783,7 @@ export default function ProjectsPage() {
           <AnimateOnScroll animation="fade-up" delay="0.18s">
             <Typography
               sx={{
-                fontSize: "16px",
+                fontSize: { xs: "12px", md: "16px" },
 
                 lineHeight: 1.6,
 
@@ -913,7 +909,7 @@ export default function ProjectsPage() {
 
                 <Typography
                   sx={{
-                    fontSize: "12px",
+                    fontSize: { xs: "8px", md: "12px" },
                     letterSpacing: "1.8px",
                     color: "#36342f",
                   }}
@@ -932,7 +928,7 @@ export default function ProjectsPage() {
                 sx={{
                   fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
                   fontSize: {
-                    xs: "31px",
+                    xs: "28px",
                     sm: "37px",
                     md: "52px",
                   },
@@ -951,7 +947,7 @@ export default function ProjectsPage() {
               <Typography
                 sx={{
                   color: "#77736b",
-                  fontSize: "14px",
+                  fontSize: { xs: "10px", md: "14px" },
                   lineHeight: 1.6,
                   maxWidth: "540px",
                   mb: 3,
@@ -982,7 +978,7 @@ export default function ProjectsPage() {
                     backgroundColor: "#e4002b",
                     borderRadius: 0,
                     color: "#fff",
-                    fontSize: "10px",
+                    fontSize: { xs: "6px", md: "10px" },
                     letterSpacing: "1.8px",
                     px: 2.5,
                     py: 1.3,
@@ -1002,7 +998,7 @@ export default function ProjectsPage() {
                   href="/#service"
                   sx={{
                     color: "#27251f",
-                    fontSize: "10px",
+                    fontSize: { xs: "6px", md: "10px" },
                     letterSpacing: "1.5px",
                     px: 0,
                     minWidth: "auto",
@@ -1282,10 +1278,10 @@ function ProjectCard({ project }) {
             width: "100%",
 
             height: {
-              xs: "320px",
-              sm: "420px",
-              md: "440px",
-              lg: "480px",
+              xs: "200px",
+              sm: "280px",
+              md: "380px",
+              lg: "380px",
             },
 
             objectFit: "cover",
@@ -1399,7 +1395,7 @@ function ProjectCard({ project }) {
 
             color: muted,
 
-            fontSize: "16px",
+            fontSize: { xs: "12px", md: "16px" },
 
             lineHeight: 1.65,
 
@@ -1497,7 +1493,7 @@ function MaterialCard({
         sx={{
           ...eyebrow,
 
-          fontSize: "12px",
+          fontSize: { xs: "10px", md: "12px" },
 
           color: text,
 

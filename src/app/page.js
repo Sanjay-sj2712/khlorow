@@ -15,6 +15,7 @@ import {
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Link from "next/link";
+import { contactDetails } from "@/lib/contact";
 
 /* ============================================================
    IMAGES
@@ -136,6 +137,18 @@ const approachItems = [
     title: "Bespoke Execution",
     description:
       "From foundational architectural interventions to custom millwork, curated lighting, and individual art curation.",
+  },
+  {
+    number: "04",
+    title: "Client Collaboration",
+    description:
+      "Keeping you involved at every stage, with clear communication and thoughtful decisions shaped around your needs.",
+  },
+  {
+    number: "05",
+    title: "Careful Delivery",
+    description:
+      "Coordinating each detail with care to bring the design to life with quality, practicality, and lasting value.",
   },
 ];
 
@@ -324,12 +337,12 @@ export default function HomePage() {
           position: "relative",
 
           height: {
-            xs: "calc(100svh - 70px)",
+            xs: "calc(100svh - 60px)",
             md: "calc(100vh - 60px)",
           },
 
           minHeight: {
-            xs: 620,
+            xs: 520,
             md: 620,
           },
 
@@ -509,7 +522,8 @@ export default function HomePage() {
 
                 borderRadius: 0,
 
-                fontSize: "12px",
+                fontSize: { xs: "8px", md: "12px" },
+
                 letterSpacing: "1.8px",
 
                 "&:hover": {
@@ -532,7 +546,7 @@ export default function HomePage() {
                 border: "1px solid rgba(255,255,255,.5)",
                 borderRadius: 0,
 
-                fontSize: "12px",
+                fontSize: { xs: "8px", md: "12px" },
                 letterSpacing: "1.8px",
 
                 "&:hover": {
@@ -579,7 +593,7 @@ export default function HomePage() {
                       ...serifHeading,
 
                       fontSize: {
-                        xs: "35px",
+                        xs: "28px",
                         sm: "42px",
                         md: "52px",
                       },
@@ -593,7 +607,7 @@ export default function HomePage() {
                     }}
                   >
                     We shape interiors that feel deeply
-                    <br />
+                    {/* <br /> */}
                     personal, calm, and enduring.
                   </Typography>
                 </AnimateOnScroll>
@@ -685,7 +699,7 @@ export default function HomePage() {
                     ...serifHeading,
 
                     fontSize: {
-                      xs: "34px",
+                      xs: "28px",
                       md: "42px",
                     },
 
@@ -693,7 +707,7 @@ export default function HomePage() {
                   }}
                 >
                   A selection of spaces designed
-                  <br />
+                  {/* <br /> */}
                   by khlorow.
                 </Typography>
               </AnimateOnScroll>
@@ -867,17 +881,18 @@ export default function HomePage() {
                     ...serifHeading,
 
                     fontSize: {
-                      xs: "32px",
+                      xs: "28px",
                       sm: "37px",
                       md: "42px",
                       lg: "42px",
                     },
 
                     lineHeight: 1.2,
+                    maxWidth: 800
                   }}
                 >
                   From conceptual spatial planning to
-                  <br />
+                  {/* <br /> */}
                   bespoke styling and turnkey delivery.
                 </Typography>
               </AnimateOnScroll>
@@ -1012,18 +1027,18 @@ export default function HomePage() {
                     ...serifHeading,
 
                     fontSize: {
-                      xs: "36px",
+                      xs: "28px",
                       md: "42px",
                     },
 
                     lineHeight: 1.2,
                     mb: 3,
+                    maxWidth: 800
                   }}
                 >
                   Quiet architecture, tactile truth,
-                  <br />
-                  and spaces shaped around human
-                  <br />
+                  {/* <br /> */} and spaces shaped around human
+                  {/* <br /> */}
                   ritual.
                 </Typography>
               </AnimateOnScroll>
@@ -1069,7 +1084,7 @@ export default function HomePage() {
                         sx={{
                           fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
                           fontSize: {
-                            xs: "18px",
+                            xs: "20px",
                             md: "20px",
                           },
                           mb: 0.5,
@@ -1081,8 +1096,12 @@ export default function HomePage() {
                       <Typography
                         sx={{
                           ...bodyStyle,
-                          fontSize: "16px",
-                          maxWidth: 500,
+                          fontSize: {
+                            xs: "14px",
+                            md: "16px",
+                          },
+                           maxWidth: 500,
+                          mb: 2
                         }}
                       >
                         {item.description}
@@ -1094,12 +1113,14 @@ export default function HomePage() {
             </Grid>
 
             {/* RIGHT IMAGE */}
-            <Grid size={{ sx: 12, md: 6 }}>
+            <Grid size={{ xs: 12, md: 6 }}>
               <Box
                 sx={{
                   position: "relative",
                   overflow: "hidden",
-                  mt: 6
+                  mt: { xs: 3, md: 6 },
+                  mx: { xs: "auto", md: 0 },
+                  width: { xs: "90%", md: "100%" },
                 }}
               >
                 <Box
@@ -1108,14 +1129,11 @@ export default function HomePage() {
                   alt="khlorow material approach"
                   sx={{
                     display: "block",
-
                     width: "100%",
-
                     height: {
                       xs: 360,
                       md: 1000,
                     },
-
                     objectFit: "cover",
                   }}
                 />
@@ -1123,23 +1141,14 @@ export default function HomePage() {
                 <Box
                   sx={{
                     position: "absolute",
-
-                    left: {
-                      xs: 15,
-                      md: 22,
-                    },
-
-                    bottom: {
-                      xs: 15,
-                      md: 20,
-                    },
-
+                    left: { xs: 15, md: 22 },
+                    bottom: { xs: 15, md: 20 },
                     right: 15,
                   }}
                 >
                   <Typography
                     sx={{
-                      fontSize: "10px",
+                      fontSize: { xs: "8px", md: "10px" },
                       letterSpacing: "0.24em",
                       color: "#fff",
                       textTransform: "uppercase",
@@ -1216,7 +1225,7 @@ export default function HomePage() {
                 ...serifHeading,
 
                 fontSize: {
-                  xs: "34px",
+                  xs: "24px",
                   sm: "42px",
                   md: "42px",
                 },
@@ -1247,7 +1256,7 @@ export default function HomePage() {
                 fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
 
                 fontSize: {
-                  xs: "13px",
+                  xs: "12px",
                   md: "16px",
                 },
 
@@ -1342,7 +1351,7 @@ export default function HomePage() {
                   fullWidth
                   name="phone"
                   type="tel"
-                  placeholder="+1 (555) 000-0000"
+                  placeholder="Your phone number"
                 />
               </Box>
 
@@ -1489,20 +1498,20 @@ export default function HomePage() {
               },
             }}
           >
-            <ContactLink href="tel:">
-              CALL US: [PHONE NUMBER]
+            <ContactLink href={`tel:${contactDetails.phoneHref}`}>
+              CALL US: {contactDetails.phone}
             </ContactLink>
 
             <ContactSeparator />
 
-            <ContactLink href="#">
-              WHATSAPP US: [WHATSAPP NUMBER]
+            <ContactLink href={contactDetails.whatsappHref}>
+              WHATSAPP US: {contactDetails.phone}
             </ContactLink>
 
             <ContactSeparator />
 
-            <ContactLink href="mailto:">
-              EMAIL US: [EMAIL ADDRESS]
+            <ContactLink href={`mailto:${contactDetails.email}`}>
+              EMAIL US: {contactDetails.email}
             </ContactLink>
           </Box>
         </Container>
@@ -1701,7 +1710,7 @@ function TextLink({ children, href }) {
         textDecoration: "none",
 
         fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
-        fontSize: "14px",
+        fontSize: { xs: "10px", md: "14px" },
         fontWeight: 500,
 
         letterSpacing: "0.1em",

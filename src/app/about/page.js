@@ -202,7 +202,7 @@ export default function AboutPage() {
                   fontFamily: "Arial, Helvetica, sans-serif",
 
                   fontSize: {
-                    xs: "6px",
+                    xs: "10px",
                     md: "12px",
                   },
 
@@ -263,10 +263,8 @@ export default function AboutPage() {
               }}
             >
               We shape interiors that
-              <br />
-              feel deeply personal,
-              <br />
-              calm, and enduring.
+              {/* <br /> */} feel deeply personal,
+              {/* <br /> */} calm, and enduring.
             </Typography>
           </AnimateOnScroll>
 
@@ -281,7 +279,7 @@ export default function AboutPage() {
                 },
 
                 fontSize: {
-                  xs: "9px",
+                  xs: "12px",
                   sm: "10px",
                   md: "16px",
                 },
@@ -385,7 +383,7 @@ export default function AboutPage() {
                     fontFamily: "Arial, Helvetica, sans-serif",
 
                     fontSize: {
-                      xs: "6px",
+                      xs: "10px",
                       md: "14px",
                     },
 
@@ -409,7 +407,7 @@ export default function AboutPage() {
                   fontFamily: "Arial, Helvetica, sans-serif",
 
                   fontSize: {
-                    xs: "5.5px",
+                    xs: "7px",
                     md: "8px",
                   },
 
@@ -448,7 +446,7 @@ export default function AboutPage() {
                   fontWeight: 400,
 
                   fontSize: {
-                    xs: "38px",
+                    xs: "28px",
                     sm: "44px",
                     md: "50px",
                     lg: "52px",
@@ -475,10 +473,8 @@ export default function AboutPage() {
                 }}
               >
                 Spaces Designed
-                <br />
-                with Purpose.
-                <br />
-                Crafted with Character.
+                {/* <br /> */} with Purpose.
+                {/* <br /> */} Crafted with Character.
               </Typography>
             </AnimateOnScroll>
 
@@ -683,7 +679,7 @@ export default function AboutPage() {
               fontWeight: 400,
 
               fontSize: {
-                xs: "38px",
+                xs: "28px",
                 sm: "45px",
                 md: "49px",
                 lg: "52px",
@@ -703,7 +699,7 @@ export default function AboutPage() {
 
               maxWidth: {
                 xs: "100%",
-                md: "900px",
+                md: "600px",
               },
 
               mb: {
@@ -713,7 +709,6 @@ export default function AboutPage() {
             }}
           >
             Quiet architecture, tactile truth, and
-            <br />
             spaces shaped around human ritual.
           </Typography>
         </AnimateOnScroll>
@@ -950,7 +945,7 @@ export default function AboutPage() {
 
                 <Typography
                   sx={{
-                    fontSize: "12px",
+                    fontSize: { xs: "8px", md: "12px" },
                     letterSpacing: "1.8px",
                     color: "#36342f",
                   }}
@@ -969,7 +964,7 @@ export default function AboutPage() {
                 sx={{
                   fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
                   fontSize: {
-                    xs: "31px",
+                    xs: "28px",
                     sm: "37px",
                     md: "52px",
                   },
@@ -988,7 +983,7 @@ export default function AboutPage() {
               <Typography
                 sx={{
                   color: "#77736b",
-                  fontSize: "14px",
+                  fontSize: { xs: "12px", md: "14px" },
                   lineHeight: 1.6,
                   maxWidth: "540px",
                   mb: 3,
@@ -1019,7 +1014,7 @@ export default function AboutPage() {
                     backgroundColor: "#e4002b",
                     borderRadius: 0,
                     color: "#fff",
-                    fontSize: "10px",
+                    fontSize: { xs: "6px", md: "10px" },
                     letterSpacing: "1.8px",
                     px: 2.5,
                     py: 1.3,
@@ -1039,7 +1034,7 @@ export default function AboutPage() {
                   href="/#portfolio"
                   sx={{
                     color: "#27251f",
-                    fontSize: "10px",
+                    fontSize: { xs: "6px", md: "10px" },
                     letterSpacing: "1.5px",
                     px: 0,
                     minWidth: "auto",
@@ -1101,7 +1096,7 @@ function PrincipleCard({
 
         minHeight: {
           xs: 230,
-          md: 245,
+          md: 350,
         },
 
         backgroundColor: "#f5f2ed",

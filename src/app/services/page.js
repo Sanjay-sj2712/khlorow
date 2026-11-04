@@ -313,11 +313,10 @@ export default function ServicesPage() {
                   md: "-2px",
                 },
 
-                maxWidth: "760px",
+                maxWidth: "600px",
               }}
             >
               From first idea to enduring
-              <br />
               detail.
             </Typography>
           </AnimateOnScroll>
@@ -337,7 +336,7 @@ export default function ServicesPage() {
                 fontFamily: "Arial, Helvetica, sans-serif",
 
                 fontSize: {
-                  xs: "9px",
+                  xs: "12px",
                   sm: "10px",
                   md: "16px",
                 },
@@ -439,7 +438,7 @@ export default function ServicesPage() {
                     fontFamily: "Arial, Helvetica, sans-serif",
 
                     fontSize: {
-                      xs: "6px",
+                      xs: "8px",
                       md: "12px",
                     },
 
@@ -652,7 +651,7 @@ export default function ServicesPage() {
 
                 <Typography
                   sx={{
-                    fontSize: "12px",
+                    fontSize: { xs: "8px", md: "12px" },
                     letterSpacing: "1.8px",
                     color: "#36342f",
                   }}
@@ -671,7 +670,7 @@ export default function ServicesPage() {
                 sx={{
                   fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
                   fontSize: {
-                    xs: "31px",
+                    xs: "28px",
                     sm: "37px",
                     md: "52px",
                   },
@@ -690,7 +689,7 @@ export default function ServicesPage() {
               <Typography
                 sx={{
                   color: "#77736b",
-                  fontSize: "14px",
+                  fontSize: { xs: "12px", md: "14px" },
                   lineHeight: 1.6,
                   maxWidth: "540px",
                   mb: 3,
@@ -721,7 +720,7 @@ export default function ServicesPage() {
                     backgroundColor: "#e4002b",
                     borderRadius: 0,
                     color: "#fff",
-                    fontSize: "10px",
+                    fontSize: { xs: "6px", md: "10px" },
                     letterSpacing: "1.8px",
                     px: 2.5,
                     py: 1.3,
@@ -741,7 +740,7 @@ export default function ServicesPage() {
                   href="/#portfolio"
                   sx={{
                     color: "#27251f",
-                    fontSize: "10px",
+                    fontSize: { xs: "6px", md: "10px" },
                     letterSpacing: "1.5px",
                     px: 0,
                     minWidth: "auto",
@@ -971,7 +970,7 @@ function ServiceSection({ service }) {
                 <Typography
                   sx={{
                     color: "#e4002b",
-                    fontSize: "12px",
+                    fontSize: { xs: "8px", md: "12px" },
                     letterSpacing: "2px",
                     fontWeight: 500,
                   }}
@@ -1003,7 +1002,7 @@ function ServiceSection({ service }) {
                   fontWeight: 400,
 
                   fontSize: {
-                    xs: "38px",
+                    xs: "28px",
                     sm: "45px",
                     md: "49px",
                   },
@@ -1028,7 +1027,7 @@ function ServiceSection({ service }) {
               <Typography
                 sx={{
                   color: "#66635d",
-                  fontSize: "14px",
+                  fontSize: { xs: "12px", md: "14px" },
                   lineHeight: 1.65,
                   maxWidth: "500px",
                   mb: 3.5,
@@ -1138,7 +1137,7 @@ function MethodPrinciple({ number, description }) {
         sx={{
 
           fontSize: {
-            xs: "6px",
+            xs: "10px",
             md: "12px",
           },
 
@@ -1191,7 +1190,7 @@ function MethodPrinciple({ number, description }) {
         sx={{
 
           fontSize: {
-            xs: "9px",
+            xs: "10px",
             md: "14px",
           },
 
