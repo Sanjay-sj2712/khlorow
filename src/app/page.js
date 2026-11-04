@@ -32,7 +32,7 @@ const images = {
   portfolio5: "/images/e.jpg",
   portfolio6: "/images/f.jpg",
   portfolio7: "/images/g.jpg",
-  approach: "/images/approach.jpg",
+  approach: "/images/09mr.sureshResidence.jpg",
 };
 
 /* ============================================================
@@ -41,38 +41,38 @@ const images = {
 
 const projects = [
   {
-    title: "Private Alpine Residence",
-    year: "2024",
+    title: "Villa residence bedroom",
+    year: "2025",
     image: images.portfolio1,
   },
   {
-    title: "Coastal Pavilion",
-    year: "2023",
-    image: images.portfolio2,
+    title: " Villa residence bedroom ",
+    year: "2025",
+    image: images.portfolio6,//fi
   },
   {
-    title: "Stone Penthouse Sanctuary",
-    year: "2022",
-    image: images.portfolio3,
-  },
-  {
-    title: "The Courtyard Suite",
-    year: "2024",
-    image: images.portfolio4,
-  },
-  {
-    title: "Minimalist Loft",
-    year: "2023",
-    image: images.portfolio5,
-  },
-  {
-    title: "Curated Living Gallery",
-    year: "2022",
+    title: "Residence bedroom",
+    year: "2025",
     image: images.portfolio6,
   },
   {
-    title: "Hospitality Lounge",
-    year: "2023",
+    title: "Residence modern bedroom",
+    year: "2025",
+    image: images.portfolio5,//fixed
+  },
+  {
+    title: "Office collaboration showroom space",
+    year: "2024",
+    image: images.portfolio4, //fixe
+  },
+  {
+    title: "Residence kitchen",
+    year: "2024",
+    image: images.portfolio2,//fixed
+  },
+  {
+    title: "Villa residence dining",
+    year: "2025",
     image: images.portfolio7,
   },
 ];
@@ -129,7 +129,7 @@ const approachItems = [
     number: "02",
     title: "Material Honesty",
     description:
-      "Honoring raw travertine, blackened timber, unlacquered brass, and tactile linens that mature with character over time.",
+      "Honoring raw construction materials, bricks, timbers, traditional elements and tactile linens that mature with character over time.",
   },
   {
     number: "03",
@@ -341,7 +341,7 @@ export default function HomePage() {
         <Box
           component="img"
           src={images.hero}
-          alt="Khlorow interior"
+          alt="khlorow interior"
           sx={{
             position: "absolute",
             inset: 0,
@@ -548,7 +548,7 @@ export default function HomePage() {
       </Box>
 
       {/* =====================================================
-          02. ABOUT KHLOROW
+          02. ABOUT khlorow
       ===================================================== */}
 
       <Box component="section" sx={sectionPadding}>
@@ -600,7 +600,7 @@ export default function HomePage() {
 
                 <AnimateOnScroll animation="fade-up" delay="0.22s">
                   <Typography sx={{ ...bodyStyle, mb: 2 }}>
-                    At Khlorow, we believe that an interior should never impose;
+                    At khlorow, we believe that an interior should never impose;
                     it should adapt intuitively to daily rituals and elevate human
                     connection. Through meticulous balance between volume, light,
                     and natural materials, our work explores how spaces can
@@ -694,7 +694,7 @@ export default function HomePage() {
                 >
                   A selection of spaces designed
                   <br />
-                  by Khlorow.
+                  by khlorow.
                 </Typography>
               </AnimateOnScroll>
             </Box>
@@ -736,7 +736,7 @@ export default function HomePage() {
               />
 
               <ProjectCard
-                project={projects[3]}
+                project={projects[1]}
                 height={310}
               />
             </Stack>
@@ -744,7 +744,12 @@ export default function HomePage() {
             {/* COLUMN 2 */}
             <Stack spacing={2.2}>
               <ProjectCard
-                project={projects[1]}
+                project={projects[2]}
+                height={200}
+              />
+
+              <ProjectCard
+                project={projects[3]}
                 height={200}
               />
 
@@ -752,22 +757,17 @@ export default function HomePage() {
                 project={projects[4]}
                 height={200}
               />
-
-              <ProjectCard
-                project={projects[6]}
-                height={200}
-              />
             </Stack>
 
             {/* COLUMN 3 */}
             <Stack spacing={2.2}>
               <ProjectCard
-                project={projects[2]}
+                project={projects[5]}
                 height={310}
               />
 
               <ProjectCard
-                project={projects[5]}
+                project={projects[6]}
                 height={310}
               />
             </Stack>
@@ -1105,7 +1105,7 @@ export default function HomePage() {
                 <Box
                   component="img"
                   src={images.approach}
-                  alt="Khlorow material approach"
+                  alt="khlorow material approach"
                   sx={{
                     display: "block",
 
@@ -1113,7 +1113,7 @@ export default function HomePage() {
 
                     height: {
                       xs: 360,
-                      md: 600,
+                      md: 1000,
                     },
 
                     objectFit: "cover",
@@ -1145,7 +1145,7 @@ export default function HomePage() {
                       textTransform: "uppercase",
                     }}
                   >
-                    MATERIAL HARMONY & REFINED DISCIPLINE · ATELIER KHLOROW
+                    MATERIAL HARMONY & REFINED DISCIPLINE · ATELIER khlorow
                   </Typography>
                 </Box>
               </Box>
@@ -1577,22 +1577,30 @@ function ProjectCard({ project, height }) {
           gap: 2,
         }}
       >
-        <Typography
-          sx={{
-            fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
-
-            fontSize: {
-              xs: "17px",
-              md: "16px",
-            },
-
-            lineHeight: 1.1,
-
-            color: "#fff",
-          }}
-        >
-          {project.title}
-        </Typography>
+        <Box sx={{ minWidth: 0 }}>
+          <Typography
+            sx={{
+              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontSize: { xs: "17px", md: "16px" },
+              lineHeight: 1.1,
+              color: "#fff",
+            }}
+          >
+            {project.title}
+          </Typography>
+          <Typography
+            sx={{
+              mt: 0.5,
+              fontSize: "8px",
+              letterSpacing: "0.1em",
+              lineHeight: 1.35,
+              color: "rgba(255,255,255,.82)",
+              textTransform: "uppercase",
+            }}
+          >
+            {project.category}
+          </Typography>
+        </Box>
 
         <Typography
           sx={{

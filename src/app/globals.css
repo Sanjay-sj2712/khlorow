@@ -1,4 +1,4 @@
-/* Global CSS – Khlorow */
+/* Global CSS – khlorow */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -30,13 +30,13 @@ h1, h2, h3, h4, h5, h6 {
   background: #111;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c9a96e;
+  background: #e3133d;
   border-radius: 3px;
 }
 
 /* Selection */
 ::selection {
-  background: #c9a96e33;
+  background: #e3133d33;
   color: #f5f0eb;
 }
 
