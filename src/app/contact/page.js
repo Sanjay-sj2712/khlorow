@@ -60,7 +60,7 @@ export default function ContactPage() {
     e.preventDefault();
     const { name, phone, email, projectType, message } = formData;
     const text = [
-      `*New Project Enquiry — Khlorow*`,
+      `Hello Khlorow, I would like to enquire about a project.`,
       ``,
       `*Name:* ${name || "—"}`,
       `*Phone:* ${phone || "—"}`,
