@@ -20,7 +20,7 @@ import { contactDetails } from "@/lib/contact";
    Replace this with your actual downloaded image
 ========================================================== */
 
-const contactImage = "/images/contact-space.jpg";
+const contactImage = "/images/contact-poster.jpg";
 
 const eyebrowStyle = {
   fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
@@ -295,10 +295,10 @@ export default function ContactPage() {
                   width: "100%",
 
                   height: {
-                    xs: "320px",
-                    sm: "420px",
-                    md: "500px",
-                    lg: "520px",
+                    xs: "350px",
+                    sm: "450px",
+                    md: "650px",
+                    lg: "750px",
                   },
 
                   objectFit: "cover",

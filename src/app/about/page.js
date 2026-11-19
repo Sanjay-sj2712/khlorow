@@ -17,7 +17,7 @@ import {
 
 const images = {
   hero: "/images/01aboutUsPageFrontPhoto.jpg",
-  approach: "/images/about-approach.jpg",
+  approach: "/images/khlorow-office.jpg",
 };
 
 
@@ -852,10 +852,10 @@ export default function AboutPage() {
                   width: "100%",
 
                   height: {
-                    xs: "430px",
-                    sm: "520px",
-                    md: "535px",
-                    lg: "550px",
+                    xs: "500px",
+                    sm: "700px",
+                    md: "700px",
+                    lg: "750px",
                   },
 
                   objectFit: "cover",
