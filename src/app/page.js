@@ -47,7 +47,7 @@ const projects = [
     image: images.portfolio1,
   },
   {
-    title: " Villa residence bedroom ",
+    title: " Villa residence dining ",
     year: "2025",
     image: images.portfolio7,//fixed
   },
@@ -57,22 +57,22 @@ const projects = [
     image: images.portfolio3,//fixed
   },
   {
-    title: "Residence modern bedroom",
+    title: "Office collaboration showroom space",
     year: "2025",
     image: images.portfolio5,//fixed
   },
   {
-    title: "Office collaboration showroom space",
+    title: "Residence modern bedroom",
     year: "2024",
     image: images.portfolio4, //fixe
   },
   {
-    title: "Residence kitchen",
+    title: "Villa residence bedroom",
     year: "2024",
     image: images.portfolio2,//fixed
   },
   {
-    title: "Villa residence dining",
+    title: "Residence kitchen",
     year: "2025",
     image: images.portfolio6,
   },
