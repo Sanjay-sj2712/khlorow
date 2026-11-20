@@ -324,102 +324,6 @@ export default function ContactPage() {
                 }}
               />
 
-              {/* =================================================
-          IMAGE CAPTION
-      ================================================= */}
-
-              <Box
-                sx={{
-                  position: "absolute",
-
-                  left: {
-                    xs: 12,
-                    sm: 18,
-                    md: 28,
-                  },
-
-                  bottom: {
-                    xs: 12,
-                    sm: 18,
-                    md: 28,
-                  },
-
-                  display: "inline-flex",
-
-                  alignItems: "center",
-
-                  backgroundColor: "rgba(250,248,243,0.96)",
-
-                  px: {
-                    xs: 1.5,
-                    sm: 1.8,
-                    md: 2,
-                  },
-
-                  py: {
-                    xs: 1,
-                    md: 1.15,
-                  },
-                }}
-              >
-                {/* Red dot */}
-                <Box
-                  sx={{
-                    width: {
-                      xs: 4,
-                      md: 5,
-                    },
-
-                    height: {
-                      xs: 4,
-                      md: 5,
-                    },
-
-                    borderRadius: "50%",
-
-                    backgroundColor: "#e3133d",
-
-                    mr: {
-                      xs: 0.9,
-                      md: 1,
-                    },
-
-                    flexShrink: 0,
-                  }}
-                />
-
-                <Typography
-                  sx={{
-                    fontFamily: "var(--font-jakarta), 'Plus Jakarta Sans', sans-serif",
-
-                    fontSize: {
-                      xs: "5px",
-                      sm: "5.5px",
-                      md: "8px",
-                    },
-
-                    fontWeight: 500,
-
-                    letterSpacing: {
-                      xs: "0.9px",
-                      md: "1.2px",
-                    },
-
-                    lineHeight: 1,
-
-                    color: "#282720",
-
-                    textTransform: "uppercase",
-
-                    whiteSpace: {
-                      xs: "normal",
-                      sm: "nowrap",
-                    },
-                  }}
-                >
-                  ATELIER SALON &amp; PRIVATE CONSULTATIONS — FIG. 05 / ENGAGEMENT
-                </Typography>
-              </Box>
             </Box>
           </AnimateOnScroll>
         </Box>
@@ -883,7 +787,7 @@ function ContactLink({ children, href }) {
 
         letterSpacing: "0.1em",
 
-        textTransform: "uppercase",
+        // textTransform: "uppercase",
 
         whiteSpace: "nowrap",
 

@@ -800,7 +800,6 @@ export default function AboutPage() {
 
                 whiteSpace: "nowrap",
 
-                textTransform: "uppercase",
               }}> Khlorow Ideology</Typography>
 
               <AnimateOnScroll animation="fade-up" delay="0.08s">

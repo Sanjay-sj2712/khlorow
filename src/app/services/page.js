@@ -43,8 +43,8 @@ const services = [
 
     image: images.service01,
 
-    caption: "RESIDENTIAL VILLA / ENGADINE",
-    code: "PL. 01 — ARCHITECTURAL CORE",
+    caption: "ARCHITECTURAL &\NINTERIOR DESIGN",
+    code: "",
 
     layout: "text-image",
 
@@ -67,8 +67,8 @@ const services = [
 
     image: images.service02,
 
-    caption: "CIRCULATION MATRIX & SIGHTLINE STUDY",
-    code: "PL. 02 — PROGRAMMATIC FLOW",
+    caption: "SPACE PLANNING &\NLAYOUT CHOREOGRAPHY",
+    code: "",
 
     layout: "image-text",
 
@@ -90,8 +90,8 @@ const services = [
 
     image: images.service03,
 
-    caption: "TRAVERTINE & SMOKED OAK MILLWORK",
-    code: "PL. 03 — ATELIER FABRICATION",
+    caption: "PU AND WALNUT WOOD MILLWORK",
+    code: "",
 
     layout: "text-image",
 
@@ -113,8 +113,8 @@ const services = [
 
     image: images.service04,
 
-    caption: "HERITAGE COURTYARD RESTORATION",
-    code: "PL. 04 — ADAPTIVE DIALOGUE",
+    caption: "COMMERCIAL RESTORATION",
+    code: "",
 
     layout: "image-text",
 
@@ -136,8 +136,8 @@ const services = [
 
     image: images.service05,
 
-    caption: "FINAL APPOINTMENT & RESIDENTIAL TURNOVER",
-    code: "PL. 05 — PRECISION DELIVERY",
+    caption: "TURNKEY\NEXECUTION & SITE\NMANAGEMENT",
+    code: "",
 
     layout: "text-image",
 

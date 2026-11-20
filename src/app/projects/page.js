@@ -46,6 +46,10 @@ const images = {
   Interior_11: "/images/11mrs.sumathiResidence.jpg",
   Interior_12: "/images/12kalyanaMandapamkallakuruchi.jpg",
 
+  athangudiTiles: "/images/athangudi tiles.png",
+  exposedBrick: "/images/exposed brick.png",
+  mudInterlock: "/images/mud interlock blocks.png",
+  oxideFlooring: "/images/oxide flooring.png",
 };
 
 /* =========================================================
@@ -124,7 +128,7 @@ const projects = [
   {
     id: 7,
     category: "Architecture",
-    location: "richy, Tamilnadu ",
+    location: "Trichy, Tamilnadu ",
     year: "2025",
     title: "Manufacturing unit - Morais sculpting art studio",
     description:
@@ -260,7 +264,7 @@ const projects = [
   {
     id: 19,
     category: "Interior Design",
-    location: "Aspen, Colorado",
+    location: "coimbatore, Tamilnadu",
     year: "2026",
     title: "Jayachandran Residence",
     description:
@@ -339,32 +343,28 @@ const filters = [
 
 const materials = [
   {
-    code: "Tv",
-    title: "IVORY TRAVERTINE",
-    detail: "HONED / LIGHT VEIN",
-    background:
-      "linear-gradient(135deg, #ddd7ce 0%, #f1ede7 100%)",
+    code: "At",
+    title: "ATHANGUDI TILES",
+    detail: "HANDCRAFTED / HERITAGE PATTERN",
+    image: images.athangudiTiles,
   },
   {
-    code: "Sl",
-    title: "SLAKED LIME PLASTER",
-    detail: "NATURAL / WARM GREY",
-    background:
-      "linear-gradient(135deg, #cbc8c2 0%, #e8e5df 100%)",
+    code: "Eb",
+    title: "EXPOSED BRICK",
+    detail: "TERRACOTTA / NATURAL TEXTURE",
+    image: images.exposedBrick,
   },
   {
-    code: "Br",
-    title: "PATINATED BRONZE",
-    detail: "SATIN / AGED FINISH",
-    background:
-      "linear-gradient(135deg, #eacb8b 0%, #f4daa4 100%)",
+    code: "Mb",
+    title: "MUD INTERLOCK BRICK",
+    detail: "EARTHEN / COMPRESSED BLOCK",
+    image: images.mudInterlock,
   },
   {
-    code: "Ok",
-    title: "SMOKED ALPINE OAK",
-    detail: "NATURAL / DARK GRAIN",
-    background: "#17241c",
-    light: true,
+    code: "Ox",
+    title: "OXIDE FLOORING",
+    detail: "SEAMLESS / HAND-POLISHED LUSTRE",
+    image: images.oxideFlooring,
   },
 ];
 
@@ -555,7 +555,7 @@ export default function ProjectsPage() {
                 </Typography>
               </AnimateOnScroll>
 
-              <Typography
+              {/* <Typography
                 sx={{
                   ...serif,
                   fontSize: { xs: "28px", md: "32px" },
@@ -564,10 +564,10 @@ export default function ProjectsPage() {
                 }}
               >
                 The Alpine Pavilion Residence
-              </Typography>
+              </Typography> */}
             </Box>
 
-            <Typography
+            {/* <Typography
               sx={{
                 ...eyebrow,
                 color: "#56524b",
@@ -575,7 +575,7 @@ export default function ProjectsPage() {
               }}
             >
               DRAG CURSOR OR TOUCH TO DISSECT PLAN VS. STONE REALIZATION
-            </Typography>
+            </Typography> */}
           </Box>
 
           {/* FEATURED IMAGE — DRAG COMPARE SLIDER */}
@@ -1417,6 +1417,7 @@ function MaterialCard({
   code,
   title,
   detail,
+  image,
   background,
   light,
 }) {
@@ -1454,39 +1455,58 @@ function MaterialCard({
 
           overflow: "hidden",
           mb: 1.5,
+          backgroundColor: "#ebe7df",
+          position: "relative",
         }}
       >
-        <Box
-          className="material-swatch"
-          sx={{
-            width: "100%",
-            height: "100%",
-
-            background,
-
-            display: "flex",
-
-            alignItems: "center",
-            justifyContent: "center",
-
-            transition: "transform .55s cubic-bezier(.2,.7,.2,1)",
-            willChange: "transform",
-          }}
-        >
-          <Typography
+        {image ? (
+          <Box
+            className="material-swatch"
+            component="img"
+            src={image}
+            alt={title}
             sx={{
-              ...serif,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+              transition: "transform .55s cubic-bezier(.2,.7,.2,1)",
+              willChange: "transform",
+            }}
+          />
+        ) : (
+          <Box
+            className="material-swatch"
+            sx={{
+              width: "100%",
+              height: "100%",
 
-              fontSize: "18px",
+              background,
 
-              color: light
-                ? "rgba(255,255,255,.82)"
-                : "#514b43",
+              display: "flex",
+
+              alignItems: "center",
+              justifyContent: "center",
+
+              transition: "transform .55s cubic-bezier(.2,.7,.2,1)",
+              willChange: "transform",
             }}
           >
-            {code}
-          </Typography>
-        </Box>
+            <Typography
+              sx={{
+                ...serif,
+
+                fontSize: "18px",
+
+                color: light
+                  ? "rgba(255,255,255,.82)"
+                  : "#514b43",
+              }}
+            >
+              {code}
+            </Typography>
+          </Box>
+        )}
       </Box>
 
       <Typography
@@ -1503,20 +1523,21 @@ function MaterialCard({
         {title}
       </Typography>
 
-      <Typography
-        sx={{
+      {/* {detail && (
+        <Typography
+          sx={{
+            fontSize: "8px",
 
-          fontSize: "8px",
+            letterSpacing: "0.8px",
 
-          letterSpacing: "0.8px",
+            color: "#918b82",
 
-          color: "#918b82",
-
-          textTransform: "uppercase",
-        }}
-      >
-        {detail}
-      </Typography>
+            textTransform: "uppercase",
+          }}
+        >
+          {detail}
+        </Typography>
+      )} */}
     </Box>
   );
 }

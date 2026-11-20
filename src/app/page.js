@@ -649,8 +649,7 @@ export default function HomePage() {
       <Box
         component="section"
         sx={{
-          ...sectionPadding,
-          pt: { xs: 7, md: 9 },
+          ...sectionPadding, pt: { xs: 0, md: 7 },
         }}
       >
         <Container
@@ -1037,9 +1036,7 @@ export default function HomePage() {
                   }}
                 >
                   Quiet architecture, tactile truth,
-                  {/* <br /> */} and spaces shaped around human
-                  {/* <br /> */}
-                  ritual.
+                  and spaces shaped around human ritual.
                 </Typography>
               </AnimateOnScroll>
 
@@ -1100,7 +1097,7 @@ export default function HomePage() {
                             xs: "14px",
                             md: "16px",
                           },
-                           maxWidth: 500,
+                          maxWidth: 500,
                           mb: 2
                         }}
                       >
@@ -1131,7 +1128,7 @@ export default function HomePage() {
                     display: "block",
                     width: "100%",
                     height: {
-                      xs: 360,
+                      xs: 400,
                       md: 1000,
                     },
                     objectFit: "cover",
