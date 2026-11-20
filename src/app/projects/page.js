@@ -67,7 +67,7 @@ const projects = [
       "Bichromatic façade combines terracotta tiles with the natural stone finish, creating a subtle dialogue between materials, textures, and colors that comes alive under daylight.",
     image: images.alpine,
     layout: "wide",
-    figure: "FIG. 01 / ALPINE",
+    figure: "",
   },
   {
     id: 2,
@@ -78,7 +78,7 @@ const projects = [
     description:
       "An expansive, minimalist façade blending wood and steel, creating a contemporary residence inspired by modern Western coastal architecture.",
     image: images.coastal,
-    figure: "FIG. 02 / COASTAL",
+    figure: "",
   },
   {
     id: 3,
@@ -89,7 +89,7 @@ const projects = [
     description:
       "A restrained residential façade defined by natural stone and warm paint tones, creating an expansive and elegant exterior with a timeless architectural appeal.",
     image: images.courtyard,
-    figure: "FIG. 03 / STILL",
+    figure: "",
   },
   {
     id: 4,
@@ -100,7 +100,7 @@ const projects = [
     description:
       "A contemporary metal façade complemented by carefully designed architectural lighting, creating an elegant exterior that comes alive with a warm, sophisticated glow at sunset.",
     image: images.salon,
-    figure: "FIG. 04 / HOSPITALITY",
+    figure: "",
   },
   {
     id: 5,
@@ -111,7 +111,7 @@ const projects = [
     description:
       "A minimalist, single-element design approach featuring laser-cut, water-resistant panels with a refined paint finish, creating an interplay of light and shadow across the balcony.",
     image: images.townhouse,
-    figure: "FIG. 05 / TOWNHOUSE",
+    figure: "",
   },
   {
     id: 6,
@@ -123,7 +123,7 @@ const projects = [
       "A minimalist single-storey residence featuring sculptural structural walls as a defining design element, complemented by a refreshing sea-blue paint finish.",
     image: images.lakehouse,
     layout: "wide",
-    figure: "FIG. 06 / SANCTUARY",
+    figure: "",
   },
   {
     id: 7,
@@ -135,7 +135,7 @@ const projects = [
       "Clean structural lines, bold geometric forms, and refined metal elements come together with contemporary finishes to create a striking architectural identity.",
     image: images.alpin,
     layout: "wide",
-    figure: "FIG. 01 / ALPINE",
+    figure: "",
   },
   {
     id: 8,
@@ -146,7 +146,7 @@ const projects = [
     description:
       "A timeless façade that blends elegant architectural details, balanced proportions, and refined material finishes, traditional elements and subtle contemporary touches creates a graceful exterior",
     image: images.coasta,
-    figure: "FIG. 02 / COASTAL",
+    figure: "",
   },
   {
     id: 9,
@@ -157,7 +157,7 @@ const projects = [
     description:
       "An elevated entrance gate adorned with a wood finish adds an elegant touch to the residence, complemented by concrete panel in the compound wall forms the central attraction of the façade.",
     image: images.court,
-    figure: "FIG. 03 / STILL",
+    figure: "",
   },
   {
     id: 10,
@@ -168,7 +168,7 @@ const projects = [
     description:
       "An open garden food court concept transforms the space into a naturally inviting , greenery, open seating, and comfortable layouts creates a refreshing ambience.",
     image: images.saloon,
-    figure: "FIG. 04 / HOSPITALITY",
+    figure: "",
   },
   {
     id: 11,
@@ -179,7 +179,7 @@ const projects = [
     description:
       "Warm limestone accents, tactile oak, and framed garden views establish a calm residential composition.",
     image: images.townhouses,
-    figure: "FIG. 05 / TOWNHOUSE",
+    figure: "",
   },
   {
     id: 12,
@@ -191,7 +191,7 @@ const projects = [
       "A traditional tiled-roof façade that celebrates timeless architectural charm through sloping roof forms, earthy textures, and natural material finishes.",
     image: images.lakehouses,
     layout: "wide",
-    figure: "FIG. 06 / SANCTUARY",
+    figure: "",
   },
   {
     id: 13,
@@ -203,7 +203,7 @@ const projects = [
       "A minimalist living approach that embraces the natural warmth and elegance of oak wood finishes, seamless blend of subtle tones creates a calm, sophisticated living environment.",
     image: images.Interior_1,
     layout: "wide",
-    figure: "FIG. 01 / ALPINE",
+    figure: "",
   },
   {
     id: 14,
@@ -214,7 +214,7 @@ const projects = [
     description:
       "clinic reception featuring an intricately carved wooden accent wall that adds warmth, texture, and visual elegance to the space",
     image: images.Interior_2,
-    figure: "FIG. 02 / COASTAL",
+    figure: "",
   },
   {
     id: 15,
@@ -225,7 +225,7 @@ const projects = [
     description:
       "A natural stone feature wall at the reception adds warmth, texture, and a sense of grandeur to the overall interior design theme with a refined, elegant, and welcoming ambience",
     image: images.Interior_3,
-    figure: "FIG. 03 / STILL",
+    figure: "",
   },
   {
     id: 16,
@@ -236,7 +236,7 @@ const projects = [
     description:
       "A serene all-white bedroom designed to embrace simplicity and tranquillity, enhanced by subtle gold accents on the wardrobe shutters.",
     image: images.Interior_4,
-    figure: "FIG. 04 / HOSPITALITY",
+    figure: "",
   },
   {
     id: 17,
@@ -247,7 +247,7 @@ const projects = [
     description:
       "A forest-inspired restaurant interior that brings together vibrant red accents and lush greenery to create a refreshing yet lively dining atmosphere.",
     image: images.Interior_5,
-    figure: "FIG. 05 / TOWNHOUSE",
+    figure: "",
   },
   {
     id: 18,
@@ -259,7 +259,7 @@ const projects = [
       "Restaurant tables featuring natural stone tops paired with intricate laser-cut detailing inspired by the region’s iconic flower, seamlessly blending with the forest theme..",
     image: images.Interior_6,
     layout: "wide",
-    figure: "FIG. 06 / SANCTUARY",
+    figure: "",
   },
   {
     id: 19,
@@ -271,7 +271,7 @@ const projects = [
       "A simple and functional study area inspired by the form of a book, with uniquely shaped shelving that adds a creative design element to the space.",
     image: images.Interior_7,
     layout: "wide",
-    figure: "FIG. 01 / ALPINE",
+    figure: "",
   },
   {
     id: 20,
@@ -282,7 +282,7 @@ const projects = [
     description:
       "balcony social space designed around the natural warmth of wood and lush greenery with theidea of gentle play around natural light, soft shadows creates a pleasant, airy ambience.",
     image: images.Interior_8,
-    figure: "FIG. 02 / COASTAL",
+    figure: "",
   },
   {
     id: 21,
@@ -293,7 +293,7 @@ const projects = [
     description:
       "A compact space designed with natural concrete textures, complemented by a warm accent wall that adds depth and character with integrated lighting design ceiling",
     image: images.Interior_9,
-    figure: "FIG. 03 / STILL",
+    figure: "",
   },
   {
     id: 22,
@@ -304,7 +304,7 @@ const projects = [
     description:
       "The natural warmth of wood for the flooring and the headboard gives subtle contrast of earthy textures and soft tones creates a calm, elegant, and harmonious bedroom ambience. ",
     image: images.Interior_10,
-    figure: "FIG. 04 / HOSPITALITY",
+    figure: "",
   },
   {
     id: 23,
@@ -315,7 +315,7 @@ const projects = [
     description:
       "The interplay of dual wood textures adds a distinctive design character, bringing depth, warmth, and a sense of luxury to the interior.",
     image: images.Interior_11,
-    figure: "FIG. 05 / TOWNHOUSE",
+    figure: "",
   },
   {
     id: 24,
@@ -327,7 +327,7 @@ const projects = [
       "A simple design approach with maximum emphasis on ceiling depth and layered detailing, complemented by grand lighting elements.",
     image: images.Interior_12,
     layout: "wide",
-    figure: "FIG. 06 / SANCTUARY",
+    figure: "",
   },
 ];
 
@@ -1293,7 +1293,7 @@ function ProjectCard({ project }) {
 
         {/* FIGURE LABEL */}
 
-        <ImageTag
+        {/* <ImageTag
           sx={{
             top: 14,
             left: 14,
@@ -1301,7 +1301,7 @@ function ProjectCard({ project }) {
           }}
         >
           {project.figure}
-        </ImageTag>
+        </ImageTag> */}
 
         {/* HOVER OVERLAY */}
 
